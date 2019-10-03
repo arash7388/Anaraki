@@ -1,0 +1,4 @@
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Shared\bin\Release\Shared.dll
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Shared\bin\Release\Shared.pdb
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Shared\obj\Release\Shared.dll
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Shared\obj\Release\Shared.pdb

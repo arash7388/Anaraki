@@ -1,0 +1,24 @@
+C:\Users\Saly-Notebook\Downloads\AngularJS-WebAPI-BookStore-master\AngularJS-WebAPI-BookStore-master\Shared\bin\Debug\Shared.dll
+C:\Users\Saly-Notebook\Downloads\AngularJS-WebAPI-BookStore-master\AngularJS-WebAPI-BookStore-master\Shared\bin\Debug\Shared.pdb
+C:\Users\Saly-Notebook\Downloads\AngularJS-WebAPI-BookStore-master\AngularJS-WebAPI-BookStore-master\Shared\obj\Debug\Shared.csprojResolveAssemblyReference.cache
+C:\Users\Saly-Notebook\Downloads\AngularJS-WebAPI-BookStore-master\AngularJS-WebAPI-BookStore-master\Shared\obj\Debug\Shared.dll
+C:\Users\Saly-Notebook\Downloads\AngularJS-WebAPI-BookStore-master\AngularJS-WebAPI-BookStore-master\Shared\obj\Debug\Shared.pdb
+D:\TTTT\Tarin\Shared\bin\Debug\Shared.dll
+D:\TTTT\Tarin\Shared\bin\Debug\Shared.pdb
+D:\TTTT\Tarin\Shared\obj\Debug\Shared.csprojResolveAssemblyReference.cache
+D:\TTTT\Tarin\Shared\obj\Debug\Shared.dll
+D:\TTTT\Tarin\Shared\obj\Debug\Shared.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Shared\bin\Debug\Shared.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Shared\bin\Debug\Shared.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Shared\obj\Debug\Shared.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Shared\obj\Debug\Shared.pdb
+E:\Tarin\Shared\bin\Debug\Shared.dll
+E:\Tarin\Shared\bin\Debug\Shared.pdb
+E:\Tarin\Shared\obj\Debug\Shared.dll
+E:\Tarin\Shared\obj\Debug\Shared.pdb
+E:\Tarin\Shared\obj\Debug\Shared.csprojResolveAssemblyReference.cache
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Shared\bin\Debug\Shared.dll
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Shared\bin\Debug\Shared.pdb
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Shared\obj\Debug\Shared.dll
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Shared\obj\Debug\Shared.pdb
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Shared\obj\Debug\Shared.csprojResolveAssemblyReference.cache

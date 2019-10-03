@@ -1,0 +1,142 @@
+C:\Users\Saly-Notebook\Downloads\AngularJS-WebAPI-BookStore-master\AngularJS-WebAPI-BookStore-master\Controller\bin\Debug\Controller.dll
+C:\Users\Saly-Notebook\Downloads\AngularJS-WebAPI-BookStore-master\AngularJS-WebAPI-BookStore-master\Controller\bin\Debug\Controller.pdb
+C:\Users\Saly-Notebook\Downloads\AngularJS-WebAPI-BookStore-master\AngularJS-WebAPI-BookStore-master\Controller\bin\Debug\DataAccess.dll
+C:\Users\Saly-Notebook\Downloads\AngularJS-WebAPI-BookStore-master\AngularJS-WebAPI-BookStore-master\Controller\bin\Debug\Shared.dll
+C:\Users\Saly-Notebook\Downloads\AngularJS-WebAPI-BookStore-master\AngularJS-WebAPI-BookStore-master\Controller\bin\Debug\DataAccess.pdb
+C:\Users\Saly-Notebook\Downloads\AngularJS-WebAPI-BookStore-master\AngularJS-WebAPI-BookStore-master\Controller\bin\Debug\Shared.pdb
+C:\Users\Saly-Notebook\Downloads\AngularJS-WebAPI-BookStore-master\AngularJS-WebAPI-BookStore-master\Controller\obj\Debug\Controller.csprojResolveAssemblyReference.cache
+C:\Users\Saly-Notebook\Downloads\AngularJS-WebAPI-BookStore-master\AngularJS-WebAPI-BookStore-master\Controller\obj\Debug\Controller.dll
+C:\Users\Saly-Notebook\Downloads\AngularJS-WebAPI-BookStore-master\AngularJS-WebAPI-BookStore-master\Controller\obj\Debug\Controller.pdb
+C:\Tarin\Controller\bin\Debug\Controller.dll
+C:\Tarin\Controller\bin\Debug\Controller.pdb
+C:\Tarin\Controller\bin\Debug\DataAccess.dll
+C:\Tarin\Controller\bin\Debug\Shared.dll
+C:\Tarin\Controller\bin\Debug\DataAccess.pdb
+C:\Tarin\Controller\bin\Debug\Shared.pdb
+C:\Tarin\Controller\obj\Debug\Controller.csprojResolveAssemblyReference.cache
+C:\Tarin\Controller\obj\Debug\Controller.dll
+C:\Tarin\Controller\obj\Debug\Controller.pdb
+C:\Tarin\Controller\bin\Debug\Repository.DAL.dll
+C:\Tarin\Controller\bin\Debug\Repository.Entity.dll
+C:\Tarin\Controller\bin\Debug\Repository.Data.dll
+C:\Tarin\Controller\bin\Debug\EntityFramework.dll
+C:\Tarin\Controller\bin\Debug\Common.dll
+C:\Tarin\Controller\bin\Debug\CodeFirstStoreFunctions.dll
+C:\Tarin\Controller\bin\Debug\Repository.DAL.pdb
+C:\Tarin\Controller\bin\Debug\Repository.Entity.pdb
+C:\Tarin\Controller\bin\Debug\Repository.Data.pdb
+C:\Tarin\Controller\bin\Debug\Common.pdb
+D:\TTTT\Tarin\Controller\obj\Debug\Controller.csprojResolveAssemblyReference.cache
+D:\TTTT\Tarin\Controller\obj\Debug\Controller.dll
+D:\TTTT\Tarin\Controller\bin\Debug\Controller.dll
+D:\TTTT\Tarin\Controller\bin\Debug\Controller.pdb
+D:\TTTT\Tarin\Controller\bin\Debug\DataAccess.dll
+D:\TTTT\Tarin\Controller\bin\Debug\Repository.DAL.dll
+D:\TTTT\Tarin\Controller\bin\Debug\Repository.Entity.dll
+D:\TTTT\Tarin\Controller\bin\Debug\Shared.dll
+D:\TTTT\Tarin\Controller\bin\Debug\Repository.Data.dll
+D:\TTTT\Tarin\Controller\bin\Debug\EntityFramework.dll
+D:\TTTT\Tarin\Controller\bin\Debug\Common.dll
+D:\TTTT\Tarin\Controller\bin\Debug\CodeFirstStoreFunctions.dll
+D:\TTTT\Tarin\Controller\bin\Debug\DataAccess.pdb
+D:\TTTT\Tarin\Controller\bin\Debug\Repository.DAL.pdb
+D:\TTTT\Tarin\Controller\bin\Debug\Repository.Entity.pdb
+D:\TTTT\Tarin\Controller\bin\Debug\Shared.pdb
+D:\TTTT\Tarin\Controller\bin\Debug\Repository.Data.pdb
+D:\TTTT\Tarin\Controller\bin\Debug\Common.pdb
+D:\TTTT\Tarin\Controller\obj\Debug\Controller.pdb
+D:\TTTT\Tarin\Controller\bin\Debug\Newtonsoft.Json.dll
+D:\TTTT\Tarin\Controller\bin\Debug\Newtonsoft.Json.xml
+D:\TTTT\Tarin - Copy (8)\Controller\obj\Debug\Controller.csprojResolveAssemblyReference.cache
+D:\TTTT\Tarin - Copy (8)\Controller\obj\Debug\Controller.dll
+D:\TTTT\Tarin - Copy (8)\Controller\obj\Debug\Controller.pdb
+D:\TTTT\Tarin - Copy (8)\Controller\bin\Debug\Controller.dll
+D:\TTTT\Tarin - Copy (8)\Controller\bin\Debug\Controller.pdb
+D:\TTTT\Tarin - Copy (8)\Controller\bin\Debug\Repository.DAL.dll
+D:\TTTT\Tarin - Copy (8)\Controller\bin\Debug\Repository.Entity.dll
+D:\TTTT\Tarin - Copy (8)\Controller\bin\Debug\Shared.dll
+D:\TTTT\Tarin - Copy (8)\Controller\bin\Debug\Repository.Data.dll
+D:\TTTT\Tarin - Copy (8)\Controller\bin\Debug\EntityFramework.dll
+D:\TTTT\Tarin - Copy (8)\Controller\bin\Debug\Newtonsoft.Json.dll
+D:\TTTT\Tarin - Copy (8)\Controller\bin\Debug\Common.dll
+D:\TTTT\Tarin - Copy (8)\Controller\bin\Debug\CodeFirstStoreFunctions.dll
+D:\TTTT\Tarin - Copy (8)\Controller\bin\Debug\Repository.DAL.pdb
+D:\TTTT\Tarin - Copy (8)\Controller\bin\Debug\Repository.Entity.pdb
+D:\TTTT\Tarin - Copy (8)\Controller\bin\Debug\Shared.pdb
+D:\TTTT\Tarin - Copy (8)\Controller\bin\Debug\Repository.Data.pdb
+D:\TTTT\Tarin - Copy (8)\Controller\bin\Debug\Newtonsoft.Json.xml
+D:\TTTT\Tarin - Copy (8)\Controller\bin\Debug\Common.pdb
+C:\Users\admin\Downloads\Compressed\Tarin\Tarin\Controller\bin\Debug\Controller.dll
+C:\Users\admin\Downloads\Compressed\Tarin\Tarin\Controller\bin\Debug\Controller.pdb
+C:\Users\admin\Downloads\Compressed\Tarin\Tarin\Controller\bin\Debug\Repository.DAL.dll
+C:\Users\admin\Downloads\Compressed\Tarin\Tarin\Controller\bin\Debug\Repository.Entity.dll
+C:\Users\admin\Downloads\Compressed\Tarin\Tarin\Controller\bin\Debug\Shared.dll
+C:\Users\admin\Downloads\Compressed\Tarin\Tarin\Controller\bin\Debug\Repository.Data.dll
+C:\Users\admin\Downloads\Compressed\Tarin\Tarin\Controller\bin\Debug\EntityFramework.dll
+C:\Users\admin\Downloads\Compressed\Tarin\Tarin\Controller\bin\Debug\Newtonsoft.Json.dll
+C:\Users\admin\Downloads\Compressed\Tarin\Tarin\Controller\bin\Debug\Common.dll
+C:\Users\admin\Downloads\Compressed\Tarin\Tarin\Controller\bin\Debug\CodeFirstStoreFunctions.dll
+C:\Users\admin\Downloads\Compressed\Tarin\Tarin\Controller\bin\Debug\Repository.DAL.pdb
+C:\Users\admin\Downloads\Compressed\Tarin\Tarin\Controller\bin\Debug\Repository.Entity.pdb
+C:\Users\admin\Downloads\Compressed\Tarin\Tarin\Controller\bin\Debug\Shared.pdb
+C:\Users\admin\Downloads\Compressed\Tarin\Tarin\Controller\bin\Debug\Repository.Data.pdb
+C:\Users\admin\Downloads\Compressed\Tarin\Tarin\Controller\bin\Debug\Newtonsoft.Json.xml
+C:\Users\admin\Downloads\Compressed\Tarin\Tarin\Controller\bin\Debug\Common.pdb
+C:\Users\admin\Downloads\Compressed\Tarin\Tarin\Controller\obj\Debug\Controller.csprojResolveAssemblyReference.cache
+C:\Users\admin\Downloads\Compressed\Tarin\Tarin\Controller\obj\Debug\Controller.dll
+C:\Users\admin\Downloads\Compressed\Tarin\Tarin\Controller\obj\Debug\Controller.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Controller\obj\Debug\Controller.csprojResolveAssemblyReference.cache
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Controller\obj\Debug\Controller.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Controller\bin\Debug\Controller.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Controller\bin\Debug\Controller.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Controller\bin\Debug\Repository.DAL.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Controller\bin\Debug\Repository.Entity.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Controller\bin\Debug\Shared.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Controller\bin\Debug\Repository.Data.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Controller\bin\Debug\EntityFramework.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Controller\bin\Debug\Newtonsoft.Json.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Controller\bin\Debug\Common.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Controller\bin\Debug\CodeFirstStoreFunctions.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Controller\bin\Debug\Repository.DAL.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Controller\bin\Debug\Repository.Entity.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Controller\bin\Debug\Shared.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Controller\bin\Debug\Repository.Data.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Controller\bin\Debug\Newtonsoft.Json.xml
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Controller\bin\Debug\Common.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Controller\obj\Debug\Controller.pdb
+E:\Tarin\Controller\bin\Debug\Controller.dll
+E:\Tarin\Controller\bin\Debug\Controller.pdb
+E:\Tarin\Controller\bin\Debug\Repository.DAL.dll
+E:\Tarin\Controller\bin\Debug\Repository.Entity.dll
+E:\Tarin\Controller\bin\Debug\Shared.dll
+E:\Tarin\Controller\bin\Debug\Repository.Data.dll
+E:\Tarin\Controller\bin\Debug\EntityFramework.dll
+E:\Tarin\Controller\bin\Debug\Newtonsoft.Json.dll
+E:\Tarin\Controller\bin\Debug\Common.dll
+E:\Tarin\Controller\bin\Debug\CodeFirstStoreFunctions.dll
+E:\Tarin\Controller\bin\Debug\Repository.DAL.pdb
+E:\Tarin\Controller\bin\Debug\Repository.Entity.pdb
+E:\Tarin\Controller\bin\Debug\Shared.pdb
+E:\Tarin\Controller\bin\Debug\Repository.Data.pdb
+E:\Tarin\Controller\bin\Debug\Newtonsoft.Json.xml
+E:\Tarin\Controller\bin\Debug\Common.pdb
+E:\Tarin\Controller\obj\Debug\Controller.csprojResolveAssemblyReference.cache
+E:\Tarin\Controller\obj\Debug\Controller.dll
+E:\Tarin\Controller\obj\Debug\Controller.pdb
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\bin\Debug\Controller.dll
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\bin\Debug\Controller.pdb
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\bin\Debug\Repository.DAL.dll
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\bin\Debug\Repository.Entity.dll
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\bin\Debug\Shared.dll
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\bin\Debug\Repository.Data.dll
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\bin\Debug\EntityFramework.dll
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\bin\Debug\Common.dll
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\bin\Debug\CodeFirstStoreFunctions.dll
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\bin\Debug\Repository.DAL.pdb
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\bin\Debug\Repository.Entity.pdb
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\bin\Debug\Shared.pdb
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\bin\Debug\Repository.Data.pdb
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\bin\Debug\Common.pdb
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\obj\Debug\Controller.csprojResolveAssemblyReference.cache
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\obj\Debug\Controller.dll
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\obj\Debug\Controller.pdb

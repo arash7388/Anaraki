@@ -1,0 +1,17 @@
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\obj\Release\Controller.csprojResolveAssemblyReference.cache
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\bin\Release\Controller.dll
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\bin\Release\Controller.pdb
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\bin\Release\Repository.DAL.dll
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\bin\Release\Repository.Entity.dll
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\bin\Release\Shared.dll
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\bin\Release\Repository.Data.dll
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\bin\Release\EntityFramework.dll
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\bin\Release\Common.dll
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\bin\Release\CodeFirstStoreFunctions.dll
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\bin\Release\Repository.DAL.pdb
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\bin\Release\Repository.Entity.pdb
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\bin\Release\Shared.pdb
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\bin\Release\Repository.Data.pdb
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\bin\Release\Common.pdb
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\obj\Release\Controller.dll
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\obj\Release\Controller.pdb

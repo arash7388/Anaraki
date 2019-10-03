@@ -1,0 +1,85 @@
+C:\Users\Admin\documents\visual studio 2012\Projects\TimeSheet\Repository.DAL\bin\Debug\Repository.DAL.dll.config
+C:\Users\Admin\documents\visual studio 2012\Projects\TimeSheet\Repository.DAL\bin\Debug\Repository.DAL.dll
+C:\Users\Admin\documents\visual studio 2012\Projects\TimeSheet\Repository.DAL\bin\Debug\Repository.DAL.pdb
+C:\Users\Admin\documents\visual studio 2012\Projects\TimeSheet\Repository.DAL\bin\Debug\EntityFramework.dll
+C:\Users\Admin\documents\visual studio 2012\Projects\TimeSheet\Repository.DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Admin\documents\visual studio 2012\Projects\TimeSheet\Repository.DAL\bin\Debug\Repository.Data.dll
+C:\Users\Admin\documents\visual studio 2012\Projects\TimeSheet\Repository.DAL\bin\Debug\Repository.Data.pdb
+C:\Users\Admin\documents\visual studio 2012\Projects\TimeSheet\Repository.DAL\bin\Debug\EntityFramework.xml
+C:\Users\Admin\documents\visual studio 2012\Projects\TimeSheet\Repository.DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Admin\documents\visual studio 2012\Projects\TimeSheet\Repository.DAL\obj\Debug\Repository.DAL.csprojResolveAssemblyReference.cache
+C:\Users\Admin\documents\visual studio 2012\Projects\TimeSheet\Repository.DAL\obj\Debug\Repository.DAL.dll
+C:\Users\Admin\documents\visual studio 2012\Projects\TimeSheet\Repository.DAL\obj\Debug\Repository.DAL.pdb
+C:\Users\a.masir\Documents\Visual Studio 2013\Projects\TimeSheet\Repository.DAL\bin\Debug\Repository.DAL.dll.config
+C:\Users\a.masir\Documents\Visual Studio 2013\Projects\TimeSheet\Repository.DAL\bin\Debug\Repository.DAL.dll
+C:\Users\a.masir\Documents\Visual Studio 2013\Projects\TimeSheet\Repository.DAL\bin\Debug\Repository.DAL.pdb
+C:\Users\a.masir\Documents\Visual Studio 2013\Projects\TimeSheet\Repository.DAL\bin\Debug\EntityFramework.dll
+C:\Users\a.masir\Documents\Visual Studio 2013\Projects\TimeSheet\Repository.DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\a.masir\Documents\Visual Studio 2013\Projects\TimeSheet\Repository.DAL\bin\Debug\Repository.Data.dll
+C:\Users\a.masir\Documents\Visual Studio 2013\Projects\TimeSheet\Repository.DAL\bin\Debug\Repository.Model.dll
+C:\Users\a.masir\Documents\Visual Studio 2013\Projects\TimeSheet\Repository.DAL\bin\Debug\Repository.Data.pdb
+C:\Users\a.masir\Documents\Visual Studio 2013\Projects\TimeSheet\Repository.DAL\bin\Debug\Repository.Model.pdb
+C:\Users\a.masir\Documents\Visual Studio 2013\Projects\TimeSheet\Repository.DAL\bin\Debug\EntityFramework.xml
+C:\Users\a.masir\Documents\Visual Studio 2013\Projects\TimeSheet\Repository.DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\a.masir\Documents\Visual Studio 2013\Projects\TimeSheet\Repository.DAL\obj\Debug\Repository.DAL.csprojResolveAssemblyReference.cache
+C:\Users\a.masir\Documents\Visual Studio 2013\Projects\TimeSheet\Repository.DAL\obj\Debug\Repository.DAL.dll
+C:\Users\a.masir\Documents\Visual Studio 2013\Projects\TimeSheet\Repository.DAL\obj\Debug\Repository.DAL.pdb
+C:\Users\Admin\documents\visual studio 2012\Projects\TimeSheet\Repository.DAL\bin\Debug\Repository.Entity.dll
+C:\Users\Admin\documents\visual studio 2012\Projects\TimeSheet\Repository.DAL\bin\Debug\Repository.Entity.pdb
+C:\Users\admin\documents\visual studio 2013\Projects\Template\Repository.DAL\bin\Debug\Repository.DAL.dll.config
+C:\Users\admin\documents\visual studio 2013\Projects\Template\Repository.DAL\bin\Debug\Repository.DAL.dll
+C:\Users\admin\documents\visual studio 2013\Projects\Template\Repository.DAL\bin\Debug\Repository.DAL.pdb
+C:\Users\admin\documents\visual studio 2013\Projects\Template\Repository.DAL\bin\Debug\EntityFramework.dll
+C:\Users\admin\documents\visual studio 2013\Projects\Template\Repository.DAL\bin\Debug\Repository.Data.dll
+C:\Users\admin\documents\visual studio 2013\Projects\Template\Repository.DAL\bin\Debug\Repository.Entity.dll
+C:\Users\admin\documents\visual studio 2013\Projects\Template\Repository.DAL\bin\Debug\Repository.Data.pdb
+C:\Users\admin\documents\visual studio 2013\Projects\Template\Repository.DAL\bin\Debug\Repository.Entity.pdb
+C:\Users\admin\documents\visual studio 2013\Projects\Template\Repository.DAL\obj\Debug\Repository.DAL.csprojResolveAssemblyReference.cache
+C:\Users\admin\documents\visual studio 2013\Projects\Template\Repository.DAL\obj\Debug\Repository.DAL.dll
+C:\Users\admin\documents\visual studio 2013\Projects\Template\Repository.DAL\obj\Debug\Repository.DAL.pdb
+C:\Users\admin\documents\visual studio 2013\Projects\Template\Repository.DAL\bin\Debug\Common.dll
+C:\Users\admin\documents\visual studio 2013\Projects\Template\Repository.DAL\bin\Debug\Common.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Repository.DAL\bin\Debug\Repository.DAL.dll.config
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Repository.DAL\bin\Debug\Repository.DAL.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Repository.DAL\bin\Debug\Repository.DAL.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Repository.DAL\bin\Debug\Common.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Repository.DAL\bin\Debug\Repository.Data.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Repository.DAL\bin\Debug\Repository.Entity.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Repository.DAL\bin\Debug\CodeFirstStoreFunctions.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Repository.DAL\bin\Debug\Common.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Repository.DAL\bin\Debug\Repository.Data.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Repository.DAL\bin\Debug\Repository.Entity.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Repository.DAL\obj\Debug\Repository.DAL.csprojResolveAssemblyReference.cache
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Repository.DAL\obj\Debug\Repository.DAL.dll
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Repository.DAL\obj\Debug\Repository.DAL.pdb
+C:\Users\admin\Documents\Visual Studio 2013\Projects\Tarin\Repository.DAL\bin\Debug\Newtonsoft.Json.dll
+E:\Tarin\Repository.DAL\obj\Debug\Repository.DAL.dll
+E:\Tarin\Repository.DAL\obj\Debug\Repository.DAL.pdb
+E:\Tarin\Repository.DAL\bin\Debug\Repository.DAL.dll.config
+E:\Tarin\Repository.DAL\bin\Debug\Repository.DAL.dll
+E:\Tarin\Repository.DAL\bin\Debug\Repository.DAL.pdb
+E:\Tarin\Repository.DAL\bin\Debug\Common.dll
+E:\Tarin\Repository.DAL\bin\Debug\Repository.Data.dll
+E:\Tarin\Repository.DAL\bin\Debug\Repository.Entity.dll
+E:\Tarin\Repository.DAL\bin\Debug\CodeFirstStoreFunctions.dll
+E:\Tarin\Repository.DAL\bin\Debug\Common.pdb
+E:\Tarin\Repository.DAL\bin\Debug\Repository.Data.pdb
+E:\Tarin\Repository.DAL\bin\Debug\Repository.Entity.pdb
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Repository.DAL\bin\Debug\Repository.DAL.dll.config
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Repository.DAL\bin\Debug\Repository.DAL.dll
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Repository.DAL\bin\Debug\Repository.DAL.pdb
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Repository.DAL\bin\Debug\Common.dll
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Repository.DAL\bin\Debug\Repository.Data.dll
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Repository.DAL\bin\Debug\Repository.Entity.dll
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Repository.DAL\bin\Debug\CodeFirstStoreFunctions.dll
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Repository.DAL\bin\Debug\Common.pdb
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Repository.DAL\bin\Debug\Repository.Data.pdb
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Repository.DAL\bin\Debug\Repository.Entity.pdb
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Repository.DAL\obj\Debug\Repository.DAL.csprojResolveAssemblyReference.cache
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Repository.DAL\obj\Debug\Repository.DAL.dll
+C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Repository.DAL\obj\Debug\Repository.DAL.pdb
+E:\Tarin\Repository.DAL\bin\Debug\Repository.Data.dll.config
+E:\Tarin\Repository.DAL\bin\Debug\Repository.Entity.dll.config
+E:\Tarin\Repository.DAL\obj\Debug\Repository.DAL.csprojAssemblyReference.cache
+E:\Tarin\Repository.DAL\obj\Debug\Repository.DAL.csproj.CoreCompileInputs.cache
+E:\Tarin\Repository.DAL\obj\Debug\Repository.DAL.csproj.CopyComplete
