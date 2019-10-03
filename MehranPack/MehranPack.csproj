@@ -20,6 +20,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -94,6 +95,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="UsersList.aspx" />
     <Content Include="GoodsGroupSupply.aspx" />
     <Content Include="GoodsSupply.aspx" />
     <Content Include="Confirmation.aspx" />
@@ -160,6 +162,7 @@
     <Content Include="InputOutput.aspx" />
     <Content Include="UserControls\cal.png" />
     <Content Include="UserControls\PersianCalender.ascx" />
+    <Content Include="Users.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -167,6 +170,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="UsersList.aspx.cs">
+      <DependentUpon>UsersList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UsersList.aspx.designer.cs">
+      <DependentUpon>UsersList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="GoodsGroupSupply.aspx.cs">
       <DependentUpon>GoodsGroupSupply.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -261,6 +271,13 @@
     </Compile>
     <Compile Include="UserControls\PersianCalender.ascx.designer.cs">
       <DependentUpon>PersianCalender.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Users.aspx.cs">
+      <DependentUpon>Users.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users.aspx.designer.cs">
+      <DependentUpon>Users.aspx</DependentUpon>
     </Compile>
     <Compile Include="Utility.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">

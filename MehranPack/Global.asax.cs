@@ -43,6 +43,8 @@ namespace MehranPack
             RouteTable.Routes.MapPageRoute("PaymentsReport", "PaymentsReport", "~/PaymentsReport.aspx");
             RouteTable.Routes.MapPageRoute("ProductTypeList", "ProductTypeList", "~/ProductTypeList.aspx");
             RouteTable.Routes.MapPageRoute("ProductType", "ProductType/{Id}", "~/ProductTypeList.aspx");
+            RouteTable.Routes.MapPageRoute("User", "User/{Id}", "~/Users.aspx");
+            RouteTable.Routes.MapPageRoute("UsersList", "UsersList", "~/UsersList.aspx");
 
             RouteTable.Routes.Ignore("*.html|js|css|gif|jpg|jpeg|png|swf");
             RouteTable.Routes.EnableFriendlyUrls();

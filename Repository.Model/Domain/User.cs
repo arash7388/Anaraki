@@ -18,5 +18,8 @@ namespace Repository.Entity.Domain
 
         [DisplayName("نام مستعار")]
         public string FriendlyName { get; set; }
+
+        [DisplayName("نوع")]
+        public int Type { get; set; }
     }
 }

@@ -46,7 +46,7 @@ namespace MehranPack
         {
             Debuging.Info("Start of Main.master.cs");
 
-            if (Environment.MachineName.ToLower() == "DESKTOP-25N2NKC".ToLower())
+            if (Environment.MachineName.ToLower() == "DESKTOP-B0LRPCF".ToLower())
                 Session["User"] = new UserRepository().GetById(1);
 
             if (Session["User"] == null)
@@ -180,6 +180,12 @@ namespace MehranPack
         {
             var routeValues = new RouteValueDictionary();
             Response.RedirectToRoute("GoodsGroupSupply");
+        }
+
+        protected void lbtnUsers_OnClick(object sender, EventArgs e)
+        {
+            var routeValues = new RouteValueDictionary();
+            Response.RedirectToRoute("Userslist");
         }
     }
 }
