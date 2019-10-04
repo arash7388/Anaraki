@@ -119,3 +119,4 @@ E:\Tarin\Repository.Data\obj\Debug\Repository.Data.csproj.CoreCompileInputs.cach
 E:\Tarin\Repository.Data\obj\Debug\Repository.Data.csproj.CopyComplete
 E:\Tarin\Repository.Data\obj\Debug\Repository.Data.Migrations.setup.resources
 E:\Tarin\Repository.Data\obj\Debug\Repository.Data.csproj.GenerateResource.cache
+E:\Tarin\Repository.Data\obj\Debug\Repository.Data.Migrations.prcat.resources

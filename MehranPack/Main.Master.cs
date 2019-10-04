@@ -184,8 +184,12 @@ namespace MehranPack
 
         protected void lbtnUsers_OnClick(object sender, EventArgs e)
         {
-            var routeValues = new RouteValueDictionary();
             Response.RedirectToRoute("Userslist");
+        }
+
+        protected void lbtnProcesses_OnClick(object sender, EventArgs e)
+        {
+            Response.RedirectToRoute("Processlist");
         }
     }
 }

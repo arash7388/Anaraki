@@ -54,6 +54,8 @@
     <Compile Include="Domain\InputOutput.cs" />
     <Compile Include="Domain\InputOutputDetail.cs" />
     <Compile Include="Domain\Link.cs" />
+    <Compile Include="Domain\Process.cs" />
+    <Compile Include="Domain\ProcessCategory.cs" />
     <Compile Include="Domain\Product.cs" />
     <Compile Include="Domain\RatingGroup.cs" />
     <Compile Include="Domain\RatingItem.cs" />

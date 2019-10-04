@@ -16,7 +16,7 @@ namespace AdminPanel
         protected void btnAccept_Click(object sender, EventArgs e)
         {
             var id = Request.QueryString["Id"];
-            //var asmQName = Utility.AesDecrypt(Request.QueryString["aqn"].Replace(" ","+"));
+            
             var table = Utility.AesDecrypt(Request.QueryString["t"].Replace(" ", "+"));
             
             try
@@ -35,14 +35,7 @@ namespace AdminPanel
             {
                 lblInfo.Text = "به علت بروز مشکل درخواست شما انجام نشد";
             }
-            //var t = Type.GetType(asmQName);
 
-            //var obj = Activator.CreateInstance(t);
-            //var realType = obj.GetType();
-            //new BaseRepository<realType>().Delete(id.ToSafeInt());
-
-            //Category p = (Category)Activator.CreateInstance());
-            //obj.Unwrap();
         }
 
 

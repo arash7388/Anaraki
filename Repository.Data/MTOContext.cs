@@ -4,7 +4,6 @@ using System.Data.Entity.Infrastructure;
 using CodeFirstStoreFunctions;
 using Repository.Entity.Map;
 
-
 namespace Repository.Data
 {
     using System;
@@ -38,6 +37,8 @@ namespace Repository.Data
         public DbSet<Customer> Customers { get; set; }
         public DbSet<InputOutputDetail> InputOutputDetails { get; set; }
         public DbSet<InputOutput> InputOutput { get; set; }
+        public DbSet<Process> Processes { get; set; }
+        public DbSet<ProcessCategory> ProcessCategories { get; set; }
 
 
         //public MTOContext() :base(ConfigurationManager.ConnectionStrings["Tarin"].ToString())

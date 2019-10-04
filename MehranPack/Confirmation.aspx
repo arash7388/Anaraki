@@ -14,8 +14,8 @@
         <hr />
         <div class="row">
             <div class="col-sm-10">
-                <asp:Button runat="server" ID="btnAccept" Text="بله" CssClass="btn btn-info" OnClick="btnAccept_Click" />
-                <asp:Button runat="server" ID="btnCancel" Text="خیر" CssClass="btn btn-info" OnClick="btnCancel_OnClick" />
+                <asp:Button runat="server" ID="btnAccept" Text="بله" CssClass="btn btn-danger btn-standard" OnClick="btnAccept_Click" />
+                <asp:Button runat="server" ID="btnCancel" Text="خیر" CssClass="btn btn-info btn-standard" OnClick="btnCancel_OnClick" />
             </div>
         </div>
         <br />

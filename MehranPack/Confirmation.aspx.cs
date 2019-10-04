@@ -42,6 +42,8 @@ namespace MehranPack
 
                 if (!result.IsSuccess) throw new LocalException("Error in Deleting from " + table + " with id " + id, "خطا در حذف");
                  ((Main)Page.Master).SetGeneralMessage("عملیات با موفقیت انجام شد",MessageType.Success);
+                
+                //Response.RedirectToRoute(data.RedirectRoute, data.RedirectRouteValueDictionary);
             }
             catch (LocalException exception)
             {

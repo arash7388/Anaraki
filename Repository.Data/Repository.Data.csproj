@@ -60,6 +60,10 @@
     <Compile Include="Migrations\201910031241482_setup.Designer.cs">
       <DependentUpon>201910031241482_setup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910031426004_pr-cat.cs" />
+    <Compile Include="Migrations\201910031426004_pr-cat.Designer.cs">
+      <DependentUpon>201910031426004_pr-cat.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MTOContextFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,6 +90,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201910031241482_setup.resx">
       <DependentUpon>201910031241482_setup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910031426004_pr-cat.resx">
+      <DependentUpon>201910031426004_pr-cat.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

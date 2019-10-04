@@ -52,6 +52,7 @@
     <Compile Include="IRepository.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="LinkRepository.cs" />
+    <Compile Include="ProcessCategoryRepository.cs" />
     <Compile Include="ProductRepository.cs" />
     <Compile Include="TagRepository.cs" />
     <Compile Include="CategoryRepository.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="RatingGroupRepository.cs" />
     <Compile Include="RatingItemRepository.cs" />
     <Compile Include="UnitOfWork.cs" />
+    <Compile Include="ProcessRepository.cs" />
     <Compile Include="UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>

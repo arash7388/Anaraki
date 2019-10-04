@@ -16,9 +16,12 @@ E:\Tarin\Shared\bin\Debug\Shared.dll
 E:\Tarin\Shared\bin\Debug\Shared.pdb
 E:\Tarin\Shared\obj\Debug\Shared.dll
 E:\Tarin\Shared\obj\Debug\Shared.pdb
-E:\Tarin\Shared\obj\Debug\Shared.csprojResolveAssemblyReference.cache
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Shared\bin\Debug\Shared.dll
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Shared\bin\Debug\Shared.pdb
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Shared\obj\Debug\Shared.dll
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Shared\obj\Debug\Shared.pdb
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Shared\obj\Debug\Shared.csprojResolveAssemblyReference.cache
+E:\Tarin\Shared\bin\Debug\Shared.dll.CodeAnalysisLog.xml
+E:\Tarin\Shared\bin\Debug\Shared.dll.lastcodeanalysissucceeded
+E:\Tarin\Shared\obj\Debug\Shared.csprojAssemblyReference.cache
+E:\Tarin\Shared\obj\Debug\Shared.csproj.CoreCompileInputs.cache

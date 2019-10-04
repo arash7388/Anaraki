@@ -17,3 +17,5 @@ C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Common\obj\Debug\Comm
 E:\Tarin\Common\obj\Debug\Common.csprojAssemblyReference.cache
 E:\Tarin\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
 E:\Tarin\Common\obj\Debug\Common.csproj.CopyComplete
+E:\Tarin\Common\bin\Debug\Common.dll.CodeAnalysisLog.xml
+E:\Tarin\Common\bin\Debug\Common.dll.lastcodeanalysissucceeded

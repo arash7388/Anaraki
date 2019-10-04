@@ -1,4 +1,4 @@
-namespace Repository.Data.Migrations
+﻿namespace Repository.Data.Migrations
 {
     using System;
     using System.Data.Entity;
@@ -40,7 +40,7 @@ namespace Repository.Data.Migrations
                 context.SaveChanges();
             }
 
-            if (context.Users.Any(a => a.Username == "admin"))
+            if (!context.Users.Any(a => a.Username == "admin"))
             {
                 context.Users.Add(new User()
                 {
@@ -49,6 +49,54 @@ namespace Repository.Data.Migrations
                     Status = -1,
                     InsertDateTime = DateTime.Now
                 });
+                context.SaveChanges();
+            }
+
+            if (!context.Processes.Any())
+            {
+                context.Processes.Add(new Process()
+                {
+                    Name = "سوهان کاری",
+                    Status = -1,
+                    InsertDateTime = DateTime.Now
+                });
+
+                context.Processes.Add(new Process()
+                {
+                    Name = "پوست کاری",
+                    Status = -1,
+                    InsertDateTime = DateTime.Now
+                });
+
+                context.Processes.Add(new Process()
+                {
+                    Name = "پرداخت کاری",
+                    Status = -1,
+                    InsertDateTime = DateTime.Now
+                });
+
+                context.Processes.Add(new Process()
+                {
+                    Name = "شستشو",
+                    Status = -1,
+                    InsertDateTime = DateTime.Now
+                });
+
+                context.Processes.Add(new Process()
+                {
+                    Name = "آبکاری",
+                    Status = -1,
+                    InsertDateTime = DateTime.Now
+                });
+
+                context.Processes.Add(new Process()
+                {
+                    Name = "براش کاری",
+                    Status = -1,
+                    InsertDateTime = DateTime.Now
+                });
+
+
                 context.SaveChanges();
             }
 

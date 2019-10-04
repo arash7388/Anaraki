@@ -46,6 +46,12 @@ namespace MehranPack
             RouteTable.Routes.MapPageRoute("User", "User/{Id}", "~/Users.aspx");
             RouteTable.Routes.MapPageRoute("UsersList", "UsersList", "~/UsersList.aspx");
 
+            RouteTable.Routes.MapPageRoute("Process", "Process/{Id}", "~/Process.aspx");
+            RouteTable.Routes.MapPageRoute("ProcessList", "ProcessList", "~/ProcessList.aspx");
+
+            RouteTable.Routes.MapPageRoute("ProcessCategory", "ProcessCategory/{Id}", "~/ProcessCategory.aspx");
+            RouteTable.Routes.MapPageRoute("ProcessCategoryList", "ProcessCategoryList", "~/ProcessCategoryList.aspx");
+
             RouteTable.Routes.Ignore("*.html|js|css|gif|jpg|jpeg|png|swf");
             RouteTable.Routes.EnableFriendlyUrls();
         }

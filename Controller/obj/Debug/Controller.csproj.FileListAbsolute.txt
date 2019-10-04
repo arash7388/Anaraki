@@ -111,16 +111,13 @@ E:\Tarin\Controller\bin\Debug\Repository.Entity.dll
 E:\Tarin\Controller\bin\Debug\Shared.dll
 E:\Tarin\Controller\bin\Debug\Repository.Data.dll
 E:\Tarin\Controller\bin\Debug\EntityFramework.dll
-E:\Tarin\Controller\bin\Debug\Newtonsoft.Json.dll
 E:\Tarin\Controller\bin\Debug\Common.dll
 E:\Tarin\Controller\bin\Debug\CodeFirstStoreFunctions.dll
 E:\Tarin\Controller\bin\Debug\Repository.DAL.pdb
 E:\Tarin\Controller\bin\Debug\Repository.Entity.pdb
 E:\Tarin\Controller\bin\Debug\Shared.pdb
 E:\Tarin\Controller\bin\Debug\Repository.Data.pdb
-E:\Tarin\Controller\bin\Debug\Newtonsoft.Json.xml
 E:\Tarin\Controller\bin\Debug\Common.pdb
-E:\Tarin\Controller\obj\Debug\Controller.csprojResolveAssemblyReference.cache
 E:\Tarin\Controller\obj\Debug\Controller.dll
 E:\Tarin\Controller\obj\Debug\Controller.pdb
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\bin\Debug\Controller.dll
@@ -140,3 +137,9 @@ C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\bin\Debug\
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\obj\Debug\Controller.csprojResolveAssemblyReference.cache
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\obj\Debug\Controller.dll
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Controller\obj\Debug\Controller.pdb
+E:\Tarin\Controller\bin\Debug\Repository.DAL.dll.config
+E:\Tarin\Controller\bin\Debug\Repository.Entity.dll.config
+E:\Tarin\Controller\bin\Debug\Repository.Data.dll.config
+E:\Tarin\Controller\obj\Debug\Controller.csprojAssemblyReference.cache
+E:\Tarin\Controller\obj\Debug\Controller.csproj.CoreCompileInputs.cache
+E:\Tarin\Controller\obj\Debug\Controller.csproj.CopyComplete

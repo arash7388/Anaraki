@@ -52,7 +52,9 @@
                             <br />
                              <asp:LinkButton runat="server" ID="LinkButton4" CssClass="btn btn-info btn-standard" Text="موجودی گروه کالا " OnClick="lbtnGoodsGroupSupply_OnClick"></asp:LinkButton>
                             <br />
-                            <asp:LinkButton runat="server" ID="LinkButton7" CssClass="btn btn-info btn-standard" Text="کاربران " OnClick="lbtnUsers_OnClick"></asp:LinkButton>
+                            <asp:LinkButton runat="server" ID="LinkButton7" CssClass="btn btn-success btn-standard" Text="کاربران " OnClick="lbtnUsers_OnClick"></asp:LinkButton>
+                            <br />
+                            <asp:LinkButton runat="server" ID="LinkButton8" CssClass="btn btn-success btn-standard" Text="فرآیندها " OnClick="lbtnProcesses_OnClick"></asp:LinkButton>
                             <br />
                             
                             <%--<asp:LinkButton runat="server" ID="lbtnProductType" CssClass="btn btn-info btn-standard" Text="انواع جنس" OnClick="lbtnProductType_OnClick"></asp:LinkButton>

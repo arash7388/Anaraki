@@ -32,6 +32,8 @@ namespace Repository.DAL
         private BaseRepository<Customer> _customers;
         private BaseRepository<InputOutputDetail> _inputOutputDetails;
         private BaseRepository<InputOutput> _inputOutputs;
+        private BaseRepository<Process> _processes;
+        private BaseRepository<ProcessCategory> _processCategories;
         
         public UnitOfWork(MTOContext mtoContext)
         {
@@ -54,6 +56,22 @@ namespace Repository.DAL
             get
             {
                 return this._categories ?? (this._categories = new BaseRepository<Category>(this._mtoContext));
+            }
+        }
+
+        public BaseRepository<Process> Processes
+        {
+            get
+            {
+                return this._processes ?? (this._processes = new BaseRepository<Process>(this._mtoContext));
+            }
+        }
+
+        public BaseRepository<ProcessCategory> ProcessCategories
+        {
+            get
+            {
+                return this._processCategories ?? (this._processCategories = new BaseRepository<ProcessCategory>(this._mtoContext));
             }
         }
 

@@ -95,6 +95,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ProcessCategory.aspx" />
+    <Content Include="ProcessCategoryList.aspx" />
+    <Content Include="ProcessList.aspx" />
+    <Content Include="Process.aspx" />
     <Content Include="UsersList.aspx" />
     <Content Include="GoodsGroupSupply.aspx" />
     <Content Include="GoodsSupply.aspx" />
@@ -170,6 +174,34 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="ProcessCategory.aspx.cs">
+      <DependentUpon>ProcessCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProcessCategory.aspx.designer.cs">
+      <DependentUpon>ProcessCategory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessCategoryList.aspx.cs">
+      <DependentUpon>ProcessCategoryList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProcessCategoryList.aspx.designer.cs">
+      <DependentUpon>ProcessCategoryList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessList.aspx.cs">
+      <DependentUpon>ProcessList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProcessList.aspx.designer.cs">
+      <DependentUpon>ProcessList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Process.aspx.cs">
+      <DependentUpon>Process.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Process.aspx.designer.cs">
+      <DependentUpon>Process.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UsersList.aspx.cs">
       <DependentUpon>UsersList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

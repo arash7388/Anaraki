@@ -44,6 +44,6 @@ C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Repository.Model\bin\
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Repository.Model\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Repository.Model\obj\Debug\Repository.Entity.dll
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Repository.Model\obj\Debug\Repository.Entity.pdb
-E:\Tarin\Repository.Model\obj\Debug\Repository.Entity.csprojAssemblyReference.cache
 E:\Tarin\Repository.Model\obj\Debug\Repository.Entity.csproj.CoreCompileInputs.cache
 E:\Tarin\Repository.Model\obj\Debug\Repository.Entity.csproj.CopyComplete
+E:\Tarin\Repository.Model\obj\Debug\Repository.Entity.csprojAssemblyReference.cache
