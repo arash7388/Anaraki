@@ -31,7 +31,7 @@ namespace MehranPack
 
             if (e.CommandName == "Edit")
             {
-                Response.RedirectToRoute("ProcessCategory", routeValues);
+                Response.RedirectToRoute("ProcessCat", routeValues);
                 Response.End();
             }
             else if (e.CommandName == "Delete")
@@ -42,7 +42,7 @@ namespace MehranPack
                 data.Id = e.CommandArgument.ToSafeInt();
                 data.Msg = "آیا از حذف اطمینان دارید؟";
                 data.Table = "ProcessCategory";
-                data.RedirectRoute = "ProcessList";
+                data.RedirectRoute = "ProcessCategoryList";
 
                 Session["ConfirmData"] = data;
                 Response.RedirectToRoute("Confirmation");
@@ -61,7 +61,9 @@ namespace MehranPack
         {
             var routeValues = new RouteValueDictionary();
             routeValues.Add("Id", 0);
-            Response.RedirectToRoute("ProcessCategory",routeValues);
+            Response.RedirectToRoute("ProcessCat", routeValues);
+
+            //Response.Redirect("ProcessCategory.aspx");
         }
     }
 }

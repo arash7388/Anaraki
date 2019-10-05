@@ -56,6 +56,8 @@
                             <br />
                             <asp:LinkButton runat="server" ID="LinkButton8" CssClass="btn btn-success btn-standard" Text="فرآیندها " OnClick="lbtnProcesses_OnClick"></asp:LinkButton>
                             <br />
+                             <asp:LinkButton runat="server" ID="LinkButton9" CssClass="btn btn-success btn-standard" Text="فرآیندهای محصول " OnClick="lbtnProcessCat_OnClick"></asp:LinkButton>
+                            <br />
                             
                             <%--<asp:LinkButton runat="server" ID="lbtnProductType" CssClass="btn btn-info btn-standard" Text="انواع جنس" OnClick="lbtnProductType_OnClick"></asp:LinkButton>
                             <br />

@@ -25,7 +25,8 @@ namespace Repository.DAL
                               CategoryId = pc.CategoryId,
                               CategoryName = c.Name,
                               ProcessId = pc.ProcessId,
-                              ProcessName = p.Name
+                              ProcessName = p.Name,
+                              Order = pc.Order
                           }).ToList();
 
             return result;

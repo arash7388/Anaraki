@@ -17,6 +17,7 @@ namespace MehranPack
             {
                 if (Page.RouteData.Values["Id"].ToSafeInt() != 0)
                 {
+                    drpCat.Enabled = false;
                     var repo = new ProcessCategoryRepository();
                     var tobeEditedPC = repo.GetByCatIdWithDetails(Page.RouteData.Values["Id"].ToSafeInt());
 
@@ -51,6 +52,24 @@ namespace MehranPack
             gridInput.DataBind();
         }
 
+        protected void gridSource_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Delete")
+            {
+                var s = (List<ProcessCategoryHelper>)Session["GridSource"];
+                var tobeDeleted = s.SingleOrDefault(a => a.ProcessId == e.CommandArgument.ToSafeInt());
+                if (tobeDeleted != null)
+                    s.Remove(tobeDeleted);
+                BindGrid();
+            }
+        }
+
+        private void BindGrid()
+        {
+            gridInput.DataSource = Session["GridSource"];
+            gridInput.DataBind();
+        }
+
         private void BindDrpProcess()
         {
             var source = new ProcessRepository().GetAll().ToList();
@@ -73,7 +92,7 @@ namespace MehranPack
         {
             try
             {
-               // if (string.IsNullOrEmpty(txtName.Text)) throw new LocalException("Name is empty", "نام  را وارد نمایید");
+                //if (string.IsNullOrEmpty(txtName.Text)) throw new LocalException("Name is empty", "نام  را وارد نمایید");
 
                 UnitOfWork uow = new UnitOfWork();
 
@@ -94,11 +113,24 @@ namespace MehranPack
                 else
                 {
                     var repo = uow.ProcessCategories;
-                    var tobeEditedPC = repo.GetById(Page.RouteData.Values["Id"].ToSafeInt());
-                   
-                    //tobeEditedPr.Name = txtName.Text;
-                    
-                    //tobeEditedPr.Type = drpKind.SelectedValue.ToSafeInt();
+                    var tobeEditedPCs = repo.Get(a => a.CategoryId == drpCat.SelectedValue.ToSafeInt()).ToList();
+
+                    foreach (Repository.Entity.Domain.ProcessCategory item in tobeEditedPCs)
+                    {
+                        repo.Delete(item.Id);
+                    }
+
+                    foreach (var item in ((List<ProcessCategoryHelper>)Session["GridSource"]))
+                    {
+                        var newPC = new Repository.Entity.Domain.ProcessCategory()
+                        {
+                            CategoryId = item.CategoryId,
+                            ProcessId = item.ProcessId,
+                            Order = txtOrder.Text.ToSafeInt()
+                        };
+
+                        uow.ProcessCategories.Create(newPC);
+                    }
                 }
 
                 uow.SaveChanges();
@@ -115,7 +147,7 @@ namespace MehranPack
         {
             //txtName.Text = "";
         }
-        
+
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.RedirectToRoute("Home");
@@ -123,20 +155,37 @@ namespace MehranPack
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            var addedInput = new ProcessCategoryHelper()
+            try
             {
-                CategoryId = drpCat.SelectedValue.ToSafeInt(),
-                ProcessId = drpProcesses.SelectedValue.ToSafeInt(),
-                ProcessName = new ProcessRepository().GetById(drpProcesses.SelectedValue.ToSafeInt()).Name,
-                Order = txtOrder.ToSafeInt()
-            };
+                if (string.IsNullOrEmpty(txtOrder.Text)) throw new LocalException("order is empty", "ترتیب  را وارد نمایید");
+                if (txtOrder.Text.ToSafeInt()==0) throw new LocalException("order is empty", "ترتیب  باید عددی مثبت باشد ");
+                var gridSource = (List<ProcessCategoryHelper>)Session["GridSource"];
 
-            if (Session["GridSource"] == null)
-                Session["GridSource"] = new List<ProcessCategoryHelper>();
+                if (gridSource != null && gridSource.Any() && gridSource.Any(a => a.Order == txtOrder.Text.ToSafeInt()))
+                    throw new LocalException("duplicate order", "ترتیب نباید تکراری باشد");
 
-            ((List<ProcessCategoryHelper>)Session["GridSource"]).Add(addedInput);
-            gridInput.DataSource = Session["GridSource"];
-            gridInput.DataBind();
+                if (gridSource != null && gridSource.Any() && gridSource.Any(a => a.ProcessId == drpProcesses.SelectedValue.ToSafeInt()))
+                    throw new LocalException("duplicate process", "فرآیند نباید تکراری باشد");
+
+                var addedInput = new ProcessCategoryHelper()
+                {
+                    CategoryId = drpCat.SelectedValue.ToSafeInt(),
+                    ProcessId = drpProcesses.SelectedValue.ToSafeInt(),
+                    ProcessName = new ProcessRepository().GetById(drpProcesses.SelectedValue.ToSafeInt()).Name,
+                    Order = txtOrder.Text.ToSafeInt()
+                };
+
+                if (Session["GridSource"] == null)
+                    Session["GridSource"] = new List<ProcessCategoryHelper>();
+
+                ((List<ProcessCategoryHelper>)Session["GridSource"]).Add(addedInput);
+                gridInput.DataSource = Session["GridSource"];
+                gridInput.DataBind();
+            }
+            catch (LocalException ex)
+            {
+                ((Main)Page.Master).SetGeneralMessage(ex.ResultMessage, MessageType.Error);
+            }
         }
 
         protected void gridInput_OnRowDeleting(object sender, GridViewDeleteEventArgs e)

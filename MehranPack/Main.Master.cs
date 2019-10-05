@@ -191,5 +191,10 @@ namespace MehranPack
         {
             Response.RedirectToRoute("Processlist");
         }
+
+        protected void lbtnProcessCat_OnClick(object sender, EventArgs e)
+        {
+            Response.RedirectToRoute("ProcessCategorylist");
+        }
     }
 }

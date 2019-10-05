@@ -163,3 +163,15 @@ body {
 
 .hrGray {
   border: 1px solid #bcbcbc; }
+
+#panelAddNewPC .row {
+    margin-top: 5px;
+}
+
+#panelAddNewPC {
+    border: 1px solid #5bc0de;
+}
+
+#PrCatSaveRow {
+    margin-top: 20px;
+}
