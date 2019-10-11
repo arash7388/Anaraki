@@ -92,7 +92,9 @@ namespace MehranPack
         {
             try
             {
-                //if (string.IsNullOrEmpty(txtName.Text)) throw new LocalException("Name is empty", "نام  را وارد نمایید");
+                var catId = drpCat.SelectedValue.ToSafeInt();
+                var existingCatPr = new ProcessCategoryRepository().Get(a => a.CategoryId == catId).FirstOrDefault();
+                if (Page.RouteData.Values["Id"].ToSafeInt() == 0 && existingCatPr !=null) throw new LocalException("duplicate cat", " فرآیندهای این گروه محصول قبلا ثبت شده اند");
 
                 UnitOfWork uow = new UnitOfWork();
 
@@ -113,9 +115,9 @@ namespace MehranPack
                 else
                 {
                     var repo = uow.ProcessCategories;
-                    var tobeEditedPCs = repo.Get(a => a.CategoryId == drpCat.SelectedValue.ToSafeInt()).ToList();
+                    var exsitedPCs = repo.Get(a => a.CategoryId == catId).ToList();
 
-                    foreach (Repository.Entity.Domain.ProcessCategory item in tobeEditedPCs)
+                    foreach (Repository.Entity.Domain.ProcessCategory item in exsitedPCs)
                     {
                         repo.Delete(item.Id);
                     }
@@ -126,15 +128,19 @@ namespace MehranPack
                         {
                             CategoryId = item.CategoryId,
                             ProcessId = item.ProcessId,
-                            Order = txtOrder.Text.ToSafeInt()
+                            Order = item.Order
                         };
 
                         uow.ProcessCategories.Create(newPC);
                     }
                 }
 
-                uow.SaveChanges();
-                ((Main)Page.Master).SetGeneralMessage("اطلاعات با موفقیت ذخیره شد", MessageType.Success);
+                var result = uow.SaveChanges();
+                if (result.IsSuccess)
+                  ((Main)Page.Master).SetGeneralMessage("اطلاعات با موفقیت ذخیره شد", MessageType.Success);
+                else
+                    ((Main)Page.Master).SetGeneralMessage(result.ResultMessage, MessageType.Error);
+
                 ClearControls();
             }
             catch (LocalException ex)
@@ -145,7 +151,8 @@ namespace MehranPack
 
         private void ClearControls()
         {
-            //txtName.Text = "";
+            drpCat.Enabled = drpProcesses.Enabled = txtOrder.Enabled = false;
+            gridInput.Enabled = false;
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)

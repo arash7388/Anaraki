@@ -43,7 +43,7 @@ namespace MehranPack
                 data.Msg = "آیا از حذف اطمینان دارید؟";
                 data.Table = "ProcessCategory";
                 data.RedirectRoute = "ProcessCategoryList";
-
+                data.RawCommand = $"Delete from ProcessCategories where CategoryId={e.CommandArgument.ToString()}";
                 Session["ConfirmData"] = data;
                 Response.RedirectToRoute("Confirmation");
                 Response.End();

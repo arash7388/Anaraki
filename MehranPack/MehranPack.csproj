@@ -95,6 +95,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\datatables.min.css" />
+    <Content Include="Content\js\datatables.min.js" />
     <Content Include="ProcessCategory.aspx" />
     <Content Include="ProcessCategoryList.aspx" />
     <Content Include="ProcessList.aspx" />
@@ -132,6 +134,7 @@
     <Content Include="packages.config" />
     <Content Include="Scripts\PersianCalendar.js" />
     <Content Include="Scripts\Utility.js" />
+    <Content Include="Worksheet.aspx" />
     <None Include="Properties\PublishProfiles\mehranpack.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -318,6 +321,13 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Worksheet.aspx.cs">
+      <DependentUpon>Worksheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Worksheet.aspx.designer.cs">
+      <DependentUpon>Worksheet.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -37,8 +37,15 @@ namespace MehranPack
             
             try
             {
-                var result = new UnitOfWork().ExecCommand("Delete from " + table + " Where id = @Id",
-                    new SqlParameter("@Id", id));
+                Repository.DAL.ActionResult result = null;
+
+                if (string.IsNullOrEmpty(data.RawCommand))
+                {
+                    result = new UnitOfWork().ExecCommand("Delete from " + table + " Where id = @Id",
+                      new SqlParameter("@Id", id));
+                }
+                else
+                    result = new UnitOfWork().ExecCommand(data.RawCommand);
 
                 if (!result.IsSuccess) throw new LocalException("Error in Deleting from " + table + " with id " + id, "خطا در حذف");
                  ((Main)Page.Master).SetGeneralMessage("عملیات با موفقیت انجام شد",MessageType.Success);
@@ -65,6 +72,7 @@ namespace MehranPack
     public class ConfirmData
     {
         public string Command { get; set; }
+        public string RawCommand { get; set; }
         public int Id { get; set; }
         public string Msg { get; set; }
         public string Table { get; set; }

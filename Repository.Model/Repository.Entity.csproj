@@ -50,6 +50,7 @@
     <Compile Include="Domain\CategoryProp.cs" />
     <Compile Include="Domain\CategoryPropValue.cs" />
     <Compile Include="Domain\City.cs" />
+    <Compile Include="Domain\Color.cs" />
     <Compile Include="Domain\Customer.cs" />
     <Compile Include="Domain\InputOutput.cs" />
     <Compile Include="Domain\InputOutputDetail.cs" />
@@ -62,7 +63,10 @@
     <Compile Include="Domain\Tag.cs" />
     <Compile Include="Domain\Category.cs" />
     <Compile Include="Domain\User.cs" />
+    <Compile Include="Domain\Worksheet.cs" />
+    <Compile Include="Domain\WorksheetDetail.cs" />
     <Compile Include="Map\AdvertisementPropValuesMap.cs" />
+    <Compile Include="Map\WorksheetMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AdsAndCats.cs" />
   </ItemGroup>

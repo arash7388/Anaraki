@@ -8,7 +8,7 @@
             <h3>فرآیندهای گروه محصول</h3>
         </div>
     </div>
-    <br />
+    <hr class="hrBlue" />
     <div class="row">
         <div class="col-md-2" align="left">
             گروه محصول:
@@ -18,7 +18,7 @@
         </div>
 
     </div>
-
+    <br />
 
     <div class="row">
         <div class="col-md-10">
@@ -71,7 +71,7 @@
 
         </div>
     </div>
-    <hr />
+    <hr class="hrGray"/>
 
     <div class="panel" id="panelAddNewPC">
         <div class="panel-heading">اضافه کردن آیتم</div>

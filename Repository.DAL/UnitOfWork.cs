@@ -34,6 +34,8 @@ namespace Repository.DAL
         private BaseRepository<InputOutput> _inputOutputs;
         private BaseRepository<Process> _processes;
         private BaseRepository<ProcessCategory> _processCategories;
+        private BaseRepository<Worksheet> _workSheets;
+        private BaseRepository<WorksheetDetail> _workSheetDetails;
         
         public UnitOfWork(MTOContext mtoContext)
         {
@@ -50,7 +52,23 @@ namespace Repository.DAL
             return new BaseRepository<T>(this._mtoContext);
         }
 
-       
+
+        public BaseRepository<Worksheet> Worksheets
+        {
+            get
+            {
+                return this._workSheets ?? (this._workSheets = new BaseRepository<Worksheet>(this._mtoContext));
+            }
+        }
+
+        public BaseRepository<WorksheetDetail> WorksheetDetails
+        {
+            get
+            {
+                return this._workSheetDetails ?? (this._workSheetDetails = new BaseRepository<WorksheetDetail>(this._mtoContext));
+            }
+        }
+
         public BaseRepository<Category> Categories
         {
             get
@@ -235,14 +253,23 @@ namespace Repository.DAL
                 //this.ShowErrors(exception);
                 result.ResultCode = (int)EntityExceptionEnum.DbUpdateConcurrencyException;
                 result.Message = exception.Message;
+                result.ResultMessage = exception.Message;
             }
             catch (DbUpdateException exception)
             {
                 //this.ShowErrors(exception);
                 result.ResultCode = (int)EntityExceptionEnum.DbUpdateException;
                 result.Message = exception.Message;
-            }
+                result.ResultMessage = exception.Message;
 
+            }
+            catch (Exception exception)
+            {
+                //this.ShowErrors(exception);
+                result.ResultCode = (int)EntityExceptionEnum.None;
+                result.Message = exception.Message;
+                result.ResultMessage = "خطای نامشخص";
+            }
             return result;
         }
         

@@ -84,10 +84,6 @@ E:\Tarin\MehranPack\bin\Repository.Entity.dll.config
 E:\Tarin\MehranPack\bin\Microsoft.AspNet.FriendlyUrls.xml
 E:\Tarin\MehranPack\bin\Newtonsoft.Json.xml
 E:\Tarin\MehranPack\bin\System.Net.Http.Formatting.xml
-E:\Tarin\MehranPack\bin\Telerik.Reporting.pdb
-E:\Tarin\MehranPack\bin\Telerik.Reporting.xml
-E:\Tarin\MehranPack\bin\Telerik.ReportViewer.WebForms.pdb
-E:\Tarin\MehranPack\bin\Telerik.ReportViewer.WebForms.xml
 E:\Tarin\MehranPack\obj\Debug\MehranPack.csprojAssemblyReference.cache
 E:\Tarin\MehranPack\obj\Debug\MehranPack.csproj.CoreCompileInputs.cache
 E:\Tarin\MehranPack\obj\Debug\MehranPack.csproj.CopyComplete

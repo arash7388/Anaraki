@@ -62,6 +62,8 @@
     <Compile Include="UnitOfWork.cs" />
     <Compile Include="ProcessRepository.cs" />
     <Compile Include="UserRepository.cs" />
+    <Compile Include="WorksheetDetailRepository.cs" />
+    <Compile Include="WorksheetRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

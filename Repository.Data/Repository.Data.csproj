@@ -64,6 +64,18 @@
     <Compile Include="Migrations\201910031426004_pr-cat.Designer.cs">
       <DependentUpon>201910031426004_pr-cat.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910061653442_ix.cs" />
+    <Compile Include="Migrations\201910061653442_ix.Designer.cs">
+      <DependentUpon>201910061653442_ix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910111022339_color.cs" />
+    <Compile Include="Migrations\201910111022339_color.Designer.cs">
+      <DependentUpon>201910111022339_color.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910111103311_worksheet.cs" />
+    <Compile Include="Migrations\201910111103311_worksheet.Designer.cs">
+      <DependentUpon>201910111103311_worksheet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MTOContextFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,6 +105,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910031426004_pr-cat.resx">
       <DependentUpon>201910031426004_pr-cat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910061653442_ix.resx">
+      <DependentUpon>201910061653442_ix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910111022339_color.resx">
+      <DependentUpon>201910111022339_color.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910111103311_worksheet.resx">
+      <DependentUpon>201910111103311_worksheet.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

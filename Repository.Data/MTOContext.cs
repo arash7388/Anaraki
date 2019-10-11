@@ -39,6 +39,9 @@ namespace Repository.Data
         public DbSet<InputOutput> InputOutput { get; set; }
         public DbSet<Process> Processes { get; set; }
         public DbSet<ProcessCategory> ProcessCategories { get; set; }
+        public DbSet<Color> Colors { get; set; }
+        public DbSet<Worksheet> Worksheets { get; set; }
+        public DbSet<WorksheetDetail> WorksheetDetails { get; set; }
 
 
         //public MTOContext() :base(ConfigurationManager.ConnectionStrings["Tarin"].ToString())
@@ -59,7 +62,7 @@ namespace Repository.Data
 
             modelBuilder.Conventions.Add(new FunctionsConvention<MTOContext>("dbo"));
             modelBuilder.Configurations.Add(new AdvertisementPropValuesMap());
-            //modelBuilder.Configurations.Add(new AdvertisementMap());
+            
             base.OnModelCreating(modelBuilder);
         }
 
