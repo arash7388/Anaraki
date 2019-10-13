@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Worksheet.aspx.cs" Inherits="MehranPack.Worksheet" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Worksheet.aspx.cs" Inherits="MehranPack.Worksheet" ClientIDMode="Static"%>
 
 <%@ Register Src="UserControls/PersianCalender.ascx" TagName="PersianCalender" TagPrefix="uc" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="Content/css/datatables.min.css" rel="stylesheet" />
-    <script src="Content/js/datatables.min.js"></script>
+    <link href="/Content/css/datatables.min.css" rel="stylesheet" />
+    <script src="/Content/js/datatables.min.js"></script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
@@ -12,7 +12,7 @@
 
     <div class="row">
         <div class="col-md-12 text-center">
-            <h3>Worksheet</h3>
+            <h3>برگه کار</h3>
         </div>
     </div>
     <hr class="hrBlue" />
@@ -56,66 +56,22 @@
 
     <hr />
 
-    <div class="row">
-        <div class="col-md-8">
-            <asp:GridView runat="server" AutoGenerateColumns="False" Width="500px" ID="gridInput" CssClass="table table-bordered table-striped" DataKeyNames="Id"
-                OnRowCommand="gridSource_RowCommand" AllowPaging="false" PageSize="10"
-                EmptyDataText="اطلاعاتی جهت نمایش وجود ندارد">
-
-                <PagerStyle CssClass="gridPagerStyle" HorizontalAlign="Center" Wrap="False" />
-
-                <Columns>
-                    <asp:BoundField DataField="ProductId" HeaderText="محصول" Visible="false">
-                        <ControlStyle BorderColor="#FFFF99" BorderStyle="Solid" />
-                        <HeaderStyle HorizontalAlign="Left" />
-                        <ItemStyle HorizontalAlign="Center" />
-                    </asp:BoundField>
-
-                    <asp:BoundField DataField="ProductName" HeaderText="محصول" Visible="true">
-                        <ControlStyle BorderColor="#FFFF99" BorderStyle="Solid" />
-                        <HeaderStyle HorizontalAlign="Left" />
-                        <ItemStyle HorizontalAlign="Center" />
-                    </asp:BoundField>
-
-                    <asp:TemplateField ShowHeader="False">
-                        <ItemTemplate>
-                            <asp:LinkButton ID="btnDelete" runat="server" CausesValidation="false" CommandName="Delete"
-                                Text="حذف" CommandArgument='<%# Eval("ProductId") %>' />
-                            <asp:Image runat="server" ImageUrl="Images/Delete16.png" />
-                        </ItemTemplate>
-                        <ItemStyle Width="70"></ItemStyle>
-                    </asp:TemplateField>
-                </Columns>
-            </asp:GridView>
-        </div>
-    </div>
-
+    
     <div class="row">
         <div class="col-md-10">
-            <table id="table1" class="display" style="width: 100%">
+            <table id="table1" class="display table table-striped" style="width: 100%">
                 <thead>
                     <tr>
-                        <th>ProductId</th>
-                        <th>ProductCode</th>
-                        <th>ProductName</th>
+                        <th>شناسه محصول</th>
+                        <th>کد محصول</th>
+                        <th>گروه محصول</th>
+                        <th>نام محصول</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>01</td>
-                        <td>محصول 1</td>
-                        <td><span><button type="button" onclick="onDeleteClicked();">حذف</button></span></td>
-                    </tr>
                 </tbody>
-                <%--<tfoot>
-            <tr>
-                <th>ProductId</th>
-                <th>ProductCode</th>
-                <th>ProductName</th>
-            </tr>
-        </tfoot>--%>
+                
             </table>
         </div>
     </div>
@@ -163,7 +119,7 @@
 
                     <div class="row">
                         <div class="col-md-12">
-
+                            
                             <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
                                 <ContentTemplate>
                                     <asp:TreeView runat="server" ID="tv1" OnSelectedNodeChanged="tv1_OnSelectedNodeChanged"></asp:TreeView>
@@ -192,7 +148,10 @@
             $('#table1').DataTable({
                 "paging": false,
                 "ordering": false,
-                "info": false
+                "info": false,
+                "processing": true,
+                "serverSide": true,
+                "ajax": "scripts/server_processing.php"
             });
 
             $('#table1 tbody').on('click', 'tr', function () {
@@ -204,42 +163,101 @@
                     $(this).addClass('selected');
                 }
             });
+
+
+            var url = $(location).attr('href'),
+                parts = url.split("/"),
+                id = parts[parts.length - 1];
+
+            var methodParams = '{id:' + id + '}'
+
+            debugger;
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: methodParams,
+                url: "~/worksheet.aspx/GetDetails",
+                success: function (data) {
+                    debugger;
+                    var datatableVariable = $('#table1').DataTable({
+                        data: data,
+                        columns: [
+                            { 'data': 'ProductId' },
+                            { 'data': 'ProductCode' },
+                            { 'data': 'CategoryName' },
+                            { 'data': 'ProductName' }
+                        ]
+                    });
+
+                    //$('#studentTable tfoot th').each(function () {
+                    //    var placeHolderTitle = $('#studentTable thead th').eq($(this).index()).text();
+                    //    $(this).html('<input type="text" class="form-control input input-sm" placeholder = "Search ' + placeHolderTitle + '" />');
+                    //});
+                    //datatableVariable.columns().every(function () {
+                    //    var column = this;
+                    //    $(this.footer()).find('input').on('keyup change', function () {
+                    //        column.search(this.value).draw();
+                    //    });
+                    //});
+                    //$('.showHide').on('click', function () {
+                    //    var tableColumn = datatableVariable.column($(this).attr('data-columnindex'));
+                    //    tableColumn.visible(!tableColumn.visible());
+                    //});
+                },
+                error: function (data) {
+                    debugger;
+                }
+            });
         });
+
+
 
         $('#form1').on('submit', function (e) {
             debugger;
+            var operatorId = $("#drpOperator").val();
+            var colorId = $("#drpColor").val();
+            var partNo = $("#txtPart").val();
+            var date = $("#year").val() + "/" + $("#mounth").val() + "/" + $("#day").val()
 
             e.preventDefault();
 
             var allRows = t.rows().data();
-            var model = "[";
+            var model0 = '{"OperatorId":' + operatorId + ',"ColorId":' + colorId + ',"PartNo":"' + partNo + '","Date":"' + date + '","WorksheetDetails": ['
+            var model = model0;
 
             jQuery.each(allRows, function (i, row) {
 
-                if (model != "[")
+                if (model != model0)
                     model = model + ",";
 
                 model = model +
-                    '{"InsertDateTime" : "' + row[0] + '",' +
-                    '"BranchId" : ' + row[1] + ',' +
-                    '"VisaExpDate" : "' + row[7] + '",' +
-                    '"IsDeleted" : "false"}';
+                    '{"ProductId" : "' + row[0] + '",' +
+                    '"Status" : "-1"}';
             });
 
-            model += "]";
+            model += "]}";
 
+            var userId = $("#hfUserId").val();
+
+            var url = $(location).attr('href'),
+                parts = url.split("/"),
+                id = parts[parts.length - 1];
+
+            
+            var methodParams = '{userId:"' + userId + '",date:"' + date + '",id:"' + id + '",model:' + model + '}'
             $.ajax({
-                url: '@Url.Action("Save","Home")',
+                url: '<%= ResolveUrl("~/worksheet.aspx/Save") %>',
                 type: "POST",
-                data: model,
+                data: methodParams,
                 dataType: "json",
-                traditional: true,
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    if (data.IsSuccess == true) {
-                        alert('Row added successfuly.');
-                        $("#table1").html(data.Data);
+                    debugger;
+                    if (data.d == "OK") {
+                        window.location.href = window.location.origin + "/worksheetlist";
                     }
+                    else alert(data.d);
                 },
                 error: function (data) {
                     debugger;
@@ -281,6 +299,7 @@
                 t.row.add([
                     productId,
                     prCode,
+                    '',
                     prName,
                     '<span><button type="button" onclick="onDeleteClicked();">حذف</button></span>'
                 ]).draw(false);

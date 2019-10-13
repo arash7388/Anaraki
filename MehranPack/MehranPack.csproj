@@ -97,6 +97,7 @@
   <ItemGroup>
     <Content Include="Content\css\datatables.min.css" />
     <Content Include="Content\js\datatables.min.js" />
+    <Content Include="WorksheetList.aspx" />
     <Content Include="ProcessCategory.aspx" />
     <Content Include="ProcessCategoryList.aspx" />
     <Content Include="ProcessList.aspx" />
@@ -177,6 +178,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="WorksheetList.aspx.cs">
+      <DependentUpon>WorksheetList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WorksheetList.aspx.designer.cs">
+      <DependentUpon>WorksheetList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ProcessCategory.aspx.cs">
       <DependentUpon>ProcessCategory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -10,10 +10,11 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json;
+using System.Web.Script.Serialization;
 
 namespace MehranPack
 {
-    public partial class Worksheet : SystemUI.Page
+    public partial class Worksheet : Page
     {
         [WebMethod]
         public static string GetProductCodeAndName(int productId) //it sets p id too
@@ -31,7 +32,6 @@ namespace MehranPack
         [WebMethod]
         public static string GetCategoryName(int catId)
         {
-
             return new CategoryRepository().GetById(catId)?.Name;
         }
 
@@ -42,6 +42,16 @@ namespace MehranPack
             //((List<WorksheetDetailHelper>)Session["GridSource"]).Add();
             //return new CategoryRepository().GetById(catId)?.Name;
         }
+
+        [WebMethod]
+        public static string GetDetails(int id)
+        {
+            var repo = new WorksheetDetailRepository();
+            var js = new JavaScriptSerializer();
+            return js.Serialize(repo.Get(a=>a.WorksheetId==id).ToList());
+            //return new
+        }
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -76,7 +86,7 @@ namespace MehranPack
                     Session["GridSource"] = new List<InputHelper>();
 
                 dtWorksheet.LoadCurrentDateTime = true;
-                
+
                 BindDrpUsers();
                 BindDrpColors();
             }
@@ -87,8 +97,8 @@ namespace MehranPack
             if (Session["GridSource"] == null)
                 Session["GridSource"] = new List<WorksheetDetailHelper>();
 
-            gridInput.DataSource = Session["GridSource"];
-            gridInput.DataBind();
+            //gridInput.DataSource = Session["GridSource"];
+            //gridInput.DataBind();
         }
 
         private void BindDrpColors()
@@ -114,50 +124,56 @@ namespace MehranPack
         {
         }
 
-        protected void Save(string modelmodel)
+        [WebMethod]
+        public static string Save(int userId,string date, int id, Repository.Entity.Domain.Worksheet model)
         {
-            var typedModel = JsonConvert.DeserializeObject<List<WorksheetDetailHelper>>(model);
-            var source = typedModel;
+            //var typedModel = JsonConvert.DeserializeObject<Repository.Entity.Domain.Worksheet>(model);
+            //var source = typedModel;
+            //return "";
 
-            if (source.Count == 0)
+            if (model == null)
             {
-                ((Main)Page.Master).SetGeneralMessage("اطلاعاتی برای ذخیره کردن یافت نشد", MessageType.Error);
-                return;
+                //((Main)Page.Master).SetGeneralMessage("اطلاعاتی برای ذخیره کردن یافت نشد", MessageType.Error);
+                return "اطلاعاتی برای ذخیره کردن یافت نشد";
             }
             var uow = new UnitOfWork();
 
-            if (Page.RouteData.Values["Id"].ToSafeInt() == 0)
+            if (id.ToSafeInt() == 0)
             {
                 var w = new Repository.Entity.Domain.Worksheet();
-                
-                var insDateTime = Utility.AdjustTimeOfDate(dtWorksheet.Date.ToEnDate());
+
+                var insDateTime = model.InsertDateTime;
+                w.Date = Utility.AdjustTimeOfDate(date.ToEnDate());
+                w.PartNo = model.PartNo;
                 w.InsertDateTime = insDateTime;
-                w.UserId = ((User)Session["User"]).Id;
+                w.OperatorId = model.OperatorId;
+                w.ColorId = model.ColorId;
+                w.UserId = userId;
                 w.Status = -1;
-                w.WorksheetDetails = CastToIODetail((List<InputHelper>)Session["GridSource"]);
+                w.WorksheetDetails = model.WorksheetDetails;
 
                 uow.Worksheets.Create(w);
             }
             else
             {
-                var tobeEdited = uow.InputOutputs.GetById(Page.RouteData.Values["Id"].ToSafeInt());
+                var tobeEdited = uow.Worksheets.GetById(id.ToSafeInt());
 
-                uow.InputOutputDetails.Delete(a => a.InputOutputId == tobeEdited.Id);
+                uow.WorksheetDetails.Delete(a => a.WorksheetId == tobeEdited.Id);
 
-                tobeEdited.InsertDateTime = Utility.AdjustTimeOfDate(dtInputOutput.Date.ToEnDate());
+                tobeEdited.UpdateDateTime = DateTime.Now;
+                tobeEdited.Date = Utility.AdjustTimeOfDate(date.ToEnDate());
+                tobeEdited.UserId = userId;
+                tobeEdited.ColorId = model.ColorId;
+                tobeEdited.PartNo = model.PartNo;
 
-                foreach (InputHelper item in source)
+                foreach (WorksheetDetail item in model.WorksheetDetails)
                 {
-                    uow.InputOutputDetails.Create(new InputOutputDetail()
+                    uow.WorksheetDetails.Create(new WorksheetDetail()
                     {
-                        Count = item.Count,
-                        CustomerId = item.CustomerId,
-                        InsertDateTime = Utility.AdjustTimeOfDate(item.InsertDateTime.ToEnDate()),
                         Status = -1,
                         ProductId = item.ProductId,
                         UpdateDateTime = DateTime.Now,
-                        InputOutputId = tobeEdited.Id,
-                        ProductionQuality = item.ProductionQualityId
+                        WorksheetId = tobeEdited.Id,
                     });
                 }
             }
@@ -165,16 +181,43 @@ namespace MehranPack
             var result = uow.SaveChanges();
             if (result.IsSuccess)
             {
-                RedirectFactorListActionResultWithMessage();
+                //RedirectToWorksheetListActionResultWithMessage();
+                return "OK";
             }
             else
             {
-                ((Main)Page.Master).SetGeneralMessage("خطا در ذخیره اطلاعات", MessageType.Error);
+                //((Main)Page.Master).SetGeneralMessage("خطا در ذخیره اطلاعات", MessageType.Error);
                 Debuging.Error(result.Message);
+                return "خطا در ذخیره اطلاعات";
             }
         }
 
-        protected gridSource_RowCommand(object sender, GridViewCommandEventArgs e)
+
+        private void RedirectToWorksheetListActionResultWithMessage()
+        {
+            throw new NotImplementedException();
+        }
+
+        private ICollection<WorksheetDetail> CastToWorksheetDetails(List<WorksheetDetailHelper> detailHelpers)
+        {
+            var result = new List<WorksheetDetail>();
+
+            foreach (WorksheetDetailHelper detailHelper in detailHelpers)
+            {
+                result.Add(new WorksheetDetail()
+                {
+                    Id = detailHelper.Id,
+                    //WorksheetId=detailHelper.WorksheetId,
+                    ProductId = detailHelper.ProductId,
+                    //InsertDateTime = Utility.AdjustTimeOfDate(detailHelper.InsertDateTime.ToEnDate()),
+                    Status = -1,
+                });
+            }
+
+            return result;
+        }
+
+        protected void gridSource_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "Delete")
             {
@@ -188,8 +231,8 @@ namespace MehranPack
 
         private void BindGrid()
         {
-            gridInput.DataSource = Session["GridSource"];
-            gridInput.DataBind();
+            //gridInput.DataSource = Session["GridSource"];
+            //gridInput.DataBind();
         }
 
         protected void b1_OnClick(object sender, EventArgs e)
@@ -244,6 +287,5 @@ namespace MehranPack
                 }
             }
         }
-  }
     }
 }

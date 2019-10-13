@@ -21,7 +21,7 @@ namespace MehranPack
             set
             {
                 generalMessage.CssClass = "alert ";
-                
+
                 switch (value)
                 {
                     case MessageType.Info:
@@ -52,11 +52,15 @@ namespace MehranPack
             if (Session["User"] == null)
                 Response.RedirectToRoute("Login");
 
-            var user = (User) Session["User"];
-            if (user != null) lblCurrentUser.Text = "کاربر:" + user.FriendlyName;
+            var user = (User)Session["User"];
+            if (user != null)
+            {
+                lblCurrentUser.Text = "کاربر:" + user.FriendlyName;
+                hfUserId.Value = user.Id.ToString();
+            }
         }
 
-        
+
 
         public void SetGeneralMessage(string text, MessageType messageType)
         {
@@ -69,7 +73,7 @@ namespace MehranPack
         {
             generalMessage.Visible = false;
         }
-     
+
         protected void lbtnDrafts_OnClick(object sender, EventArgs e)
         {
             var routeValues = new RouteValueDictionary();
@@ -89,7 +93,7 @@ namespace MehranPack
 
         protected void lbtnProductType_OnClick(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void lbtnCustomers_OnClick(object sender, EventArgs e)
@@ -195,6 +199,11 @@ namespace MehranPack
         protected void lbtnProcessCat_OnClick(object sender, EventArgs e)
         {
             Response.RedirectToRoute("ProcessCategorylist");
+        }
+
+        protected void lbtnWorksheets_OnClick(object sender, EventArgs e)
+        {
+            Response.RedirectToRoute("Worksheetlist");
         }
     }
 }
