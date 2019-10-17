@@ -19,5 +19,10 @@ namespace Repository.DAL
             w.WorksheetDetails = det;
             return w;
         }
+
+        public object GetWorksheetForPrint(int v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

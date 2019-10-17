@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Worksheet.aspx.cs" Inherits="MehranPack.Worksheet" ClientIDMode="Static"%>
+﻿<%@ Page Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Worksheet.aspx.cs" Inherits="MehranPack.Worksheet" ClientIDMode="Static" %>
 
 <%@ Register Src="UserControls/PersianCalender.ascx" TagName="PersianCalender" TagPrefix="uc" %>
 
@@ -56,10 +56,10 @@
 
     <hr />
 
-    
+
     <div class="row">
         <div class="col-md-10">
-            <table id="table1" class="display table table-striped" style="width: 100%">
+            <table id="table1" class="display table table-bordered table-striped" style="width: 100%">
                 <thead>
                     <tr>
                         <th>شناسه محصول</th>
@@ -71,7 +71,7 @@
                 </thead>
                 <tbody>
                 </tbody>
-                
+
             </table>
         </div>
     </div>
@@ -119,7 +119,7 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            
+
                             <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
                                 <ContentTemplate>
                                     <asp:TreeView runat="server" ID="tv1" OnSelectedNodeChanged="tv1_OnSelectedNodeChanged"></asp:TreeView>
@@ -144,71 +144,70 @@
     </div>
 
     <script type="text/javascript">
+
         $(document).ready(function () {
-            $('#table1').DataTable({
+
+            tbl = $('#table1').DataTable({
+                "bFilter": false,
                 "paging": false,
                 "ordering": false,
                 "info": false,
                 "processing": true,
-                "serverSide": true,
-                "ajax": "scripts/server_processing.php"
+                "serverSide": false,
+
+                "columns": [
+                    { 'title': 'شناسه محصول' },
+                    { 'title': 'کد محصول' },
+                    { 'title': 'نام محصول' },
+                    { 'title':"" }
+                ]
             });
+
+            var url = $(location).attr('href'),
+                parts = url.split("/"),
+                id = parts[parts.length - 1];
+
+            //var methodParams = '{id:' + id + '}'
+            var adr = "/DataHandler.ashx?id=" + id
+            debugger;
+            $.ajax({
+                type: "POST",
+                url: adr,
+                //data: { pID: pID, tID: tID },
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    debugger;
+                    jQuery.each(data, function (i, row) {
+                        debugger;
+                        
+                        tbl.row.add([
+                            row["ProductId"],
+                            row["ProductCode"],
+                            row["ProductName"],
+                            '<span><button type="button" onclick="onDeleteClicked();">حذف</button></span>'
+                        ]).draw(false);
+                    });
+                },
+                error: function () {
+                    debugger;
+                    alert("Error");
+                }
+
+            });
+
+
 
             $('#table1 tbody').on('click', 'tr', function () {
                 if ($(this).hasClass('selected')) {
                     $(this).removeClass('selected');
                 }
                 else {
-                    t.$('tr.selected').removeClass('selected');
+                    tbl.$('tr.selected').removeClass('selected');
                     $(this).addClass('selected');
                 }
             });
 
-
-            var url = $(location).attr('href'),
-                parts = url.split("/"),
-                id = parts[parts.length - 1];
-
-            var methodParams = '{id:' + id + '}'
-
-            debugger;
-            $.ajax({
-                type: "POST",
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                data: methodParams,
-                url: "~/worksheet.aspx/GetDetails",
-                success: function (data) {
-                    debugger;
-                    var datatableVariable = $('#table1').DataTable({
-                        data: data,
-                        columns: [
-                            { 'data': 'ProductId' },
-                            { 'data': 'ProductCode' },
-                            { 'data': 'CategoryName' },
-                            { 'data': 'ProductName' }
-                        ]
-                    });
-
-                    //$('#studentTable tfoot th').each(function () {
-                    //    var placeHolderTitle = $('#studentTable thead th').eq($(this).index()).text();
-                    //    $(this).html('<input type="text" class="form-control input input-sm" placeholder = "Search ' + placeHolderTitle + '" />');
-                    //});
-                    //datatableVariable.columns().every(function () {
-                    //    var column = this;
-                    //    $(this.footer()).find('input').on('keyup change', function () {
-                    //        column.search(this.value).draw();
-                    //    });
-                    //});
-                    //$('.showHide').on('click', function () {
-                    //    var tableColumn = datatableVariable.column($(this).attr('data-columnindex'));
-                    //    tableColumn.visible(!tableColumn.visible());
-                    //});
-                },
-                error: function (data) {
-                    debugger;
-                }
-            });
         });
 
 
@@ -222,7 +221,7 @@
 
             e.preventDefault();
 
-            var allRows = t.rows().data();
+            var allRows = tbl.rows().data();
             var model0 = '{"OperatorId":' + operatorId + ',"ColorId":' + colorId + ',"PartNo":"' + partNo + '","Date":"' + date + '","WorksheetDetails": ['
             var model = model0;
 
@@ -244,7 +243,7 @@
                 parts = url.split("/"),
                 id = parts[parts.length - 1];
 
-            
+
             var methodParams = '{userId:"' + userId + '",date:"' + date + '",id:"' + id + '",model:' + model + '}'
             $.ajax({
                 url: '<%= ResolveUrl("~/worksheet.aspx/Save") %>',
@@ -268,14 +267,14 @@
         });
 
         function onDeleteClicked() {
-            t.row('.selected').remove().draw(false);
+           tbl.row('.selected').remove().draw(false);
         }
 
 
         function onNodeClicked(productId, catId) {
             debugger;
             $('#myModal').modal('hide');
-            t = $('#table1').DataTable();
+            var t = $('#table1').DataTable();
 
             //var checkState = $("#activeCheckBox")[0].checked == true ? "checked=\"true\"" : "";
 
@@ -299,7 +298,6 @@
                 t.row.add([
                     productId,
                     prCode,
-                    '',
                     prName,
                     '<span><button type="button" onclick="onDeleteClicked();">حذف</button></span>'
                 ]).draw(false);

@@ -9,12 +9,23 @@ namespace Repository.DAL
 {
     public class WorksheetDetailRepository : BaseRepository<WorksheetDetail>
     {
+        public List<WorksheetDetailHelper> GetAllDetails(int wid)
+        {
+            return MTOContext.WorksheetDetails.Include("Product").Where(a => a.WorksheetId == wid).Select(a => new WorksheetDetailHelper
+            {
+                Id = a.Id,
+                ProductId = a.ProductId,
+                ProductCode = a.Product.Code,
+                ProductName = a.Product.Name
+            }).ToList();
+        }
     }
 
     public class WorksheetDetailHelper
     {
         public int Id { get; set; }
         public int ProductId { get; set; }
+        public string ProductCode { get; set; }
         public string ProductName { get; set; }
 
         public int CategoryId { get; set; }

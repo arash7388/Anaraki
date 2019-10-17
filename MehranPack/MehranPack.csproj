@@ -88,10 +88,14 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="Telerik.Reporting, Version=9.0.15.225, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
-    <Reference Include="Telerik.ReportViewer.WebForms, Version=9.0.15.225, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
     <Reference Include="Telerik.Web.UI">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Telerik\UI for ASP.NET AJAX Q2 2014\Bin45\Telerik.Web.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Reporting, Version=13.0.19.116, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
+      <SpecificVersion>True</SpecificVersion>
+    </Reference>
+    <Reference Include="Telerik.ReportViewer.WebForms, Version=13.0.19.116, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
+      <SpecificVersion>True</SpecificVersion>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -136,6 +140,8 @@
     <Content Include="Scripts\PersianCalendar.js" />
     <Content Include="Scripts\Utility.js" />
     <Content Include="Worksheet.aspx" />
+    <Content Include="DataHandler.ashx" />
+    <Content Include="WorksheetPrint.aspx" />
     <None Include="Properties\PublishProfiles\mehranpack.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -178,6 +184,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="DataHandler.ashx.cs">
+      <DependentUpon>DataHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="ReportW.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportW.Designer.cs">
+      <DependentUpon>ReportW.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportWorksheet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportWorksheet.Designer.cs">
+      <DependentUpon>ReportWorksheet.cs</DependentUpon>
+    </Compile>
     <Compile Include="WorksheetList.aspx.cs">
       <DependentUpon>WorksheetList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -337,6 +358,13 @@
     <Compile Include="Worksheet.aspx.designer.cs">
       <DependentUpon>Worksheet.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WorksheetPrint.aspx.cs">
+      <DependentUpon>WorksheetPrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WorksheetPrint.aspx.designer.cs">
+      <DependentUpon>WorksheetPrint.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
@@ -371,6 +399,15 @@
       <Name>Repository.Entity</Name>
       <Project>{a6f25c6b-5f23-4cec-9d05-6f02f738cfb0}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="ReportW.resx">
+      <DependentUpon>ReportW.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportWorksheet.resx">
+      <DependentUpon>ReportWorksheet.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

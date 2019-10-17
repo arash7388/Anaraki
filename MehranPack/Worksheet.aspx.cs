@@ -11,6 +11,7 @@ using System.Web.UI.WebControls;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json;
 using System.Web.Script.Serialization;
+using System.Web.Script.Services;
 
 namespace MehranPack
 {
@@ -44,7 +45,7 @@ namespace MehranPack
         }
 
         [WebMethod]
-        public static string GetDetails(int id)
+        public static string GetDetails2(int id)
         {
             var repo = new WorksheetDetailRepository();
             var js = new JavaScriptSerializer();
@@ -52,6 +53,15 @@ namespace MehranPack
             //return new
         }
 
+        [WebMethod]
+        //[ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = true)]
+        public static object GetDetails()
+        {
+            var repo = new WorksheetDetailRepository();
+            var js = new JavaScriptSerializer();
+            return js.Serialize(repo.GetAll().ToList());
+            //return new
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
