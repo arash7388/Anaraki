@@ -102,9 +102,9 @@ namespace MehranPack
             BindTreeRecursive(hierarchicalData, root);
         }
 
-        private void BindTreeRecursive(List<Category> hierarchicalData, TreeNode node)
+        private void BindTreeRecursive(List<Repository.Entity.Domain.Category> hierarchicalData, TreeNode node)
         {
-            foreach (Category category in hierarchicalData)
+            foreach (Repository.Entity.Domain.Category category in hierarchicalData)
             {
                 if (category.Children.Any())
                 {
@@ -123,7 +123,7 @@ namespace MehranPack
                         var catRelatedProducts = new ProductRepository().Get(a => a.ProductCategoryId == category.Id).ToList();
                         n.SelectAction = TreeNodeSelectAction.None;
 
-                        foreach (Product product in catRelatedProducts)
+                        foreach (Repository.Entity.Domain.Product product in catRelatedProducts)
                         {
                             if (string.IsNullOrWhiteSpace(txtSearchTree.Text))
                                 n.ChildNodes.Add(new CustomTreeNode(product.Name + "(" + product.Code + ")", product.Id.ToString(), product.Name, product.ProductCategoryId.ToString(), product.ProductCategory?.Name));

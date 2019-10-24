@@ -70,3 +70,25 @@ C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Repository.Data\obj\R
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Repository.Data\obj\Release\Repository.Data.Migrations.catcode.resources
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Repository.Data\obj\Release\Repository.Data.Migrations.quality.resources
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Repository.Data\obj\Release\Repository.Data.Migrations.rinId.resources
+E:\Tarin\Repository.Data\bin\Release\Repository.Data.dll.config
+E:\Tarin\Repository.Data\bin\Release\Repository.Data.dll
+E:\Tarin\Repository.Data\bin\Release\Repository.Data.pdb
+E:\Tarin\Repository.Data\bin\Release\CodeFirstStoreFunctions.dll
+E:\Tarin\Repository.Data\bin\Release\EntityFramework.dll
+E:\Tarin\Repository.Data\bin\Release\EntityFramework.SqlServer.dll
+E:\Tarin\Repository.Data\bin\Release\Repository.Entity.dll
+E:\Tarin\Repository.Data\bin\Release\Repository.Entity.pdb
+E:\Tarin\Repository.Data\bin\Release\Repository.Entity.dll.config
+E:\Tarin\Repository.Data\bin\Release\EntityFramework.xml
+E:\Tarin\Repository.Data\bin\Release\EntityFramework.SqlServer.xml
+E:\Tarin\Repository.Data\obj\Release\Repository.Data.csprojAssemblyReference.cache
+E:\Tarin\Repository.Data\obj\Release\Repository.Data.Migrations.setup.resources
+E:\Tarin\Repository.Data\obj\Release\Repository.Data.Migrations.prcat.resources
+E:\Tarin\Repository.Data\obj\Release\Repository.Data.Migrations.ix.resources
+E:\Tarin\Repository.Data\obj\Release\Repository.Data.Migrations.color.resources
+E:\Tarin\Repository.Data\obj\Release\Repository.Data.Migrations.worksheet.resources
+E:\Tarin\Repository.Data\obj\Release\Repository.Data.csproj.GenerateResource.cache
+E:\Tarin\Repository.Data\obj\Release\Repository.Data.csproj.CoreCompileInputs.cache
+E:\Tarin\Repository.Data\obj\Release\Repository.Data.csproj.CopyComplete
+E:\Tarin\Repository.Data\obj\Release\Repository.Data.dll
+E:\Tarin\Repository.Data\obj\Release\Repository.Data.pdb

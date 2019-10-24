@@ -99,16 +99,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Category.aspx" />
+    <Content Include="CategoryList.aspx" />
     <Content Include="Content\css\datatables.min.css" />
     <Content Include="Content\js\datatables.min.js" />
+    <Content Include="InputOutput.aspx" />
+    <Content Include="Product.aspx" />
+    <Content Include="ProductList.aspx" />
     <Content Include="WorksheetList.aspx" />
     <Content Include="ProcessCategory.aspx" />
     <Content Include="ProcessCategoryList.aspx" />
     <Content Include="ProcessList.aspx" />
     <Content Include="Process.aspx" />
     <Content Include="UsersList.aspx" />
-    <Content Include="GoodsGroupSupply.aspx" />
-    <Content Include="GoodsSupply.aspx" />
     <Content Include="Confirmation.aspx" />
     <Content Include="Content\css\calendar.css" />
     <Content Include="Content\css\custom.scss" />
@@ -130,10 +133,8 @@
     <Content Include="Images\pdf16.png" />
     <Content Include="Images\plus16.png" />
     <Content Include="Images\print16.png" />
-    <Content Include="InputOutputList.aspx" />
     <Content Include="Cardex.aspx" />
     <Content Include="Login.aspx" />
-    <Content Include="IOReport.aspx" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Main.Master" />
     <Content Include="packages.config" />
@@ -173,7 +174,6 @@
     <Content Include="Scripts\tab.js" />
     <Content Include="Scripts\tooltip.js" />
     <Content Include="Scripts\transition.js" />
-    <Content Include="InputOutput.aspx" />
     <Content Include="UserControls\cal.png" />
     <Content Include="UserControls\PersianCalender.ascx" />
     <Content Include="Users.aspx" />
@@ -184,14 +184,43 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Category.aspx.cs">
+      <DependentUpon>Category.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Category.aspx.designer.cs">
+      <DependentUpon>Category.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryList.aspx.cs">
+      <DependentUpon>CategoryList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CategoryList.aspx.designer.cs">
+      <DependentUpon>CategoryList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DataHandler.ashx.cs">
       <DependentUpon>DataHandler.ashx</DependentUpon>
     </Compile>
-    <Compile Include="ReportW.cs">
-      <SubType>Component</SubType>
+    <Compile Include="InputOutput.aspx.cs">
+      <DependentUpon>InputOutput.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ReportW.Designer.cs">
-      <DependentUpon>ReportW.cs</DependentUpon>
+    <Compile Include="InputOutput.aspx.designer.cs">
+      <DependentUpon>InputOutput.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Product.aspx.cs">
+      <DependentUpon>Product.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Product.aspx.designer.cs">
+      <DependentUpon>Product.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductList.aspx.cs">
+      <DependentUpon>ProductList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProductList.aspx.designer.cs">
+      <DependentUpon>ProductList.aspx</DependentUpon>
     </Compile>
     <Compile Include="ReportWorksheet.cs">
       <SubType>Component</SubType>
@@ -241,20 +270,6 @@
     <Compile Include="UsersList.aspx.designer.cs">
       <DependentUpon>UsersList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="GoodsGroupSupply.aspx.cs">
-      <DependentUpon>GoodsGroupSupply.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GoodsGroupSupply.aspx.designer.cs">
-      <DependentUpon>GoodsGroupSupply.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GoodsSupply.aspx.cs">
-      <DependentUpon>GoodsSupply.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GoodsSupply.aspx.designer.cs">
-      <DependentUpon>GoodsSupply.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Confirmation.aspx.cs">
       <DependentUpon>Confirmation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -286,13 +301,6 @@
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="InputOutputList.aspx.cs">
-      <DependentUpon>InputOutputList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="InputOutputList.aspx.designer.cs">
-      <DependentUpon>InputOutputList.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Cardex.aspx.cs">
       <DependentUpon>Cardex.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -314,21 +322,7 @@
     <Compile Include="Main.Master.designer.cs">
       <DependentUpon>Main.Master</DependentUpon>
     </Compile>
-    <Compile Include="IOReport.aspx.cs">
-      <DependentUpon>IOReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="IOReport.aspx.designer.cs">
-      <DependentUpon>IOReport.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="InputOutput.aspx.cs">
-      <DependentUpon>InputOutput.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="InputOutput.aspx.designer.cs">
-      <DependentUpon>InputOutput.aspx</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\PersianCalender.ascx.cs">
       <DependentUpon>PersianCalender.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -402,9 +396,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
-    <EmbeddedResource Include="ReportW.resx">
-      <DependentUpon>ReportW.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ReportWorksheet.resx">
       <DependentUpon>ReportWorksheet.cs</DependentUpon>
     </EmbeddedResource>

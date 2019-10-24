@@ -89,7 +89,6 @@ E:\Tarin\MehranPack\obj\Debug\MehranPack.csproj.CoreCompileInputs.cache
 E:\Tarin\MehranPack\obj\Debug\MehranPack.csproj.CopyComplete
 E:\Tarin\MehranPack\obj\Debug\MehranPack.dll
 E:\Tarin\MehranPack\obj\Debug\MehranPack.pdb
-E:\Tarin\MehranPack\obj\Debug\MehranPack.ReportWorksheet.resources
 E:\Tarin\MehranPack\obj\Debug\MehranPack.csproj.GenerateResource.cache
 E:\Tarin\MehranPack\bin\Telerik.Reporting.dll
 E:\Tarin\MehranPack\bin\Telerik.ReportViewer.WebForms.dll
@@ -98,4 +97,4 @@ E:\Tarin\MehranPack\bin\Telerik.Reporting.xml
 E:\Tarin\MehranPack\bin\Telerik.ReportViewer.WebForms.pdb
 E:\Tarin\MehranPack\bin\Telerik.ReportViewer.WebForms.xml
 E:\Tarin\MehranPack\obj\Debug\MehranPack.dll.licenses
-E:\Tarin\MehranPack\obj\Debug\MehranPack.ReportW.resources
+E:\Tarin\MehranPack\obj\Debug\MehranPack.wreport.resources

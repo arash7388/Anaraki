@@ -27,3 +27,15 @@ C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Repository.Model\bin\
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Repository.Model\obj\Release\Repository.Entity.dll
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Repository.Model\obj\Release\Repository.Entity.pdb
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Repository.Model\obj\Release\Repository.Entity.csprojResolveAssemblyReference.cache
+E:\Tarin\Repository.Model\bin\Release\Repository.Entity.dll.config
+E:\Tarin\Repository.Model\bin\Release\Repository.Entity.dll
+E:\Tarin\Repository.Model\bin\Release\Repository.Entity.pdb
+E:\Tarin\Repository.Model\bin\Release\EntityFramework.dll
+E:\Tarin\Repository.Model\bin\Release\EntityFramework.SqlServer.dll
+E:\Tarin\Repository.Model\bin\Release\EntityFramework.xml
+E:\Tarin\Repository.Model\bin\Release\EntityFramework.SqlServer.xml
+E:\Tarin\Repository.Model\obj\Release\Repository.Entity.csprojAssemblyReference.cache
+E:\Tarin\Repository.Model\obj\Release\Repository.Entity.csproj.CoreCompileInputs.cache
+E:\Tarin\Repository.Model\obj\Release\Repository.Entity.csproj.CopyComplete
+E:\Tarin\Repository.Model\obj\Release\Repository.Entity.dll
+E:\Tarin\Repository.Model\obj\Release\Repository.Entity.pdb

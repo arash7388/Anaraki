@@ -35,32 +35,29 @@
                 <div class="row">
                     <div class="col-xs-12 text-center">
                         <div class="btnMainRight">
-                             <asp:LinkButton runat="server" ID="lbtnAdminPanel" CssClass="btn btn-info btn-black" Text="پنل مدیریت" OnClick="lbtnAdminPanel_OnClick"></asp:LinkButton>
+                             <asp:LinkButton runat="server" ID="lbtnAdminPanel" CssClass="btn btn-info btn-black" Text="پنل مدیریت" OnClick="lbtnAdminPanel_OnClick" Visible="false"></asp:LinkButton>
+                             <asp:LinkButton runat="server" ID="LinkButton11" CssClass="btn btn-info btn-standard" Text="گروه کالا " OnClick="lbtnCategories_OnClick"></asp:LinkButton>
+                            <br />
+                             <asp:LinkButton runat="server" ID="LinkButton12" CssClass="btn btn-info btn-standard" Text="محصول " OnClick="lbtnProducts_OnClick"></asp:LinkButton>
                             <br />
                             <asp:LinkButton runat="server" ID="lbtnCustomers" CssClass="btn btn-info btn-standard" Text="مشتریان" OnClick="lbtnCustomers_OnClick"></asp:LinkButton>
                             <br />
-                            <asp:LinkButton runat="server" ID="lbtnInOut" CssClass="btn btn-info btn-standard" Text="ورود کالا" OnClick="lbtnIn_OnClick"></asp:LinkButton>
+                            <asp:LinkButton runat="server" ID="lbtnInOut" CssClass="btn btn-info btn-standard" Text="ورود کالا" OnClick="lbtnIn_OnClick" Visible="false"></asp:LinkButton>
+                             <asp:LinkButton runat="server" ID="LinkButton1" CssClass="btn btn-info btn-standard" Text="خروج کالا" OnClick="lbtnOut_OnClick" Visible="false"></asp:LinkButton>
+                             <asp:LinkButton runat="server" ID="LinkButton2" CssClass="btn btn-info btn-standard" Text="گزارش ورود کالا" OnClick="lbtnRepIn_OnClick" Visible="false"></asp:LinkButton>
+                             <asp:LinkButton runat="server" ID="LinkButton3" CssClass="btn btn-info btn-standard" Text="گزارش خروج کالا " OnClick="lbtnRepOut_OnClick" Visible="false"></asp:LinkButton>
+                            <asp:LinkButton runat="server" ID="LinkButton5" CssClass="btn btn-info btn-standard" Text="کاردکس کالا " OnClick="lbtnCardex_OnClick" Visible="false"></asp:LinkButton>
+                            <asp:LinkButton runat="server" ID="LinkButton6" CssClass="btn btn-info btn-standard" Text="موجودی کالا " OnClick="lbtnGoodsSupply_OnClick" Visible="false"></asp:LinkButton>
+                             <asp:LinkButton runat="server" ID="LinkButton4" CssClass="btn btn-info btn-standard" Text="موجودی گروه کالا " OnClick="lbtnGoodsGroupSupply_OnClick" Visible="false"></asp:LinkButton>
+                            <asp:LinkButton runat="server" ID="LinkButton7" CssClass="btn btn-info btn-standard" Text="کاربران " OnClick="lbtnUsers_OnClick"></asp:LinkButton>
                             <br />
-                             <asp:LinkButton runat="server" ID="LinkButton1" CssClass="btn btn-info btn-standard" Text="خروج کالا" OnClick="lbtnOut_OnClick"></asp:LinkButton>
+                            <asp:LinkButton runat="server" ID="LinkButton8" CssClass="btn btn-info btn-standard" Text="فرآیندها " OnClick="lbtnProcesses_OnClick"></asp:LinkButton>
                             <br />
-                             <asp:LinkButton runat="server" ID="LinkButton2" CssClass="btn btn-info btn-standard" Text="گزارش ورود کالا" OnClick="lbtnRepIn_OnClick"></asp:LinkButton>
+                             <asp:LinkButton runat="server" ID="LinkButton9" CssClass="btn btn-info btn-standard" Text="فرآیندهای محصول " OnClick="lbtnProcessCat_OnClick"></asp:LinkButton>
                             <br />
-                             <asp:LinkButton runat="server" ID="LinkButton3" CssClass="btn btn-info btn-standard" Text="گزارش خروج کالا " OnClick="lbtnRepOut_OnClick"></asp:LinkButton>
+                            <asp:LinkButton runat="server" ID="LinkButton10" CssClass="btn btn-info btn-standard" Text="برگه کار " OnClick="lbtnWorksheets_OnClick"></asp:LinkButton>
                             <br />
-                            <asp:LinkButton runat="server" ID="LinkButton5" CssClass="btn btn-info btn-standard" Text="کاردکس کالا " OnClick="lbtnCardex_OnClick"></asp:LinkButton>
-                            <br />
-                            <asp:LinkButton runat="server" ID="LinkButton6" CssClass="btn btn-info btn-standard" Text="موجودی کالا " OnClick="lbtnGoodsSupply_OnClick"></asp:LinkButton>
-                            <br />
-                             <asp:LinkButton runat="server" ID="LinkButton4" CssClass="btn btn-info btn-standard" Text="موجودی گروه کالا " OnClick="lbtnGoodsGroupSupply_OnClick"></asp:LinkButton>
-                            <br />
-                            <asp:LinkButton runat="server" ID="LinkButton7" CssClass="btn btn-success btn-standard" Text="کاربران " OnClick="lbtnUsers_OnClick"></asp:LinkButton>
-                            <br />
-                            <asp:LinkButton runat="server" ID="LinkButton8" CssClass="btn btn-success btn-standard" Text="فرآیندها " OnClick="lbtnProcesses_OnClick"></asp:LinkButton>
-                            <br />
-                             <asp:LinkButton runat="server" ID="LinkButton9" CssClass="btn btn-success btn-standard" Text="فرآیندهای محصول " OnClick="lbtnProcessCat_OnClick"></asp:LinkButton>
-                            <br />
-                            <asp:LinkButton runat="server" ID="LinkButton10" CssClass="btn btn-success btn-standard" Text="برگه کار " OnClick="lbtnWorksheets_OnClick"></asp:LinkButton>
-                            <br />
+                           
                             
                             <%--<asp:LinkButton runat="server" ID="lbtnProductType" CssClass="btn btn-info btn-standard" Text="انواع جنس" OnClick="lbtnProductType_OnClick"></asp:LinkButton>
                             <br />

@@ -12,9 +12,9 @@ namespace MehranPack
     /// <summary>
     /// Summary description for Report1.
     /// </summary>
-    public partial class ReportWorksheet : Telerik.Reporting.Report
+    public partial class wreport : Telerik.Reporting.Report
     {
-        public ReportWorksheet()
+        public wreport()
         {
             //
             // Required for telerik Reporting designer support

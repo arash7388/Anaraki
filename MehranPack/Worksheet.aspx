@@ -80,10 +80,12 @@
 
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
             <button type="button" class="btn btn-info btn-standard" data-toggle="modal" data-target="#myModal">اضافه کردن کالا</button>
             &nbsp;
-            <asp:Button Style="min-width: 100px !important" runat="server" ID="btnSave" Text="ذخیره" CssClass="btn btn-black btn-standard" OnClick="btnSave_Click"></asp:Button>
+            <asp:Button Style="min-width: 100px !important" runat="server" ID="btnSave" Text="ذخیره" CssClass="btn btn-black btn-standard btnSubmit" ></asp:Button>
+            &nbsp;
+            <asp:Button Style="min-width: 100px !important" runat="server" ID="btnSaveAndPrint" Text="ذخیره و چاپ" CssClass="btn btn-black btn-standard btnSubmit" ></asp:Button>
             <%--<asp:Button runat="server" ID="Button1" Text="اضافه" CssClass="btn btn-info btn-standard" OnClick="btnAdd_Click"></asp:Button>--%>
         </div>
     </div>
@@ -111,7 +113,7 @@
                         <div class="col-md-6">
                             <label>جستجو</label>
                             <asp:TextBox runat="server" ID="txtSearchTree" placeholder="نام کالا"></asp:TextBox>
-                            <asp:Button runat="server" ID="b1" OnClick="b1_OnClick" Text="جستجو" />
+                            <asp:Button runat="server" ID="b1" OnClick="b1_OnClick" Text="جستجو" UseSubmitBehavior="false"/>
                             <%--<asp:Button runat="server" ID="btnClearSearch" OnClick="btnClearSearch_OnClick" Text="جستجو" />--%>
                             <br />
                         </div>
@@ -169,7 +171,6 @@
 
             //var methodParams = '{id:' + id + '}'
             var adr = "/DataHandler.ashx?id=" + id
-            debugger;
             $.ajax({
                 type: "POST",
                 url: adr,
@@ -177,10 +178,8 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
-                    debugger;
                     jQuery.each(data, function (i, row) {
-                        debugger;
-                        
+                       
                         tbl.row.add([
                             row["ProductId"],
                             row["ProductCode"],
@@ -190,7 +189,6 @@
                     });
                 },
                 error: function () {
-                    debugger;
                     alert("Error");
                 }
 
@@ -210,7 +208,10 @@
 
         });
 
-
+        var buttonpressed;
+        $('.btnSubmit').click(function () {
+            buttonpressed = $(this).attr('id')
+        })
 
         $('#form1').on('submit', function (e) {
             debugger;
@@ -252,14 +253,17 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
-                    debugger;
                     if (data.d == "OK") {
-                        window.location.href = window.location.origin + "/worksheetlist";
+                        debugger;
+                        if (buttonpressed=="btnSave")
+                            window.location.href = window.location.origin + "/worksheetlist";
+                        else if (buttonpressed == "btnSaveAndPrint")
+                            window.location.href = window.location.origin + "/worksheetprint.aspx?id="+id;
+
                     }
                     else alert(data.d);
                 },
                 error: function (data) {
-                    debugger;
                     alert("an error occured! " + data.Message);
                 }
             });
@@ -272,7 +276,6 @@
 
 
         function onNodeClicked(productId, catId) {
-            debugger;
             $('#myModal').modal('hide');
             var t = $('#table1').DataTable();
 
@@ -291,7 +294,6 @@
             });
 
             function onSuccess(response) {
-                debugger;
                 var prCode = response.d.split(',')[0];
                 var prName = response.d.split(',')[1];
 

@@ -45,9 +45,9 @@ namespace Repository.Data
 
 
         //public MTOContext() :base(ConfigurationManager.ConnectionStrings["Tarin"].ToString())
-        //public MTOContext() :base("Tarin")
+        public MTOContext() :base("Tarin")
         //attentionnnnnnnnnnnnnn MultipleActiveResultSets=true should be added 
-        public MTOContext() :base("Data Source=DESKTOP-B0LRPCF\\SQLEXPRESS;Initial Catalog=Anaraki;Integrated Security=true;MultipleActiveResultSets=true")
+        //public MTOContext() :base("Data Source=DESKTOP-B0LRPCF\\SQLEXPRESS;Initial Catalog=Anaraki;Integrated Security=true;MultipleActiveResultSets=true")
         {
             //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<MTOContext>());
 

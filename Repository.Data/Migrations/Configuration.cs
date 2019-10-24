@@ -33,13 +33,7 @@
             //);
             //
 
-            if (context.Advertisements.Any(a => a.AreaId == null))
-            {
-                var firstArea = context.Areas.FirstOrDefault();
-                context.Advertisements.ToList().ForEach(a=> a.AreaId=firstArea.Id);
-                context.SaveChanges();
-            }
-
+            
             if (!context.Users.Any(a => a.Username == "admin"))
             {
                 context.Users.Add(new User()

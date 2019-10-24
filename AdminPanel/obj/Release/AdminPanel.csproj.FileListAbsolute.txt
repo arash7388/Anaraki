@@ -58,3 +58,27 @@ C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\AdminPanel\bin\Reposi
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\AdminPanel\bin\EntityFramework.xml
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\AdminPanel\bin\EntityFramework.SqlServer.xml
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\AdminPanel\bin\Repository.Data.pdb
+E:\Tarin\AdminPanel\bin\AdminPanel.dll.config
+E:\Tarin\AdminPanel\bin\AdminPanel.dll
+E:\Tarin\AdminPanel\bin\AdminPanel.pdb
+E:\Tarin\AdminPanel\bin\Common.dll
+E:\Tarin\AdminPanel\bin\EntityFramework.dll
+E:\Tarin\AdminPanel\bin\EntityFramework.SqlServer.dll
+E:\Tarin\AdminPanel\bin\Repository.DAL.dll
+E:\Tarin\AdminPanel\bin\Repository.Entity.dll
+E:\Tarin\AdminPanel\bin\Repository.Data.dll
+E:\Tarin\AdminPanel\bin\CodeFirstStoreFunctions.dll
+E:\Tarin\AdminPanel\bin\Common.pdb
+E:\Tarin\AdminPanel\bin\Repository.DAL.pdb
+E:\Tarin\AdminPanel\bin\Repository.DAL.dll.config
+E:\Tarin\AdminPanel\bin\Repository.Entity.pdb
+E:\Tarin\AdminPanel\bin\Repository.Entity.dll.config
+E:\Tarin\AdminPanel\bin\EntityFramework.xml
+E:\Tarin\AdminPanel\bin\EntityFramework.SqlServer.xml
+E:\Tarin\AdminPanel\bin\Repository.Data.pdb
+E:\Tarin\AdminPanel\bin\Repository.Data.dll.config
+E:\Tarin\AdminPanel\obj\Release\AdminPanel.csprojAssemblyReference.cache
+E:\Tarin\AdminPanel\obj\Release\AdminPanel.csproj.CoreCompileInputs.cache
+E:\Tarin\AdminPanel\obj\Release\AdminPanel.csproj.CopyComplete
+E:\Tarin\AdminPanel\obj\Release\AdminPanel.dll
+E:\Tarin\AdminPanel\obj\Release\AdminPanel.pdb

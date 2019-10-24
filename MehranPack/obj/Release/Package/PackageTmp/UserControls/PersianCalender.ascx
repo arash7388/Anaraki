@@ -51,26 +51,41 @@
         }
     }
     function setDate(clientID) {
+        debugger;
         var year = clientID + "year";
         var yearCtl = document.getElementById(clientID + "year");
+
+        if (yearCtl == null)
+            yearCtl = document.getElementById("year");
+
         var mounthCtl = document.getElementById(clientID + "mounth");
+        if (mounthCtl == null)
+            mounthCtl = document.getElementById("mounth");
+
         var dayCtl = document.getElementById(clientID + "day");
+        if (dayCtl == null)
+            dayCtl = document.getElementById("day");
+
         var prevDate = yearCtl.value + "/" + mounthCtl.value + "/" + dayCtl.value;
+
+        if (document.getElementById(clientID + "year") == null)
+            year = "year";
+
         displayDatePicker(year, prevDate, false);
     }
     function spilitDate(clientID) {
-        var yearCtl = document.getElementById(clientID + "year");
+        var yearCtl = document.getElementById(clientID + "year") || document.getElementById("year");
         var dateTime = yearCtl.value;
         if (yearCtl.value.length > 4) {
-            var mounthCtl = document.getElementById(clientID + "mounth");
-            var dayCtl = document.getElementById(clientID + "day");
+            var mounthCtl = document.getElementById(clientID + "mounth") || document.getElementById("mounth")
+            var dayCtl = document.getElementById(clientID + "day") || document.getElementById("day");
             yearCtl.value = dateTime.substring(0, 4);
             mounthCtl.value = dateTime.substring(5, 7);
             dayCtl.value = dateTime.substring(8, 10);
-            if (document.getElementById(clientID + "_timePanel") != null) {
-                var hourCtl = document.getElementById(clientID + "hour");
-                var minuteCtl = document.getElementById(clientID + "minute");
-                var secCtl = document.getElementById(clientID + "second");
+            if ((document.getElementById(clientID + "_timePanel") || document.getElementById("_timePanel")) != null) {
+                var hourCtl = document.getElementById(clientID + "hour") || document.getElementById("hour");
+                var minuteCtl = document.getElementById(clientID + "minute") || document.getElementById("minute");
+                var secCtl = document.getElementById(clientID + "second") || document.getElementById("second");
                 hourCtl.value = dateTime.substring(13, 15);
                 minuteCtl.value = dateTime.substring(16, 18);
                 secCtl.value = dateTime.substring(19, 21);
@@ -115,22 +130,28 @@
         clientID = clientID.id.substring(0, clientID.id.lastIndexOf("_") + 1);
         var result = true;
         var errorMessage = "تاریخ نامعتبر";
-        var year = document.getElementById(clientID + "year").value;
-        var mounth = document.getElementById(clientID + "mounth").value;
-        var day = document.getElementById(clientID + "day").value;
-        var AllowEmpty = document.getElementById(clientID + "hfAllowEmpty").value;
+        var y = document.getElementById(clientID + "year") || document.getElementById("year")
+        var year = y.value;
+        var m = document.getElementById(clientID + "mounth") || document.getElementById("mounth")
+        var mounth = m.value;
 
-        var error = document.getElementById(clientID + "finalError");
+        var d = document.getElementById(clientID + "day") || document.getElementById("day");
+        var day = d.value;
+
+        var hf = document.getElementById(clientID + "hfAllowEmpty") || document.getElementById("hfAllowEmpty")
+        var AllowEmpty = hf.value;
+
+        var error = document.getElementById(clientID + "finalError") || document.getElementById("finalError");
 //        if (AllowEmpty == "0") {
             if (year < 1360)
                 result = false;
 
             if (year.length < 4 || mounth < 1 || mounth > 12 || day < 1 || day > 31)
                 result = false;
-            if (document.getElementById(clientID + "_timePanel") != null) {
-                var hour = document.getElementById(clientID + "hour").value;
-                var minute = document.getElementById(clientID + "minute").value;
-                var sec = document.getElementById(clientID + "second").value;
+        if (document.getElementById(clientID + "_timePanel") || document.getElementById("_timePanel") != null) {
+            var hour = (document.getElementById(clientID + "hour") || document.getElementById("hour")).value;
+            var minute = (document.getElementById(clientID + "minute") || document.getElementById("minute")).value;
+            var sec = (document.getElementById(clientID + "second") || document.getElementById("second")).value;
                 if (hour.length == 0 || hour < 0 || hour > 23 || minute.length == 0 || minute < 0 || minute > 59 || sec.length == 0 || sec < 0 || sec > 59)
                     result = false;
             }

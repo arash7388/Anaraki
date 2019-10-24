@@ -11,8 +11,8 @@
     <hr/>
     <div class="row">
         <div class="col-md-10">
-            <asp:Button runat="server" ID="btnAccept" Text="بله" CssClass="btn btn-black" OnClick="btnAccept_Click"/>
-            <asp:Button runat="server" ID="btnCancel" Text="خیر" CssClass="btn btn-black"/>
+            <asp:Button runat="server" ID="btnAccept" Text="بله" CssClass="btn btn-danger btn-standard" OnClick="btnAccept_Click"/>
+            <asp:Button runat="server" ID="btnCancel" Text="خیر" CssClass="btn btn-info btn-standard" OnClientClick="JavaScript:window.history.back(1); return false;"/>
         </div>
     </div>
     <br/>

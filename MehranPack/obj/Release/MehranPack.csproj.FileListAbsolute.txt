@@ -61,3 +61,40 @@ C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\MehranPack\bin\Teleri
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\MehranPack\bin\Telerik.Reporting.xml
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\MehranPack\bin\Telerik.ReportViewer.WebForms.pdb
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\MehranPack\bin\Telerik.ReportViewer.WebForms.xml
+E:\Tarin\MehranPack\bin\MehranPack.dll.config
+E:\Tarin\MehranPack\bin\MehranPack.dll
+E:\Tarin\MehranPack\bin\MehranPack.pdb
+E:\Tarin\MehranPack\bin\Common.dll
+E:\Tarin\MehranPack\bin\Microsoft.AnalysisServices.AdomdClient.dll
+E:\Tarin\MehranPack\bin\Microsoft.AspNet.FriendlyUrls.dll
+E:\Tarin\MehranPack\bin\Microsoft.Web.Infrastructure.dll
+E:\Tarin\MehranPack\bin\Newtonsoft.Json.dll
+E:\Tarin\MehranPack\bin\Repository.DAL.dll
+E:\Tarin\MehranPack\bin\Repository.Data.dll
+E:\Tarin\MehranPack\bin\Repository.Entity.dll
+E:\Tarin\MehranPack\bin\System.Net.Http.Formatting.dll
+E:\Tarin\MehranPack\bin\Telerik.Reporting.dll
+E:\Tarin\MehranPack\bin\Telerik.ReportViewer.WebForms.dll
+E:\Tarin\MehranPack\bin\CodeFirstStoreFunctions.dll
+E:\Tarin\MehranPack\bin\Common.pdb
+E:\Tarin\MehranPack\bin\Repository.DAL.pdb
+E:\Tarin\MehranPack\bin\Repository.DAL.dll.config
+E:\Tarin\MehranPack\bin\Repository.Data.pdb
+E:\Tarin\MehranPack\bin\Repository.Data.dll.config
+E:\Tarin\MehranPack\bin\Repository.Entity.pdb
+E:\Tarin\MehranPack\bin\Repository.Entity.dll.config
+E:\Tarin\MehranPack\bin\Microsoft.AspNet.FriendlyUrls.xml
+E:\Tarin\MehranPack\bin\Newtonsoft.Json.xml
+E:\Tarin\MehranPack\bin\System.Net.Http.Formatting.xml
+E:\Tarin\MehranPack\bin\Telerik.Reporting.pdb
+E:\Tarin\MehranPack\bin\Telerik.Reporting.xml
+E:\Tarin\MehranPack\bin\Telerik.ReportViewer.WebForms.pdb
+E:\Tarin\MehranPack\bin\Telerik.ReportViewer.WebForms.xml
+E:\Tarin\MehranPack\obj\Release\MehranPack.csprojAssemblyReference.cache
+E:\Tarin\MehranPack\obj\Release\MehranPack.wreport.resources
+E:\Tarin\MehranPack\obj\Release\MehranPack.csproj.GenerateResource.cache
+E:\Tarin\MehranPack\obj\Release\MehranPack.dll.licenses
+E:\Tarin\MehranPack\obj\Release\MehranPack.csproj.CoreCompileInputs.cache
+E:\Tarin\MehranPack\obj\Release\MehranPack.csproj.CopyComplete
+E:\Tarin\MehranPack\obj\Release\MehranPack.dll
+E:\Tarin\MehranPack\obj\Release\MehranPack.pdb

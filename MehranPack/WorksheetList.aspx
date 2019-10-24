@@ -52,6 +52,15 @@
                             <ItemStyle Width="70"></ItemStyle>
                         </asp:TemplateField>
 
+                         <asp:TemplateField ShowHeader="False">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="btnPrint" runat="server" CausesValidation="false" CommandName="Print"
+                                    Text="چاپ" CommandArgument='<%# Eval("Id") %>' />
+                                <asp:Image runat="server" ImageUrl="Images/print16.png" />
+                            </ItemTemplate>
+                            <ItemStyle Width="70"></ItemStyle>
+                        </asp:TemplateField>
+
                     </Columns>
                 </asp:GridView>
                 <asp:Button runat="server" ID="btnAdd" Text="جدید" CssClass="btn btn-info btn-standard" OnClick="btnAdd_Click" />

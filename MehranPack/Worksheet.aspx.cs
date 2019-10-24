@@ -130,22 +130,21 @@ namespace MehranPack
         }
 
 
-        protected void btnSave_Click(object sender, EventArgs e)
-        {
-        }
-
         [WebMethod]
         public static string Save(int userId,string date, int id, Repository.Entity.Domain.Worksheet model)
         {
-            //var typedModel = JsonConvert.DeserializeObject<Repository.Entity.Domain.Worksheet>(model);
-            //var source = typedModel;
-            //return "";
-
             if (model == null)
             {
                 //((Main)Page.Master).SetGeneralMessage("اطلاعاتی برای ذخیره کردن یافت نشد", MessageType.Error);
                 return "اطلاعاتی برای ذخیره کردن یافت نشد";
             }
+
+            if(!model.WorksheetDetails.Any())
+                return "هیچ ردیفی ثبت نشده است";
+
+            if(model.WorksheetDetails.GroupBy(a=>a.ProductId).Where(a => a.Count() > 1).Count()>0)
+                return "ردیف با کالای تکراری ثبت شده است";
+
             var uow = new UnitOfWork();
 
             if (id.ToSafeInt() == 0)
@@ -197,7 +196,7 @@ namespace MehranPack
             else
             {
                 //((Main)Page.Master).SetGeneralMessage("خطا در ذخیره اطلاعات", MessageType.Error);
-                Debuging.Error(result.Message);
+                Debuging.Error(result.ResultCode + "," + result.Message + "," + result.Message);
                 return "خطا در ذخیره اطلاعات";
             }
         }
@@ -265,9 +264,9 @@ namespace MehranPack
 
         }
 
-        private void BindTreeRecursive(List<Category> hierarchicalData, TreeNode node)
+        private void BindTreeRecursive(List<Repository.Entity.Domain.Category> hierarchicalData, TreeNode node)
         {
-            foreach (Category category in hierarchicalData)
+            foreach (Repository.Entity.Domain.Category category in hierarchicalData)
             {
                 if (category.Children.Any())
                 {
@@ -286,7 +285,7 @@ namespace MehranPack
                         var catRelatedProducts = new ProductRepository().Get(a => a.ProductCategoryId == category.Id).ToList();
                         n.SelectAction = TreeNodeSelectAction.None;
 
-                        foreach (Product product in catRelatedProducts)
+                        foreach (Repository.Entity.Domain.Product product in catRelatedProducts)
                         {
                             if (string.IsNullOrWhiteSpace(txtSearchTree.Text))
                                 n.ChildNodes.Add(new CustomTreeNode(product.Name + "(" + product.Code + ")", product.Id.ToString(), product.Name, product.ProductCategoryId.ToString(), product.ProductCategory?.Name));

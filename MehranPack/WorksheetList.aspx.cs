@@ -49,6 +49,10 @@ namespace MehranPack
             {
                 DoDelete(e);
             }
+            else if (e.CommandName == "Print")
+            {
+                Response.Redirect($"WorksheetPrint.aspx?id={e.CommandArgument.ToSafeInt()}");
+            }
         }
 
         private void DoDelete(GridViewCommandEventArgs e)

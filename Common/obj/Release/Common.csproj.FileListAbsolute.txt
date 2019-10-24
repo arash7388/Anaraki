@@ -10,3 +10,10 @@ C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Common\bin\Release\Co
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Common\obj\Release\Common.dll
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Common\obj\Release\Common.pdb
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Common\obj\Release\Common.csprojResolveAssemblyReference.cache
+E:\Tarin\Common\bin\Release\Common.dll
+E:\Tarin\Common\bin\Release\Common.pdb
+E:\Tarin\Common\obj\Release\Common.csprojAssemblyReference.cache
+E:\Tarin\Common\obj\Release\Common.csproj.CoreCompileInputs.cache
+E:\Tarin\Common\obj\Release\Common.csproj.CopyComplete
+E:\Tarin\Common\obj\Release\Common.dll
+E:\Tarin\Common\obj\Release\Common.pdb

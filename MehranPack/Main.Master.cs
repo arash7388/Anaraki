@@ -205,5 +205,15 @@ namespace MehranPack
         {
             Response.RedirectToRoute("Worksheetlist");
         }
+
+        protected void lbtnProducts_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("productlist.aspx");
+        }
+
+        protected void lbtnCategories_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("categorylist.aspx");
+        }
     }
 }

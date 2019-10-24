@@ -15,12 +15,13 @@ namespace MehranPack
         {
             if (!Page.IsPostBack)
             {
+                List<ProcessCategoryHelper> tobeEditedPC = new List<ProcessCategoryHelper>() ;
+
                 if (Page.RouteData.Values["Id"].ToSafeInt() != 0)
                 {
                     drpCat.Enabled = false;
                     var repo = new ProcessCategoryRepository();
-                    var tobeEditedPC = repo.GetByCatIdWithDetails(Page.RouteData.Values["Id"].ToSafeInt());
-
+                    tobeEditedPC = repo.GetByCatIdWithDetails(Page.RouteData.Values["Id"].ToSafeInt());
                     var details = new List<ProcessCategoryHelper>();
 
                     foreach (ProcessCategoryHelper pc in tobeEditedPC)
@@ -42,6 +43,12 @@ namespace MehranPack
                     Session["GridSource"] = new List<ProcessCategoryHelper>();
 
                 BindDrpCat();
+
+                if (Page.RouteData.Values["Id"].ToSafeInt() != 0)
+                {
+                    drpCat.SelectedValue = tobeEditedPC.FirstOrDefault().CategoryId.ToString();
+                }
+
                 BindDrpProcess();
             }
 
@@ -96,6 +103,10 @@ namespace MehranPack
                 var existingCatPr = new ProcessCategoryRepository().Get(a => a.CategoryId == catId).FirstOrDefault();
                 if (Page.RouteData.Values["Id"].ToSafeInt() == 0 && existingCatPr !=null) throw new LocalException("duplicate cat", " فرآیندهای این گروه محصول قبلا ثبت شده اند");
 
+                var dupOrder = ((List<ProcessCategoryHelper>)Session["GridSource"]).GroupBy(a => a.Order).Where(a => a.Count() > 1).Count();
+                if(dupOrder>0)
+                    throw new LocalException("duplicate order", "ترتیب تکراری در سطرهای ثبت شده");
+
                 UnitOfWork uow = new UnitOfWork();
 
                 if (Page.RouteData.Values["Id"].ToSafeInt() == 0)
@@ -106,7 +117,7 @@ namespace MehranPack
                         {
                             CategoryId = item.CategoryId,
                             ProcessId = item.ProcessId,
-                            Order = txtOrder.Text.ToSafeInt()
+                            Order = item.Order
                         };
 
                         uow.ProcessCategories.Create(newPC);
@@ -120,6 +131,13 @@ namespace MehranPack
                     foreach (Repository.Entity.Domain.ProcessCategory item in exsitedPCs)
                     {
                         repo.Delete(item.Id);
+                    }
+
+                    var res = uow.SaveChanges();
+                    if (!res.IsSuccess)
+                    {
+                        ((Main)Page.Master).SetGeneralMessage(res.ResultMessage, MessageType.Error);
+                        return;
                     }
 
                     foreach (var item in ((List<ProcessCategoryHelper>)Session["GridSource"]))

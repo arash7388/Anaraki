@@ -20,7 +20,15 @@ namespace Repository.DAL
             return w;
         }
 
-        public object GetWorksheetForPrint(int v)
+        public int GetMaxId()
+        {
+            if (!MTOContext.Worksheets.Any())
+                return 0;
+
+            var id = MTOContext.Worksheets.Select(a => a.Id).Max();
+            return id;
+        }
+        public object GetWorksheetForPrint(int id)
         {
             throw new NotImplementedException();
         }

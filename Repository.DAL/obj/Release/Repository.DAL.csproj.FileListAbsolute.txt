@@ -37,3 +37,20 @@ C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Repository.DAL\bin\Re
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Repository.DAL\bin\Release\Common.pdb
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Repository.DAL\bin\Release\Repository.Data.pdb
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Repository.DAL\bin\Release\Repository.Entity.pdb
+E:\Tarin\Repository.DAL\bin\Release\Repository.DAL.dll.config
+E:\Tarin\Repository.DAL\bin\Release\Repository.DAL.dll
+E:\Tarin\Repository.DAL\bin\Release\Repository.DAL.pdb
+E:\Tarin\Repository.DAL\bin\Release\Common.dll
+E:\Tarin\Repository.DAL\bin\Release\Repository.Data.dll
+E:\Tarin\Repository.DAL\bin\Release\Repository.Entity.dll
+E:\Tarin\Repository.DAL\bin\Release\CodeFirstStoreFunctions.dll
+E:\Tarin\Repository.DAL\bin\Release\Common.pdb
+E:\Tarin\Repository.DAL\bin\Release\Repository.Data.pdb
+E:\Tarin\Repository.DAL\bin\Release\Repository.Data.dll.config
+E:\Tarin\Repository.DAL\bin\Release\Repository.Entity.pdb
+E:\Tarin\Repository.DAL\bin\Release\Repository.Entity.dll.config
+E:\Tarin\Repository.DAL\obj\Release\Repository.DAL.csprojAssemblyReference.cache
+E:\Tarin\Repository.DAL\obj\Release\Repository.DAL.csproj.CoreCompileInputs.cache
+E:\Tarin\Repository.DAL\obj\Release\Repository.DAL.csproj.CopyComplete
+E:\Tarin\Repository.DAL\obj\Release\Repository.DAL.dll
+E:\Tarin\Repository.DAL\obj\Release\Repository.DAL.pdb
