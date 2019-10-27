@@ -286,9 +286,9 @@
             // 
             // textBox15
             // 
-            this.textBox15.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Mm(158D), Telerik.Reporting.Drawing.Unit.Mm(1D));
+            this.textBox15.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Mm(169D), Telerik.Reporting.Drawing.Unit.Mm(1D));
             this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Mm(30D), Telerik.Reporting.Drawing.Unit.Mm(6D));
+            this.textBox15.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Mm(20D), Telerik.Reporting.Drawing.Unit.Mm(6D));
             this.textBox15.Value = "صفحه {PageNumber}";
             // 
             // pageFooterSection1

@@ -82,11 +82,12 @@ namespace MehranPack
 
            // For other kinds of errors give the user some information
             // but stay on the default page
-            Response.Write("<h2>Global Page Error</h2>\n");
+            Response.Write("<h2>متاسفانه خطایی در سیستم روی داده است</h2>\n");
             Response.Write(
-                "<p>" + exc.Message + "</p>\n");
-            Response.Write("Return to the <a href='Default.aspx'>" +
-                "Default Page</a>\n");
+                "<p>" + exc.Message + "<br/>" + exc.InnerException!= null ? exc.InnerException.Message : "" + "<br/>" +
+                  exc.InnerException?.InnerException != null ? exc.InnerException?.InnerException?.Message : "" +
+                "</p>\n");
+            Response.Write("بازگشت به  <a href='Home.aspx'>" + "صفحه اصلی</a>\n");
 
            // Clear the error from the server
             Server.ClearError();

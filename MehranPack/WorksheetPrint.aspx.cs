@@ -30,7 +30,7 @@ namespace MehranPack
             sqlDataSource.ConnectionString = "Tarin";
             sqlDataSource.SelectCommand =
             "SELECT w.Id WID, dbo.shamsidate(w.Date) as [Date] ,w.PartNo,c.Name ColorName, u.FriendlyName OperatorName," +
-            " d.ProductId,p.Code PCode, p.Name PName" +
+            " d.ProductId,p.Code PCode, cat.Name + ' ' + p.Name PName" +
             "  , cat.Name CatName, pro.Name ProcessName," +
             "    pro.Id ProcessId," +
             "    cat.Id CatId," +

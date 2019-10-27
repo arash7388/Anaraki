@@ -98,3 +98,7 @@ E:\Tarin\MehranPack\obj\Release\MehranPack.csproj.CoreCompileInputs.cache
 E:\Tarin\MehranPack\obj\Release\MehranPack.csproj.CopyComplete
 E:\Tarin\MehranPack\obj\Release\MehranPack.dll
 E:\Tarin\MehranPack\obj\Release\MehranPack.pdb
+E:\Tarin\MehranPack\bin\EntityFramework.dll
+E:\Tarin\MehranPack\bin\EntityFramework.SqlServer.dll
+E:\Tarin\MehranPack\bin\EntityFramework.xml
+E:\Tarin\MehranPack\bin\EntityFramework.SqlServer.xml

@@ -3,7 +3,7 @@
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 
 <head>
-    <title>ورود به سیستم ورود و خروج کالا</title>
+    <title>ورود به سیستم</title>
     <link href="Content/css/bootstrap-rtl.css" rel="stylesheet" />
     <link href="Content/css/custom.css" rel="stylesheet" />
 </head>
@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="col-md-9" style="margin-right: 0px; margin-top: 35px">
-                    <h4 style="font-family: BKoodak">ورود به سیستم کنترل ورود و خروج کالا</h4>
+                    <h4 style="font-family: BKoodak">ورود به سیستم </h4>
                 </div>
             </div>
             <hr />

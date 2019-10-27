@@ -98,3 +98,7 @@ E:\Tarin\MehranPack\bin\Telerik.ReportViewer.WebForms.pdb
 E:\Tarin\MehranPack\bin\Telerik.ReportViewer.WebForms.xml
 E:\Tarin\MehranPack\obj\Debug\MehranPack.dll.licenses
 E:\Tarin\MehranPack\obj\Debug\MehranPack.wreport.resources
+E:\Tarin\MehranPack\bin\EntityFramework.dll
+E:\Tarin\MehranPack\bin\EntityFramework.SqlServer.dll
+E:\Tarin\MehranPack\bin\EntityFramework.xml
+E:\Tarin\MehranPack\bin\EntityFramework.SqlServer.xml

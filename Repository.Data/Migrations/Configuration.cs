@@ -39,6 +39,7 @@
                 context.Users.Add(new User()
                 {
                     FriendlyName = "admin",
+                    Username="admin",
                     Password = "1",
                     Status = -1,
                     InsertDateTime = DateTime.Now

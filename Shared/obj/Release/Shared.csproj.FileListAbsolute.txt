@@ -2,3 +2,8 @@ C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Shared\bin\Release\Sh
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Shared\bin\Release\Shared.pdb
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Shared\obj\Release\Shared.dll
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Shared\obj\Release\Shared.pdb
+E:\Tarin\Shared\bin\Release\Shared.dll
+E:\Tarin\Shared\bin\Release\Shared.pdb
+E:\Tarin\Shared\obj\Release\Shared.csproj.CoreCompileInputs.cache
+E:\Tarin\Shared\obj\Release\Shared.dll
+E:\Tarin\Shared\obj\Release\Shared.pdb
