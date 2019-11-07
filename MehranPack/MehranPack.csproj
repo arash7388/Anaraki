@@ -107,6 +107,7 @@
     <Content Include="InputOutput.aspx" />
     <Content Include="Product.aspx" />
     <Content Include="ProductList.aspx" />
+    <Content Include="WorkLine.aspx" />
     <Content Include="WorksheetList.aspx" />
     <Content Include="ProcessCategory.aspx" />
     <Content Include="ProcessCategoryList.aspx" />
@@ -228,6 +229,13 @@
     </Compile>
     <Compile Include="ReportWorksheet.Designer.cs">
       <DependentUpon>ReportWorksheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkLine.aspx.cs">
+      <DependentUpon>WorkLine.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WorkLine.aspx.designer.cs">
+      <DependentUpon>WorkLine.aspx</DependentUpon>
     </Compile>
     <Compile Include="WorksheetList.aspx.cs">
       <DependentUpon>WorksheetList.aspx</DependentUpon>

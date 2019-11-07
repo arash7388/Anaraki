@@ -92,3 +92,4 @@ E:\Tarin\Repository.Data\obj\Release\Repository.Data.csproj.CoreCompileInputs.ca
 E:\Tarin\Repository.Data\obj\Release\Repository.Data.csproj.CopyComplete
 E:\Tarin\Repository.Data\obj\Release\Repository.Data.dll
 E:\Tarin\Repository.Data\obj\Release\Repository.Data.pdb
+E:\Tarin\Repository.Data\obj\Release\Repository.Data.Migrations.workline.resources

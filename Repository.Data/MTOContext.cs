@@ -42,6 +42,7 @@ namespace Repository.Data
         public DbSet<Color> Colors { get; set; }
         public DbSet<Worksheet> Worksheets { get; set; }
         public DbSet<WorksheetDetail> WorksheetDetails { get; set; }
+        public DbSet<WorkLine> WorkLines { get; set; }
 
 
         //public MTOContext() :base(ConfigurationManager.ConnectionStrings["Tarin"].ToString())

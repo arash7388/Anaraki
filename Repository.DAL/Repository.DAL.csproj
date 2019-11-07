@@ -62,6 +62,7 @@
     <Compile Include="UnitOfWork.cs" />
     <Compile Include="ProcessRepository.cs" />
     <Compile Include="UserRepository.cs" />
+    <Compile Include="WorkLineRepository.cs" />
     <Compile Include="WorksheetDetailRepository.cs" />
     <Compile Include="WorksheetRepository.cs" />
   </ItemGroup>

@@ -123,3 +123,4 @@ E:\Tarin\Repository.Data\obj\Debug\Repository.Data.Migrations.prcat.resources
 E:\Tarin\Repository.Data\obj\Debug\Repository.Data.Migrations.ix.resources
 E:\Tarin\Repository.Data\obj\Debug\Repository.Data.Migrations.color.resources
 E:\Tarin\Repository.Data\obj\Debug\Repository.Data.Migrations.worksheet.resources
+E:\Tarin\Repository.Data\obj\Debug\Repository.Data.Migrations.workline.resources

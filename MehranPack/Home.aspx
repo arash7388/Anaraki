@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="main" runat="server">
     
     <div class="row" style="margin-top: 30px">
-        <h3>به سیستم اتوماسیون فزآیندها خوش آمدید</h3>    
+        <h3>به سیستم اتوماسیون فرآیندها خوش آمدید</h3>    
     </div>
     
 </asp:Content>

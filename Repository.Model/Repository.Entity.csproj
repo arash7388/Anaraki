@@ -63,6 +63,7 @@
     <Compile Include="Domain\Tag.cs" />
     <Compile Include="Domain\Category.cs" />
     <Compile Include="Domain\User.cs" />
+    <Compile Include="Domain\WorkLine.cs" />
     <Compile Include="Domain\Worksheet.cs" />
     <Compile Include="Domain\WorksheetDetail.cs" />
     <Compile Include="Map\AdvertisementPropValuesMap.cs" />

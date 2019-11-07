@@ -36,6 +36,7 @@ namespace Repository.DAL
         private BaseRepository<ProcessCategory> _processCategories;
         private BaseRepository<Worksheet> _workSheets;
         private BaseRepository<WorksheetDetail> _workSheetDetails;
+        private BaseRepository<WorkLine> _workLines;
         
         public UnitOfWork(MTOContext mtoContext)
         {
@@ -52,6 +53,14 @@ namespace Repository.DAL
             return new BaseRepository<T>(this._mtoContext);
         }
 
+
+        public BaseRepository<WorkLine> WorkLines
+        {
+            get
+            {
+                return this._workLines ?? (this._workLines = new BaseRepository<WorkLine>(this._mtoContext));
+            }
+        }
 
         public BaseRepository<Worksheet> Worksheets
         {

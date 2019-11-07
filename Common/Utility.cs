@@ -84,6 +84,22 @@ namespace Common
             return result;
         }
 
+        public static string CastToFaDateTime(DateTime? dt)
+        {
+            if (dt == null)
+                return "";
+
+            return ((DateTime)dt).ToFaDateTime();
+        }
+
+        public static string CastToFaDate(DateTime? dt)
+        {
+            if (dt == null)
+                return "";
+
+            return ((DateTime)dt).ToFaDate();
+        }
+
         public static string ToFaDate(this DateTime dt)
         {
             string result = "";

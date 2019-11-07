@@ -58,6 +58,12 @@ namespace MehranPack
                 lblCurrentUser.Text = "کاربر:" + user.FriendlyName;
                 hfUserId.Value = user.Id.ToString();
             }
+
+            if(Session["PostProcessMessage"]!=null)
+            {
+
+                //SetGeneralMessage()
+            }
         }
 
 
@@ -214,6 +220,11 @@ namespace MehranPack
         protected void lbtnCategories_OnClick(object sender, EventArgs e)
         {
             Response.Redirect("categorylist.aspx");
+        }
+
+        protected void lbtnWorkLines_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("WorkLine.aspx");
         }
     }
 }

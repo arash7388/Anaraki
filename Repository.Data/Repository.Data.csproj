@@ -76,6 +76,10 @@
     <Compile Include="Migrations\201910111103311_worksheet.Designer.cs">
       <DependentUpon>201910111103311_worksheet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910311458042_workline.cs" />
+    <Compile Include="Migrations\201910311458042_workline.Designer.cs">
+      <DependentUpon>201910311458042_workline.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MTOContextFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -114,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910111103311_worksheet.resx">
       <DependentUpon>201910111103311_worksheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910311458042_workline.resx">
+      <DependentUpon>201910311458042_workline.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
