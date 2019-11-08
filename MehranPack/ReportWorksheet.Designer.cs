@@ -270,7 +270,7 @@
             this.barcode2.Style.Color = System.Drawing.Color.Black;
             this.barcode2.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(12D);
             this.barcode2.Value = "=IsNull(Fields.WID, \"\") + \",\" + IsNull(Fields.OperatorId, \"\") + \",\" + IsNull(Fiel" +
-    "ds.ProductId, \"\") + \",\" + IsNull(Fields.ProcessId, \"\") + #13";
+    "ds.ProductId, \"\") + \",\" + IsNull(Fields.ProcessId, \"\") + \"#\"";
             // 
             // reportFooterSection1
             // 

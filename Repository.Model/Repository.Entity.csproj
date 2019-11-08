@@ -67,6 +67,7 @@
     <Compile Include="Domain\Worksheet.cs" />
     <Compile Include="Domain\WorksheetDetail.cs" />
     <Compile Include="Map\AdvertisementPropValuesMap.cs" />
+    <Compile Include="Map\WorkLineMap.cs" />
     <Compile Include="Map\WorksheetMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AdsAndCats.cs" />

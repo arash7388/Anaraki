@@ -11,6 +11,7 @@
 
     <div class="row">
         <div class="col-md-10">
+            <hr class="hrBlue" />
             <asp:GridView runat="server" AutoGenerateColumns="False" Width="512px" ID="gridProduct" CssClass="table table-bordered table-striped"
                 OnRowCommand="gridProduct_OnRowCommand" DataKeyNames="Id">
                 <Columns>

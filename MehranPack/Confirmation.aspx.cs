@@ -11,7 +11,7 @@ namespace MehranPack
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!Page.IsPostBack)
+            if (!Page.IsPostBack)
             {
                 if (Session["ConfirmData"] == null)
                 {
@@ -19,22 +19,22 @@ namespace MehranPack
                     Response.End();
                 }
 
-                lblMessage.Text = ((ConfirmData) Session["ConfirmData"]).Msg;
+                lblMessage.Text = ((ConfirmData)Session["ConfirmData"]).Msg;
             }
             else
             {
                 confirmArea.Visible = false;
             }
-            
+
         }
 
         protected void btnAccept_Click(object sender, EventArgs e)
         {
-            var data = ((ConfirmData) Session["ConfirmData"]);
+            var data = ((ConfirmData)Session["ConfirmData"]);
             var id = data.Id;
 
             var table = data.Table;
-            
+
             try
             {
                 Repository.DAL.ActionResult result = null;
@@ -48,13 +48,24 @@ namespace MehranPack
                     result = new UnitOfWork().ExecCommand(data.RawCommand);
 
                 if (!result.IsSuccess) throw new LocalException("Error in Deleting from " + table + " with id " + id, "خطا در حذف");
-                 ((Main)Page.Master).SetGeneralMessage("عملیات با موفقیت انجام شد",MessageType.Success);
-                
-                //Response.RedirectToRoute(data.RedirectRoute, data.RedirectRouteValueDictionary);
+                ((Main)Page.Master).SetGeneralMessage("عملیات با موفقیت انجام شد", MessageType.Success);
+
+
+                Session["PostProcessMessage"] = new PostProcessMessage()
+                {
+                    Message = "عملیات با موفقیت انجام شد",
+                    MessageType = MessageType.Success
+                };
+
+                if (data.RedirectAdr.ToSafeString() != "")
+                    if (data.RedirectAdr.ToLower().Contains(".aspx"))
+                        Response.Redirect(data.RedirectAdr);
+                    else
+                        Response.RedirectToRoute(data.RedirectAdr, data.RedirectRouteValueDictionary);
             }
             catch (LocalException exception)
             {
-                ((Main)Page.Master).SetGeneralMessage(exception.ResultMessage,MessageType.Error);
+                ((Main)Page.Master).SetGeneralMessage(exception.ResultMessage, MessageType.Error);
             }
             catch (Exception ex)
             {
@@ -65,7 +76,7 @@ namespace MehranPack
         protected void btnCancel_OnClick(object sender, EventArgs e)
         {
             var data = ((ConfirmData)Session["ConfirmData"]);
-            Response.RedirectToRoute(data.RedirectRoute,data.RedirectRouteValueDictionary);
+            Response.RedirectToRoute(data.RedirectAdr, data.RedirectRouteValueDictionary);
         }
     }
 
@@ -76,7 +87,13 @@ namespace MehranPack
         public int Id { get; set; }
         public string Msg { get; set; }
         public string Table { get; set; }
-        public string RedirectRoute { get; set; }
+        public string RedirectAdr { get; set; }
         public RouteValueDictionary RedirectRouteValueDictionary { get; set; }
+    }
+
+    public class PostProcessMessage
+    {
+        public string Message { get; set; }
+        public MessageType MessageType { get; set; }
     }
 }

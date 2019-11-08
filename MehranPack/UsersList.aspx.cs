@@ -41,7 +41,7 @@ namespace MehranPack
                 data.Id = e.CommandArgument.ToSafeInt();
                 data.Msg = "آیا از حذف کاربر اطمینان دارید؟";
                 data.Table = "Users";
-                data.RedirectRoute = "UsersList";
+                data.RedirectAdr = "UsersList";
 
                 Session["ConfirmData"] = data;
                 Response.RedirectToRoute("Confirmation");

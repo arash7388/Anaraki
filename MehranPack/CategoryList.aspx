@@ -10,6 +10,7 @@
     </div>
     <div class="row">
         <div class="col-md-10">
+            <hr class="hrBlue" />
                 <asp:GridView runat="server" AutoGenerateColumns="False" Width="512px" ID="gridCategory" CssClass="table table-bordered table-striped" DataKeyNames="Id"
                 OnRowCommand="gridCategory_RowCommand" AllowPaging="True" PageSize="10" OnPageIndexChanging="gridCategory_OnPageIndexChanging">
                 <PagerStyle CssClass="gridPagerStyle" HorizontalAlign="Center" Wrap="False" />

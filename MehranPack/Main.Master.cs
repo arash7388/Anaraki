@@ -61,12 +61,11 @@ namespace MehranPack
 
             if(Session["PostProcessMessage"]!=null)
             {
-
-                //SetGeneralMessage()
+                var postPrMsg = (PostProcessMessage)Session["PostProcessMessage"];
+                SetGeneralMessage(postPrMsg.Message, postPrMsg.MessageType);
+                Session["PostProcessMessage"] = null;
             }
         }
-
-
 
         public void SetGeneralMessage(string text, MessageType messageType)
         {

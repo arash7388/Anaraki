@@ -63,7 +63,7 @@ namespace MehranPack
             data.Id = e.CommandArgument.ToSafeInt();
             data.Msg = "آیا از حذف اطمینان دارید؟";
             data.Table = "Worksheets";
-            data.RedirectRoute = "WorksheetList";
+            data.RedirectAdr = "WorksheetList";
             data.RedirectRouteValueDictionary = Page.RouteData.Values;
             Session["ConfirmData"] = data;
             Response.RedirectToRoute("Confirmation");

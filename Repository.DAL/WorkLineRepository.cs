@@ -20,6 +20,7 @@ namespace Repository.DAL
             var result = from wl in MTOContext.WorkLines
                          where wl.InsertDateTime> prevDay && wl.InsertDateTime< endofDayTillMidnight
                          join p in MTOContext.Products on wl.ProductId equals p.Id
+                         join c in MTOContext.Categories on p.ProductCategoryId equals c.Id
                          join pro in MTOContext.Processes on wl.ProcessId equals pro.Id
                          join u in MTOContext.Users on wl.OperatorId equals u.Id
                          select new WorkLineHelper
@@ -32,15 +33,17 @@ namespace Repository.DAL
                              ProcessName = pro.Name,
                              ProductCode = p.Code,
                              ProductId = wl.ProductId,
-                             ProductName = p.Name,
-                             PersianInsertDateTime="1398/01/01"
+                             ProductName = c.Name + " " + p.Name,
+                             WorksheetId=wl.WorksheetId
                          };
 
             var res = result.ToList();
 
             foreach (WorkLineHelper item in res)
             {
-                item.PersianInsertDateTime = Common.Utility.CastToFaDateTime(item.InsertDateTime);
+                var dt = Common.Utility.CastToFaDateTime(item.InsertDateTime);
+                dt = dt.Substring(11, dt.Length - 11);
+                item.PersianInsertDateTime = dt;
             }
 
             return res;
@@ -53,7 +56,6 @@ namespace Repository.DAL
         public string ProductName { get; set; }
         public string ProcessName { get; set; }
         public string OperatorName { get; set; }
-
         public string PersianInsertDateTime { get; set; }
     }
 }

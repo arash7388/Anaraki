@@ -42,7 +42,7 @@ namespace MehranPack
                 data.Id = e.CommandArgument.ToSafeInt();
                 data.Msg = "آیا از حذف اطمینان دارید؟";
                 data.Table = "Processes";
-                data.RedirectRoute = "ProcessList";
+                data.RedirectAdr = "ProcessList";
 
                 Session["ConfirmData"] = data;
                 Response.RedirectToRoute("Confirmation");
