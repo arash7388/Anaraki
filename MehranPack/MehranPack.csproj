@@ -104,10 +104,20 @@
     <Content Include="CategoryList.aspx" />
     <Content Include="Content\css\datatables.min.css" />
     <Content Include="Content\js\datatables.min.js" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="InputOutput.aspx" />
     <Content Include="Product.aspx" />
     <Content Include="ProductList.aspx" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
+    <None Include="Scripts\jquery-1.6.3-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.6.3.js" />
+    <Content Include="Scripts\jquery-1.6.3.min.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="WorkLine.aspx" />
+    <Content Include="WorkLineReport.aspx" />
     <Content Include="WorksheetList.aspx" />
     <Content Include="ProcessCategory.aspx" />
     <Content Include="ProcessCategoryList.aspx" />
@@ -236,6 +246,13 @@
     </Compile>
     <Compile Include="WorkLine.aspx.designer.cs">
       <DependentUpon>WorkLine.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WorkLineReport.aspx.cs">
+      <DependentUpon>WorkLineReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WorkLineReport.aspx.designer.cs">
+      <DependentUpon>WorkLineReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="WorksheetList.aspx.cs">
       <DependentUpon>WorksheetList.aspx</DependentUpon>

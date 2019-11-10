@@ -10,9 +10,11 @@
     <meta content="Automation" />
     <link href="/Content/css/bootstrap-rtl.css" rel="stylesheet" />
     <link href="/Content/css/custom.css" rel="stylesheet" />
-    
+    <link href="Content/toastr.min.css" rel="stylesheet" />
+
     <script src="/Scripts/jquery-1.10.2.js"></script>
     <script src="/Scripts/bootstrap-rtl.js"></script>
+    <script src="Scripts/toastr.min.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -59,7 +61,8 @@
                             <br />
                             <asp:LinkButton runat="server" ID="LinkButton13" CssClass="btn btn-info btn-standard" Text="صف کارهای تولید " OnClick="lbtnWorkLines_OnClick"></asp:LinkButton>
                             <br />
-                           
+                           <asp:LinkButton runat="server" ID="LinkButton14" CssClass="btn btn-info btn-standard" Text="گزارش تولید " OnClick="lbtnWorkLineReport_OnClick"></asp:LinkButton>
+                            <br />
                             
                             <%--<asp:LinkButton runat="server" ID="lbtnProductType" CssClass="btn btn-info btn-standard" Text="انواع جنس" OnClick="lbtnProductType_OnClick"></asp:LinkButton>
                             <br />

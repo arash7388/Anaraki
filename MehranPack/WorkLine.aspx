@@ -92,10 +92,30 @@
             </asp:GridView>
 
             <asp:Button runat="server" ID="btnAdd" Text="جدید" CssClass="btn btn-black btn-standard" OnClick="btnAdd_Click" Visible="false"/>
-            <asp:TextBox runat="server" ID="txtBarcodeInput" placeholder="بارکد را اسکن کنید ..."></asp:TextBox>
+            <asp:TextBox runat="server" ID="txtBarcodeInput" placeholder="بارکد را اسکن کنید ..." AutoCompleteType="None" autocomplete="false"></asp:TextBox>
         </div>
     </div>
     <script type="text/javascript">
+
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-center",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+
+
         $(document).ready(function () {
             if ($("#gridWorkLine") != undefined) {
                 var gridWidth = $("#gridWorkLine").width();
@@ -124,12 +144,17 @@
                         success: function (data) {
                             if (data.d == "OK") {
                                 $("#txtBarcodeInput").val('');
-                                window.location.href = window.location.origin + "/workline.aspx";
+                                toastr["success"]("ردیف با موفقیت اضافه شد")
+
+                                setTimeout(function () { window.location.href = window.location.origin + "/workline.aspx"; }, 2000);
                             }
-                            else alert(data.d);
+                            else {
+                                toastr["error"](data.d);
+                                $("#txtBarcodeInput").val('');
+                            };
                         },
                         error: function (data) {
-                            alert("an error occured! " + data.Message);
+                            toastr["error"]("خطا در سیستم " + data.Message);
                         }
                     });
                 }
@@ -140,7 +165,7 @@
             function timer() {
                 
                 var d = new Date();
-                var time = d.toLocaleTimeString().replace(" ", "").replace("AM", "").replace("PM", "")
+                var time = d.toLocaleTimeString().replace(" ", " ").replace("AM", "").replace("PM", "")
                 $("#lblCurrentTime").text(time.toFaDigit());
             }
 

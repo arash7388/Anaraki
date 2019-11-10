@@ -23,6 +23,7 @@ namespace Repository.DAL
                          join c in MTOContext.Categories on p.ProductCategoryId equals c.Id
                          join pro in MTOContext.Processes on wl.ProcessId equals pro.Id
                          join u in MTOContext.Users on wl.OperatorId equals u.Id
+                         orderby wl.InsertDateTime descending
                          select new WorkLineHelper
                          {
                              Id = wl.Id,
@@ -35,6 +36,40 @@ namespace Repository.DAL
                              ProductId = wl.ProductId,
                              ProductName = c.Name + " " + p.Name,
                              WorksheetId=wl.WorksheetId
+                         };
+
+            var res = result.ToList();
+
+            foreach (WorkLineHelper item in res)
+            {
+                var dt = Common.Utility.CastToFaDateTime(item.InsertDateTime);
+                dt = dt.Substring(11, dt.Length - 11);
+                item.PersianInsertDateTime = dt;
+            }
+
+            return res;
+        }
+
+        public object GetAllForReport(System.Linq.Expressions.Expression<Func<WorkLineHelper, bool>> whereClause)
+        {
+            var result = from wl in MTOContext.WorkLines
+                         join p in MTOContext.Products on wl.ProductId equals p.Id
+                         join c in MTOContext.Categories on p.ProductCategoryId equals c.Id
+                         join pro in MTOContext.Processes on wl.ProcessId equals pro.Id
+                         join u in MTOContext.Users on wl.OperatorId equals u.Id
+                         orderby wl.InsertDateTime descending
+                         select new WorkLineHelper
+                         {
+                             Id = wl.Id,
+                             InsertDateTime = wl.InsertDateTime,
+                             OperatorId = wl.OperatorId,
+                             OperatorName = u.FriendlyName,
+                             ProcessId = wl.ProcessId,
+                             ProcessName = pro.Name,
+                             ProductCode = p.Code,
+                             ProductId = wl.ProductId,
+                             ProductName = c.Name + " " + p.Name,
+                             WorksheetId = wl.WorksheetId
                          };
 
             var res = result.ToList();
