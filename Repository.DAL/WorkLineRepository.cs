@@ -50,7 +50,7 @@ namespace Repository.DAL
             return res;
         }
 
-        public object GetAllForReport(System.Linq.Expressions.Expression<Func<WorkLineHelper, bool>> whereClause)
+        public List<WorkLineHelper> GetAllForReport(System.Linq.Expressions.Expression<Func<WorkLineHelper, bool>> whereClause)
         {
             var result = from wl in MTOContext.WorkLines
                          join p in MTOContext.Products on wl.ProductId equals p.Id
@@ -58,6 +58,7 @@ namespace Repository.DAL
                          join pro in MTOContext.Processes on wl.ProcessId equals pro.Id
                          join u in MTOContext.Users on wl.OperatorId equals u.Id
                          orderby wl.InsertDateTime descending
+                         
                          select new WorkLineHelper
                          {
                              Id = wl.Id,
@@ -72,16 +73,20 @@ namespace Repository.DAL
                              WorksheetId = wl.WorksheetId
                          };
 
-            var res = result.ToList();
+            var finalRes = new List<WorkLineHelper>();
 
-            foreach (WorkLineHelper item in res)
+            if (whereClause != null)
+            {
+                finalRes = result.Where(whereClause).ToList();
+            }
+
+            foreach (WorkLineHelper item in finalRes)
             {
                 var dt = Common.Utility.CastToFaDateTime(item.InsertDateTime);
-                dt = dt.Substring(11, dt.Length - 11);
                 item.PersianInsertDateTime = dt;
             }
 
-            return res;
+            return finalRes;
         }
     }
 

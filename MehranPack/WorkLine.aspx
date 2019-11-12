@@ -26,8 +26,9 @@
             <hr class="hrBlue" style="width: 95%; margin-top: 5px !important" />
             <br />
             <asp:GridView runat="server" AutoGenerateColumns="False" Width="95%" ID="gridWorkLine" CssClass="table table-bordered table-striped" DataKeyNames="Id"
-                OnRowCommand="gridWorkLine_RowCommand" AllowPaging="True" PageSize="10" OnPageIndexChanging="gridWorkLine_OnPageIndexChanging">
-                <PagerStyle CssClass="gridPagerStyle" HorizontalAlign="Center" Wrap="False" />
+                OnRowCommand="gridWorkLine_RowCommand" AllowPaging="True"  
+                PageSize="10" OnPageIndexChanging="gridWorkLine_OnPageIndexChanging">
+                <PagerStyle CssClass="gridPagerStyle" HorizontalAlign="Center" Wrap="False"/>
 
                 <Columns>
                     <asp:BoundField DataField="Id" HeaderText="شناسه">
@@ -92,7 +93,7 @@
             </asp:GridView>
 
             <asp:Button runat="server" ID="btnAdd" Text="جدید" CssClass="btn btn-black btn-standard" OnClick="btnAdd_Click" Visible="false"/>
-            <asp:TextBox runat="server" ID="txtBarcodeInput" placeholder="بارکد را اسکن کنید ..." AutoCompleteType="None" autocomplete="false"></asp:TextBox>
+            <asp:TextBox runat="server" ID="txtBarcodeInput" placeholder="بارکد را اسکن کنید ..." AutoCompleteType="None" autocomplete="off"></asp:TextBox>
         </div>
     </div>
     <script type="text/javascript">

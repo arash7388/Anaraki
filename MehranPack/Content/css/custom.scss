@@ -1,9 +1,10 @@
-﻿/*@font-face {
-  font-family: "BKoodak";
-  //src: local("☺"), url("/Bootstrap-3.2.0/fonts/BBCNassim.eot") format("woff"), url("/Content/fonts/BKoodak.ttf") format("truetype"); }
-  src: local("☺"),url("/Content/fonts/BKoodak.ttf") format("truetype"); }
-body {
-  font-family: BKoodak; }*/
+﻿@font-face {
+    font-family: 'BKoodak';
+    src: url('/Content/fonts/IRANSansWeb.eot');
+    src: local('BKoodak'), url('/Content/fonts/IRANSansWeb.woff') format('woff'), url('/Content/fonts/IRANSansWeb.ttf') format('truetype'), url('IRANSansWeb.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
 
 .btn-blue {
 	font-size:16px;

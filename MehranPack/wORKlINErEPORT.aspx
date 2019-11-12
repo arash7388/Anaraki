@@ -77,13 +77,26 @@
             <telerik:RadGrid ID="RadGridReport" runat="server"
                 AllowFilteringByColumn="True" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False"
                 CellSpacing="-1" GridLines="Both" PageSize="20" Height="605px"
-                OnItemCreated="RadGridReport_OnItemCreated">
-                <ClientSettings AllowColumnsReorder="True">
+                OnItemCreated="RadGridReport_OnItemCreated" ShowGroupPanel="true">
+                <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="true">
                     <Scrolling AllowScroll="True" UseStaticHeaders="True" />
                 </ClientSettings>
                 <MasterTableView>
+
+                    <GroupByExpressions>
+                        <telerik:GridGroupByExpression>
+                            <SelectFields>
+                                <telerik:GridGroupByField FieldAlias="اوپراتور" FieldName="OperatorName" FormatString=""
+                                    HeaderValueSeparator=" : "></telerik:GridGroupByField>
+                            </SelectFields>
+                            <GroupByFields>
+                                <telerik:GridGroupByField FieldName="OperatorName" SortOrder="Descending"></telerik:GridGroupByField>
+                            </GroupByFields>
+                        </telerik:GridGroupByExpression>
+                    </GroupByExpressions>
+
                     <Columns>
-                        <telerik:GridBoundColumn DataField="ProductCode" FilterControlAltText="Filter column column" HeaderText="کد محصول" ReadOnly="True" SortExpression="ProductCode" UniqueName="column" AutoPostBackOnFilter="True" CurrentFilterFunction="EqualTo" DataType="System.Int32" FilterDelay="1200" FilterImageToolTip="فیلتر" MaxLength="50">
+                        <telerik:GridBoundColumn DataField="WorksheetId" FilterControlAltText="Filter column column" HeaderText="شناسه برگه کار" ReadOnly="True" SortExpression="WorksheetId" UniqueName="column" AutoPostBackOnFilter="True" CurrentFilterFunction="EqualTo" DataType="System.Int32" FilterDelay="1000" FilterImageToolTip="فیلتر" MaxLength="50">
                             <ColumnValidationSettings>
                                 <ModelErrorMessage Text="" />
                             </ColumnValidationSettings>
@@ -91,7 +104,23 @@
                             <ItemStyle Font-Names="bkoodak" Font-Size="10" />
                         </telerik:GridBoundColumn>
 
-                        <telerik:GridBoundColumn DataField="ProductName" FilterControlAltText="Filter column1 column" HeaderText="محصول" ReadOnly="True" UniqueName="column1" AllowFiltering="true" AutoPostBackOnFilter="True" FilterImageToolTip="فیلتر" CurrentFilterFunction="EqualTo" MaxLength="200" DataType="System.string">
+                        <telerik:GridBoundColumn DataField="OperatorName" FilterControlAltText="Filter column2 column" HeaderText="اوپراتور" ReadOnly="True" UniqueName="column234" AllowFiltering="true" AutoPostBackOnFilter="True" FilterImageToolTip="فیلتر" CurrentFilterFunction="Contains" MaxLength="200" DataType="System.string">
+                            <ColumnValidationSettings>
+                                <ModelErrorMessage Text="خطایی رخ داد" />
+                            </ColumnValidationSettings>
+                            <HeaderStyle Font-Names="bkoodak" Font-Bold="True" Font-Size="Medium" />
+                            <ItemStyle Font-Names="bkoodak" Font-Size="10" />
+                        </telerik:GridBoundColumn>
+
+                        <telerik:GridBoundColumn DataField="ProductCode" FilterControlAltText="Filter column column" HeaderText="کد محصول" ReadOnly="True" SortExpression="ProductCode" UniqueName="column22" AutoPostBackOnFilter="True" CurrentFilterFunction="Contains" DataType="System.string" FilterDelay="1200" FilterImageToolTip="فیلتر" MaxLength="50">
+                            <ColumnValidationSettings>
+                                <ModelErrorMessage Text="" />
+                            </ColumnValidationSettings>
+                            <HeaderStyle Font-Names="bkoodak" Font-Bold="True" Font-Size="Medium" Width="120px" />
+                            <ItemStyle Font-Names="bkoodak" Font-Size="10" />
+                        </telerik:GridBoundColumn>
+
+                        <telerik:GridBoundColumn DataField="ProductName" FilterControlAltText="Filter column1 column" HeaderText="محصول" ReadOnly="True" UniqueName="column11" AllowFiltering="true" AutoPostBackOnFilter="True" FilterImageToolTip="فیلتر" CurrentFilterFunction="Contains" MaxLength="200" DataType="System.string">
                             <ColumnValidationSettings>
                                 <ModelErrorMessage Text="" />
                             </ColumnValidationSettings>
@@ -99,7 +128,7 @@
                             <ItemStyle Font-Names="bkoodak" Font-Size="10" />
                         </telerik:GridBoundColumn>
 
-                    <telerik:GridBoundColumn DataField="OperatorName" FilterControlAltText="Filter column2 column" HeaderText="اوپراتور" ReadOnly="True" SortExpression="OperatorName" UniqueName="column2" AutoPostBackOnFilter="True" CurrentFilterFunction="EqualTo" FilterDelay="1500" DataType="System.string" FilterImageToolTip="فیلتر" MaxLength="150" ">
+                        <telerik:GridBoundColumn DataField="ProcessName" FilterControlAltText="Filter column1 column" HeaderText="فرآیند" ReadOnly="True" UniqueName="column111" AllowFiltering="true" AutoPostBackOnFilter="True" FilterImageToolTip="فیلتر" CurrentFilterFunction="Contains" MaxLength="200" DataType="System.string">
                             <ColumnValidationSettings>
                                 <ModelErrorMessage Text="" />
                             </ColumnValidationSettings>
@@ -107,15 +136,25 @@
                             <ItemStyle Font-Names="bkoodak" Font-Size="10" />
                         </telerik:GridBoundColumn>
 
-                        <telerik:GridBoundColumn DataField="PersianInsertDateTime" FilterControlAltText="Filter column3 column" HeaderText="تاریخ" ReadOnly="True" SortExpression="PersianInsertDateTime" UniqueName="column3" AllowFiltering="False" FilterImageToolTip="فیلتر" MaxLength="150">
+                        <telerik:GridBoundColumn DataField="PersianInsertDateTime" FilterControlAltText="Filter column1 column" HeaderText="زمان ایجاد" ReadOnly="True" UniqueName="column222" AllowFiltering="false" AutoPostBackOnFilter="True" FilterImageToolTip="فیلتر" CurrentFilterFunction="Contains" MaxLength="200" DataType="System.string">
+                            <ColumnValidationSettings>
+                                <ModelErrorMessage Text="خطا" />
+                            </ColumnValidationSettings>
+                            <HeaderStyle Font-Names="bkoodak" Font-Bold="True" Font-Size="Medium" />
+                            <ItemStyle Font-Names="bkoodak" Font-Size="10" />
+                        </telerik:GridBoundColumn>
+
+
+
+                        <%--<telerik:GridBoundColumn DataField="PersianInsertDateTime" FilterControlAltText="Filter column3 column" HeaderText="تاریخ" ReadOnly="True" SortExpression="PersianInsertDateTime" UniqueName="column3" AllowFiltering="False" FilterImageToolTip="فیلتر" MaxLength="150">
                             <ColumnValidationSettings>
                                 <ModelErrorMessage Text="" />
                             </ColumnValidationSettings>
                             <HeaderStyle Font-Names="bkoodak" Font-Bold="True" Font-Size="Medium" Width="110px" />
                             <ItemStyle HorizontalAlign="Center" Font-Names="bkoodak" Font-Size="10"></ItemStyle>
-                        </telerik:GridBoundColumn>
+                        </telerik:GridBoundColumn>--%>
 
-         <%--               <telerik:GridBoundColumn AllowSorting="False" AutoPostBackOnFilter="True" CurrentFilterFunction="Contains" DataField="Description" FilterControlAltText="Filter column4 column" FilterDelay="1200" FilterImageToolTip="فیلتر" HeaderText="توضیحات" ReadOnly="True" UniqueName="column4">
+                        <%--               <telerik:GridBoundColumn AllowSorting="False" AutoPostBackOnFilter="True" CurrentFilterFunction="Contains" DataField="Description" FilterControlAltText="Filter column4 column" FilterDelay="1200" FilterImageToolTip="فیلتر" HeaderText="توضیحات" ReadOnly="True" UniqueName="column4">
                             <ColumnValidationSettings>
                                 <ModelErrorMessage Text="" />
                             </ColumnValidationSettings>
