@@ -126,7 +126,8 @@ d.ProductId,p.Code PCode,p.Name PName
 ,cat.Name CatName,pro.Name ProcessName,
 pro.Id ProcessId,
 cat.Id CatId,
-u.Id OperatorId
+u.Id OperatorId,
+pcat.[order]
 FROM worksheets w
 join Colors c on c.Id=w.ColorId
 join Users u on u.Id=w.OperatorId

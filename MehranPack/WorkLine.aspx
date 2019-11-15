@@ -147,7 +147,7 @@
                                 $("#txtBarcodeInput").val('');
                                 toastr["success"]("ردیف با موفقیت اضافه شد")
 
-                                setTimeout(function () { window.location.href = window.location.origin + "/workline.aspx"; }, 2000);
+                                setTimeout(function () { window.location.href = window.location.origin + "/workline.aspx"; }, 1200);
                             }
                             else {
                                 toastr["error"](data.d);

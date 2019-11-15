@@ -142,8 +142,8 @@ namespace MehranPack
             if(!model.WorksheetDetails.Any())
                 return "هیچ ردیفی ثبت نشده است";
 
-            if(model.WorksheetDetails.GroupBy(a=>a.ProductId).Where(a => a.Count() > 1).Count()>0)
-                return "ردیف با کالای تکراری ثبت شده است";
+            //if(model.WorksheetDetails.GroupBy(a=>a.ProductId).Where(a => a.Count() > 1).Count()>0)
+            //    return "ردیف با کالای تکراری ثبت شده است";
 
             var uow = new UnitOfWork();
 
@@ -202,29 +202,7 @@ namespace MehranPack
         }
 
 
-        private void RedirectToWorksheetListActionResultWithMessage()
-        {
-            throw new NotImplementedException();
-        }
 
-        private ICollection<WorksheetDetail> CastToWorksheetDetails(List<WorksheetDetailHelper> detailHelpers)
-        {
-            var result = new List<WorksheetDetail>();
-
-            foreach (WorksheetDetailHelper detailHelper in detailHelpers)
-            {
-                result.Add(new WorksheetDetail()
-                {
-                    Id = detailHelper.Id,
-                    //WorksheetId=detailHelper.WorksheetId,
-                    ProductId = detailHelper.ProductId,
-                    //InsertDateTime = Utility.AdjustTimeOfDate(detailHelper.InsertDateTime.ToEnDate()),
-                    Status = -1,
-                });
-            }
-
-            return result;
-        }
 
         protected void gridSource_RowCommand(object sender, GridViewCommandEventArgs e)
         {

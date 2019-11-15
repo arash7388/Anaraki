@@ -230,5 +230,10 @@ namespace MehranPack
         {
             Response.Redirect("WorkLineReport.aspx");
         }
+
+        protected void lbtnWorkLineSummaryReport_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("WorkLineSummaryReport.aspx");
+        }
     }
 }

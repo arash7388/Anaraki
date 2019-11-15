@@ -117,6 +117,7 @@
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="WorkLine.aspx" />
+    <Content Include="WorkLineSummaryReport.aspx" />
     <Content Include="WorkLineReport.aspx" />
     <Content Include="WorksheetList.aspx" />
     <Content Include="ProcessCategory.aspx" />
@@ -246,6 +247,13 @@
     </Compile>
     <Compile Include="WorkLine.aspx.designer.cs">
       <DependentUpon>WorkLine.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WorkLineSummaryReport.aspx.cs">
+      <DependentUpon>WorkLineSummaryReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WorkLineSummaryReport.aspx.designer.cs">
+      <DependentUpon>WorkLineSummaryReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="WorkLineReport.aspx.cs">
       <DependentUpon>WorkLineReport.aspx</DependentUpon>

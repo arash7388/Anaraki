@@ -63,6 +63,8 @@
                             <br />
                            <asp:LinkButton runat="server" ID="LinkButton14" CssClass="btn btn-info btn-standard" Text="گزارش تولید " OnClick="lbtnWorkLineReport_OnClick"></asp:LinkButton>
                             <br />
+                             <asp:LinkButton runat="server" ID="LinkButton15" CssClass="btn btn-info btn-standard" Text="گزارش خلاصه تولید " OnClick="lbtnWorkLineSummaryReport_OnClick"></asp:LinkButton>
+                            <br />
                             
                             <%--<asp:LinkButton runat="server" ID="lbtnProductType" CssClass="btn btn-info btn-standard" Text="انواع جنس" OnClick="lbtnProductType_OnClick"></asp:LinkButton>
                             <br />
@@ -86,10 +88,6 @@
             </div>
 
             <div class="col-sm-9" style="margin-top: 20px;">
-
-
-
-
                 <asp:Label runat="server" ID="generalMessage"></asp:Label>
                 <asp:ContentPlaceHolder ID="main" runat="server">
                 </asp:ContentPlaceHolder>
@@ -98,7 +96,5 @@
         </div>
         
     </form>
-    <%--<script src='<%#ResolveUrl("Scripts/jquery-1.10.2.js")%>'></script>
-    <script src='<%#ResolveUrl("Scripts/bootstrap-rtl.js")%>'></script>--%>
 </body>
 </html>

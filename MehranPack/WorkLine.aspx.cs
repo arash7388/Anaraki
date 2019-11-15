@@ -29,20 +29,26 @@ namespace MehranPack
         [WebMethod]
         public static string AddRow(string input)
         {
-            //WID,OperatorID,ProductID,ProcessID
+            //WID,OperatorID,ProductID,ProcessID,Order
             var parts = input.Split(',');
 
             var worksheetId = parts[0].ToSafeInt();
             var operatorId = parts[1].ToSafeInt();
             var productId = parts[2].ToSafeInt();
             var processId = parts[3].ToSafeInt();
+            var order = parts[4].ToSafeInt();
 
-            var repo = new WorkLineRepository();
-            if(repo.Get(a => a.WorksheetId == worksheetId && a.OperatorId == operatorId 
-            && a.ProductId == productId && a.ProcessId == processId).Any())
-            {
-                return "ردیف تکراری";
-            }
+            var prevOrder = HttpContext.Current.Session[worksheetId + "#" + operatorId + "#" + productId].ToSafeInt();
+
+            if (prevOrder > order ||  order - prevOrder != 1)
+                return "عدم رعایت ترتیب فرآیند";
+
+            //var repo = new WorkLineRepository();
+            //if (repo.Get(a => a.WorksheetId == worksheetId && a.OperatorId == operatorId
+            //    && a.ProductId == productId).Any())
+            //{
+            //    return "ردیف تکراری";
+            //}
 
             var uow = new UnitOfWork();
             uow.WorkLines.Create(new Repository.Entity.Domain.WorkLine()
@@ -58,6 +64,7 @@ namespace MehranPack
             var result = uow.SaveChanges();
             if (result.IsSuccess)
             {
+                HttpContext.Current.Session[worksheetId + "#" + operatorId + "#" + productId] = order;
                 return "OK";
             }
             else

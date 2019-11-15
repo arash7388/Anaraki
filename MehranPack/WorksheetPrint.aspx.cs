@@ -29,12 +29,13 @@ namespace MehranPack
             Telerik.Reporting.SqlDataSource sqlDataSource = new Telerik.Reporting.SqlDataSource();
             sqlDataSource.ConnectionString = "Tarin";
             sqlDataSource.SelectCommand =
-            "SELECT w.Id WID, dbo.shamsidate(w.Date) as [Date] ,w.PartNo,c.Name ColorName, u.FriendlyName OperatorName," +
+            "SELECT distinct w.Id WID, dbo.shamsidate(w.Date) as [Date] ,w.PartNo,c.Name ColorName, u.FriendlyName OperatorName," +
             " d.ProductId,p.Code PCode, cat.Name + ' ' + p.Name PName" +
             "  , cat.Name CatName, pro.Name ProcessName," +
             "    pro.Id ProcessId," +
             "    cat.Id CatId," +
-            "    u.Id OperatorId " +
+            "    u.Id OperatorId, " +
+            "    pcat.[order] " +
             "FROM worksheets w " +
             "join Colors c on c.Id = w.ColorId " +
             "join Users u on u.Id = w.OperatorId " +

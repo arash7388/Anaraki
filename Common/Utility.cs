@@ -142,6 +142,16 @@ namespace Common
             return converted;
         }
 
+        public static int ToSafeInt(this string objStr)
+        {
+            int converted = 0;
+
+            if (objStr != null)
+                Int32.TryParse(objStr.ToString(), out converted);
+
+            return converted;
+        }
+
         public static decimal ToSafeDecimal(this object objNumber)
         {
             decimal converted = 0;

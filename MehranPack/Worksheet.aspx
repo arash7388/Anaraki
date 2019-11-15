@@ -188,8 +188,8 @@
                         ]).draw(false);
                     });
                 },
-                error: function () {
-                    alert("Error");
+                error: function (data) {
+                    alert("Error" + data);
                 }
 
             });
