@@ -90,7 +90,7 @@
                     ترتیب:
                 </div>
                 <div class="col-md-2">
-                    <asp:TextBox runat="server" ID="txtOrder" CssClass="form-control" AutoCompleteType="None"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="txtOrder" CssClass="form-control" AutoCompleteType="None" autocomplete="off"></asp:TextBox>
                 </div>
             </div>
 

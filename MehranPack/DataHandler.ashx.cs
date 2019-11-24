@@ -15,7 +15,9 @@ namespace MehranPack
 
         public void ProcessRequest(HttpContext context)
         {
-            var id = int.Parse(context.Request["id"]);
+            if (!int.TryParse(context.Request["id"], out int id))
+                return;
+
             var serializer = new JavaScriptSerializer();
 
             var details = new WorksheetDetailRepository().GetAllDetails(id).ToList();

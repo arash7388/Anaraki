@@ -49,7 +49,7 @@
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:BoundField>
 
-                    <asp:BoundField DataField="ProductCode" HeaderText="کد محصول">
+                    <%--<asp:BoundField DataField="ProductCode" HeaderText="کد محصول">
                         <ControlStyle BorderColor="#FFFF99" BorderStyle="Solid" />
                         <HeaderStyle HorizontalAlign="Center" />
                         <ItemStyle HorizontalAlign="Center" />
@@ -58,7 +58,7 @@
                     <asp:BoundField DataField="ProductName" HeaderText="نام محصول">
                         <HeaderStyle HorizontalAlign="Center" />
                         <ItemStyle HorizontalAlign="Center" />
-                    </asp:BoundField>
+                    </asp:BoundField>--%>
 
                     <asp:BoundField DataField="ProcessName" HeaderText="فرآیند">
                         <HeaderStyle HorizontalAlign="Center" />

@@ -103,9 +103,16 @@ namespace MehranPack
                 var existingCatPr = new ProcessCategoryRepository().Get(a => a.CategoryId == catId).FirstOrDefault();
                 if (Page.RouteData.Values["Id"].ToSafeInt() == 0 && existingCatPr !=null) throw new LocalException("duplicate cat", " فرآیندهای این گروه محصول قبلا ثبت شده اند");
 
-                var dupOrder = ((List<ProcessCategoryHelper>)Session["GridSource"]).GroupBy(a => a.Order).Where(a => a.Count() > 1).Count();
-                if(dupOrder>0)
+                var gridSource = (List<ProcessCategoryHelper>)Session["GridSource"];
+                var dupOrder = gridSource.GroupBy(a => a.Order).Where(a => a.Count() > 1).Count();
+
+                if (dupOrder>0)
                     throw new LocalException("duplicate order", "ترتیب تکراری در سطرهای ثبت شده");
+
+                //foreach(var item in gridSource)
+                //{
+
+                //}
 
                 UnitOfWork uow = new UnitOfWork();
 
@@ -192,6 +199,11 @@ namespace MehranPack
                 if (gridSource != null && gridSource.Any() && gridSource.Any(a => a.ProcessId == drpProcesses.SelectedValue.ToSafeInt()))
                     throw new LocalException("duplicate process", "فرآیند نباید تکراری باشد");
 
+                var maxOrder = gridSource.Any() ? gridSource.Max(a => a.Order) : 0;
+                if(txtOrder.Text.ToSafeInt() - maxOrder !=1)
+                    throw new LocalException("invalid order(other than +1)", $"ترتیب ها باید پشت سر هم ثبت شوند. ترتیب قابل قبول بعدی {maxOrder+1} است ");
+
+
                 var addedInput = new ProcessCategoryHelper()
                 {
                     CategoryId = drpCat.SelectedValue.ToSafeInt(),
@@ -206,6 +218,8 @@ namespace MehranPack
                 ((List<ProcessCategoryHelper>)Session["GridSource"]).Add(addedInput);
                 gridInput.DataSource = Session["GridSource"];
                 gridInput.DataBind();
+                ((Main)Page.Master).HideGeneralMessage();
+
             }
             catch (LocalException ex)
             {

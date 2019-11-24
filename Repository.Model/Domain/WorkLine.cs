@@ -11,9 +11,6 @@ namespace Repository.Entity.Domain
         public Worksheet Worksheet { get; set; }
         public int? WorksheetId { get; set; }
 
-        public Product Product { get; set; }
-        public int ProductId { get; set; }
-
         public Process Process { get; set; }
         public int ProcessId { get; set; }
 

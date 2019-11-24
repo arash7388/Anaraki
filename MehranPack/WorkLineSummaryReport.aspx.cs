@@ -18,6 +18,7 @@ namespace MehranPack
             {
                 //RadGridLocalizationProvider.CurrentProvider = new CustomLocalizationProvider();
                 BindDrpOp();
+                BindDrpReportType();
 
                 List<Filter> filters = new List<Filter>();
                 filters.Add(new Filter("InsertDateTime", OperationType.GreaterThanOrEqual, DateTime.Now.AddDays(-7)));
@@ -25,7 +26,7 @@ namespace MehranPack
 
                 var whereClause = ExpressionBuilder.GetExpression<WorkLineHelper>(filters);
 
-                Session["Result"] = new WorkLineRepository().GetAllForSummaryReport(whereClause);
+                Session["Result"] = new WorkLineRepository().GetAllForSummaryReport(1,whereClause);
             }
 
             BindGrid();
@@ -45,6 +46,18 @@ namespace MehranPack
             drpOperator.DataBind();
         }
 
+        private void BindDrpReportType()
+        {
+            var source = new  List<KeyValuePair<int, string>>();
+            source.Add(new KeyValuePair<int, string>(1, "براساس فرآیند"));
+            source.Add(new KeyValuePair<int, string>(2, "بر اساس محصول-فرآیند"));
+
+            drpReportType.DataSource = source;
+            drpReportType.DataValueField = "Key";
+            drpReportType.DataTextField = "Value";
+            drpReportType.DataBind();
+        }
+
         private void BindGrid()
         {
             RadGridReport.DataSource = Session["Result"];
@@ -60,8 +73,8 @@ namespace MehranPack
             if (dtTo.Date != "") filters.Add(new Filter("InsertDateTime", OperationType.LessThanOrEqual, dtTo.Date.ToEnDate().AddDays(1).AddSeconds(-1)));
 
             var whereClause = filters.Count > 0 ? ExpressionBuilder.GetExpression<WorkLineHelper>(filters) : null;
-
-            Session["Result"] = new WorkLineRepository().GetAllForSummaryReport(whereClause);
+            RadGridReport.Columns[1].Visible = drpReportType.SelectedValue.ToSafeInt() == 2;
+            Session["Result"] = new WorkLineRepository().GetAllForSummaryReport(drpReportType.SelectedValue.ToSafeInt(), whereClause);
             BindGrid();
         }
 

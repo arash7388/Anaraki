@@ -112,7 +112,7 @@
                             <ItemStyle Font-Names="bkoodak" Font-Size="10" />
                         </telerik:GridBoundColumn>
 
-                        <telerik:GridBoundColumn DataField="ProductCode" FilterControlAltText="Filter column column" HeaderText="کد محصول" ReadOnly="True" SortExpression="ProductCode" UniqueName="column22" AutoPostBackOnFilter="True" CurrentFilterFunction="Contains" DataType="System.string" FilterDelay="1200" FilterImageToolTip="فیلتر" MaxLength="50">
+                        <%--<telerik:GridBoundColumn DataField="ProductCode" FilterControlAltText="Filter column column" HeaderText="کد محصول" ReadOnly="True" SortExpression="ProductCode" UniqueName="column22" AutoPostBackOnFilter="True" CurrentFilterFunction="Contains" DataType="System.string" FilterDelay="1200" FilterImageToolTip="فیلتر" MaxLength="50">
                             <ColumnValidationSettings>
                                 <ModelErrorMessage Text="" />
                             </ColumnValidationSettings>
@@ -126,7 +126,7 @@
                             </ColumnValidationSettings>
                             <HeaderStyle Font-Names="bkoodak" Font-Bold="True" Font-Size="Medium" />
                             <ItemStyle Font-Names="bkoodak" Font-Size="10" />
-                        </telerik:GridBoundColumn>
+                        </telerik:GridBoundColumn>--%>
 
                         <telerik:GridBoundColumn DataField="ProcessName" FilterControlAltText="Filter column1 column" HeaderText="فرآیند" ReadOnly="True" UniqueName="column111" AllowFiltering="true" AutoPostBackOnFilter="True" FilterImageToolTip="فیلتر" CurrentFilterFunction="Contains" MaxLength="200" DataType="System.string">
                             <ColumnValidationSettings>

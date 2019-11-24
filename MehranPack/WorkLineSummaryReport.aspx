@@ -34,7 +34,14 @@
             <hr class="hrBlue" />
         </div>
     </div>
-
+    <div class="row">
+        <div class="col-xs-3 col-sm-1" align="left">
+            نوع گزارش:
+        </div>
+        <div class="col-xs-6 col-sm-3">
+            <asp:DropDownList runat="server" ID="drpReportType" CssClass="form-control paddingTop0" Height="29"></asp:DropDownList>
+        </div>
+    </div>
     <div class="row">
         <div class="col-xs-3 col-sm-1" align="left">
             اوپراتور:
@@ -47,10 +54,9 @@
                 <asp:ImageButton runat="server" ID="btnExportToExcel" CssClass="btn btn-default btn50" ImageUrl="Images/excel16.png" OnClick="btnExportToExcel_OnClick"></asp:ImageButton>
                 <asp:ImageButton runat="server" ID="btnExportToPdf" CssClass="btn btn-default btn50" ImageUrl="Images/pdf16.png" OnClick="btnExportToPdf_OnClick"></asp:ImageButton>
             </span>
-
-            <%--<asp:Button  runat="server" ID="btnExportToExcel" OnClick="btnExportToExcel_OnClick"  CssClass="btn btn-info btn-standard" Height="33" Text="ارسال به اکسل"/>--%>
         </div>
     </div>
+
     <div class="row">
         <div class="col-sm-1" align="left">
             از تاریخ:
@@ -85,7 +91,7 @@
                 </ClientSettings>
                 <MasterTableView ShowGroupFooter="true" AllowMultiColumnSorting="true">
 
-<%--                    <GroupByExpressions>
+                    <%--                    <GroupByExpressions>
                         <telerik:GridGroupByExpression>
                             <SelectFields>
                                 <telerik:GridGroupByField FieldAlias="اوپراتور" FieldName="OperatorName" FormatString=""
@@ -114,6 +120,22 @@
                             <ItemStyle Font-Names="bkoodak" Font-Size="10" />
                         </telerik:GridBoundColumn>
 
+                        <telerik:GridBoundColumn DataField="ProductName" FilterControlAltText="Filter column2 column" HeaderText="محصول" ReadOnly="True" UniqueName="columnProductName" AllowFiltering="true" AutoPostBackOnFilter="True" FilterImageToolTip="فیلتر" CurrentFilterFunction="Contains" MaxLength="200" DataType="System.string">
+                            <ColumnValidationSettings>
+                                <ModelErrorMessage Text="خطایی رخ داد" />
+                            </ColumnValidationSettings>
+                            <HeaderStyle Font-Names="bkoodak" Font-Bold="True" Font-Size="Medium" />
+                            <ItemStyle Font-Names="bkoodak" Font-Size="10" />
+                        </telerik:GridBoundColumn>
+
+                        <telerik:GridBoundColumn DataField="ProcessName" FilterControlAltText="Filter column2 column" HeaderText="فرآیند" ReadOnly="True" UniqueName="columnProcessName" AllowFiltering="true" AutoPostBackOnFilter="True" FilterImageToolTip="فیلتر" CurrentFilterFunction="Contains" MaxLength="200" DataType="System.string">
+                            <ColumnValidationSettings>
+                                <ModelErrorMessage Text="خطایی رخ داد" />
+                            </ColumnValidationSettings>
+                            <HeaderStyle Font-Names="bkoodak" Font-Bold="True" Font-Size="Medium" />
+                            <ItemStyle Font-Names="bkoodak" Font-Size="10" />
+                        </telerik:GridBoundColumn>
+
                         <telerik:GridBoundColumn DataField="PersianDate" FilterControlAltText="Filter column column" HeaderText="تاریخ" ReadOnly="True" SortExpression="PersianDate" UniqueName="column22" AutoPostBackOnFilter="True" CurrentFilterFunction="Contains" DataType="System.string" FilterDelay="1200" FilterImageToolTip="فیلتر" MaxLength="50">
                             <ColumnValidationSettings>
                                 <ModelErrorMessage Text="خطایی رخ داد" />
@@ -122,7 +144,7 @@
                             <ItemStyle Font-Names="bkoodak" Font-Size="10" />
                         </telerik:GridBoundColumn>
 
-                         <telerik:GridBoundColumn DataField="Year" FilterControlAltText="Filter column column" HeaderText="سال" ReadOnly="True" SortExpression="Count" UniqueName="column239" AutoPostBackOnFilter="True" CurrentFilterFunction="Contains" DataType="System.Int32" FilterDelay="1200" FilterImageToolTip="فیلتر" MaxLength="50">
+                        <telerik:GridBoundColumn DataField="Year" FilterControlAltText="Filter column column" HeaderText="سال" ReadOnly="True" SortExpression="Count" UniqueName="column239" AutoPostBackOnFilter="True" CurrentFilterFunction="Contains" DataType="System.Int32" FilterDelay="1200" FilterImageToolTip="فیلتر" MaxLength="50">
                             <ColumnValidationSettings>
                                 <ModelErrorMessage Text="خطایی رخ داد" />
                             </ColumnValidationSettings>
@@ -130,7 +152,7 @@
                             <ItemStyle Font-Names="bkoodak" Font-Size="10" />
                         </telerik:GridBoundColumn>
 
-                         <telerik:GridBoundColumn DataField="Month" FilterControlAltText="Filter column column" HeaderText="ماه" ReadOnly="True" SortExpression="Count" UniqueName="column1239" AutoPostBackOnFilter="True" CurrentFilterFunction="Contains" DataType="System.Int32" FilterDelay="1200" FilterImageToolTip="فیلتر" MaxLength="50">
+                        <telerik:GridBoundColumn DataField="Month" FilterControlAltText="Filter column column" HeaderText="ماه" ReadOnly="True" SortExpression="Count" UniqueName="column1239" AutoPostBackOnFilter="True" CurrentFilterFunction="Contains" DataType="System.Int32" FilterDelay="1200" FilterImageToolTip="فیلتر" MaxLength="50">
                             <ColumnValidationSettings>
                                 <ModelErrorMessage Text="خطایی رخ داد" />
                             </ColumnValidationSettings>
@@ -138,7 +160,7 @@
                             <ItemStyle Font-Names="bkoodak" Font-Size="10" />
                         </telerik:GridBoundColumn>
 
-                         <telerik:GridBoundColumn DataField="Day" FilterControlAltText="Filter column column" HeaderText="روز" ReadOnly="True" SortExpression="Count" UniqueName="column2339" AutoPostBackOnFilter="True" CurrentFilterFunction="Contains" DataType="System.Int32" FilterDelay="1200" FilterImageToolTip="فیلتر" MaxLength="50">
+                        <telerik:GridBoundColumn DataField="Day" FilterControlAltText="Filter column column" HeaderText="روز" ReadOnly="True" SortExpression="Count" UniqueName="column2339" AutoPostBackOnFilter="True" CurrentFilterFunction="Contains" DataType="System.Int32" FilterDelay="1200" FilterImageToolTip="فیلتر" MaxLength="50">
                             <ColumnValidationSettings>
                                 <ModelErrorMessage Text="خطایی رخ داد" />
                             </ColumnValidationSettings>
@@ -153,13 +175,13 @@
                             <HeaderStyle Font-Names="bkoodak" Font-Bold="True" Font-Size="Medium" Width="120px" />
                             <ItemStyle Font-Names="bkoodak" Font-Size="10" />
                         </telerik:GridBoundColumn>--%>
-                        <telerik:GridCalculatedColumn HeaderText="تعداد محصول" UniqueName="TotalItems" DataType="System.Int32"
-                        DataFields="Count" Expression="{0}" FooterText="مجموع : "
-                        Aggregate="Sum">
+                        <telerik:GridCalculatedColumn HeaderText="تعداد" UniqueName="TotalItems" DataType="System.Int32"
+                            DataFields="Count" Expression="{0}" FooterText="جمع : "
+                            Aggregate="Sum">
                             <HeaderStyle Font-Names="bkoodak" Font-Bold="True" Font-Size="Medium" Width="120px" />
                             <ItemStyle Font-Names="bkoodak" Font-Size="10" />
-                    </telerik:GridCalculatedColumn>
-                        
+                        </telerik:GridCalculatedColumn>
+
                     </Columns>
                 </MasterTableView>
                 <PagerStyle PageSizes="20,30,50" PagerTextFormat="{4}<strong>{5}</strong> مورد"

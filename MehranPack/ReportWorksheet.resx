@@ -122,12 +122,10 @@
   </metadata>
   <data name="sqlDataSource1.SelectCommand" xml:space="preserve">
     <value>SELECT w.Id WID, w.Date ,w.PartNo,c.Name ColorName,u.FriendlyName OperatorName,
-d.ProductId,p.Code PCode,p.Name PName
-,cat.Name CatName,pro.Name ProcessName,
+pro.Name ProcessName,
 pro.Id ProcessId,
 cat.Id CatId,
-u.Id OperatorId,
-pcat.[order]
+u.Id OperatorId
 FROM worksheets w
 join Colors c on c.Id=w.ColorId
 join Users u on u.Id=w.OperatorId

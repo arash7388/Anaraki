@@ -40,6 +40,15 @@ namespace MehranPack {
         protected global::Telerik.Web.UI.RadAjaxLoadingPanel RadAjaxLoadingPanel1;
         
         /// <summary>
+        /// drpReportType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList drpReportType;
+        
+        /// <summary>
         /// drpOperator control.
         /// </summary>
         /// <remarks>

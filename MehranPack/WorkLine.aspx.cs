@@ -29,19 +29,22 @@ namespace MehranPack
         [WebMethod]
         public static string AddRow(string input)
         {
-            //WID,OperatorID,ProductID,ProcessID,Order
+            //WID,OperatorID,ProcessID
             var parts = input.Split(',');
 
             var worksheetId = parts[0].ToSafeInt();
             var operatorId = parts[1].ToSafeInt();
-            var productId = parts[2].ToSafeInt();
-            var processId = parts[3].ToSafeInt();
-            var order = parts[4].ToSafeInt();
+            //var productId = parts[2].ToSafeInt();
+            var processId = parts[2].ToSafeInt();
+            //var order = parts[4].ToSafeInt();
 
-            var prevOrder = HttpContext.Current.Session[worksheetId + "#" + operatorId + "#" + productId].ToSafeInt();
+            var prevProcess = HttpContext.Current.Session[worksheetId + "#" + operatorId].ToSafeInt();
 
-            if (prevOrder > order ||  order - prevOrder != 1)
+            if (prevProcess != 0 && prevProcess >= processId)
                 return "عدم رعایت ترتیب فرآیند";
+
+            //if (prevOrder == 0 && order  != 1)
+            //    return "عدم رعایت ترتیب فرآیند";
 
             //var repo = new WorkLineRepository();
             //if (repo.Get(a => a.WorksheetId == worksheetId && a.OperatorId == operatorId
@@ -56,7 +59,7 @@ namespace MehranPack
                 InsertDateTime = DateTime.Now,
                 WorksheetId = worksheetId,
                 OperatorId = operatorId,
-                ProductId = productId,
+                //ProductId = productId,
                 ProcessId = processId
             }
             );
@@ -64,7 +67,7 @@ namespace MehranPack
             var result = uow.SaveChanges();
             if (result.IsSuccess)
             {
-                HttpContext.Current.Session[worksheetId + "#" + operatorId + "#" + productId] = order;
+                HttpContext.Current.Session[worksheetId + "#" + operatorId] = processId;
                 return "OK";
             }
             else
