@@ -46,7 +46,7 @@ namespace Repository.DAL
             {
                 var dt = Common.Utility.CastToFaDateTime(item.InsertDateTime);
                 dt = dt.Substring(11, dt.Length - 11);
-                item.PersianDate = dt;
+                item.PersianDateTime = dt;
             }
 
             return res;
@@ -87,7 +87,7 @@ namespace Repository.DAL
             foreach (WorkLineHelper item in finalRes)
             {
                 var dt = Common.Utility.CastToFaDateTime(item.InsertDateTime);
-                item.PersianDate = dt;
+                item.PersianDateTime = dt;
             }
 
             return finalRes;
@@ -96,29 +96,29 @@ namespace Repository.DAL
         public List<WorkLineSummary> GetAllForSummaryReport(int reportType, System.Linq.Expressions.Expression<Func<WorkLineHelper, bool>> whereClause)
         {
 
-            var select = from wl in MTOContext.WorkLines
-                         join u in MTOContext.Users on wl.OperatorId equals u.Id
+            var workLinesSelect = from wl in MTOContext.WorkLines
+                                  join u in MTOContext.Users on wl.OperatorId equals u.Id
 
-                         select new WorkLineHelper
-                         {
-                             Id = wl.Id,
-                             InsertDateTime = wl.InsertDateTime,
-                             OperatorId = wl.OperatorId,
-                             OperatorName = u.FriendlyName,
-                             ProcessId = wl.ProcessId,
-                             WorksheetId = wl.WorksheetId,
-                         };
+                                  select new WorkLineHelper
+                                  {
+                                      Id = wl.Id,
+                                      InsertDateTime = wl.InsertDateTime,
+                                      OperatorId = wl.OperatorId,
+                                      OperatorName = u.FriendlyName,
+                                      ProcessId = wl.ProcessId,
+                                      WorksheetId = wl.WorksheetId,
+                                  };
 
-            var selectList = new List<WorkLineHelper>();
+            var workLinesSelectList = new List<WorkLineHelper>();
 
             if (whereClause != null)
             {
-                selectList = select.Where(whereClause).ToList();
+                workLinesSelectList = workLinesSelect.Where(whereClause).ToList();
             }
             else
-                selectList = select.ToList();
+                workLinesSelectList = workLinesSelect.ToList();
 
-            foreach (WorkLineHelper item in selectList)
+            foreach (WorkLineHelper item in workLinesSelectList)
             {
                 var faDate = Common.Utility.CastToFaDate(item.InsertDateTime);
                 item.PersianDate = faDate;
@@ -135,12 +135,9 @@ namespace Repository.DAL
 
             if (reportType == 1)
             {
-                result = from x in selectList
+                result = from x in workLinesSelectList
                          group x by new { x.OperatorId, x.OperatorName, x.PersianDate, x.Year, x.Month, x.Day } into g
-                         orderby g.Key.OperatorId
-                         orderby g.Key.Year
-                         orderby g.Key.Month
-                         orderby g.Key.Day
+                         orderby g.Key.OperatorId, g.Key.Year, g.Key.Month, g.Key.Day
 
                          select new WorkLineSummary
                          {
@@ -156,61 +153,57 @@ namespace Repository.DAL
             else if (reportType == 2)
             {
                 var worksheetsDetails = from ws in MTOContext.Worksheets
-                                 join wd in MTOContext.WorksheetDetails on ws.Id equals wd.WorksheetId
-                                 join p in MTOContext.Products on wd.ProductId equals p.Id
-                                 join cat in MTOContext.Categories on p.ProductCategoryId equals cat.Id
-                                 join pcat in MTOContext.ProcessCategories on cat.Id equals pcat.CategoryId
-                                 join pro in MTOContext.Processes on pcat.ProcessId equals pro.Id
-                                 select new WorkLineHelper
-                                 {
-                                     WorksheetId = ws.Id,
-                                     OperatorId = (int)ws.OperatorId,
-                                     ProductId = wd.ProductId,
-                                     ProcessId = pro.Id,
-                                     ProductCode = p.Code,
-                                     ProductName = cat.Name + " " + p.Name,
-                                     ProcessName=pro.Name
-                                 };
+                                        join wd in MTOContext.WorksheetDetails on ws.Id equals wd.WorksheetId
+                                        join p in MTOContext.Products on wd.ProductId equals p.Id
+                                        join cat in MTOContext.Categories on p.ProductCategoryId equals cat.Id
+                                        join pcat in MTOContext.ProcessCategories on cat.Id equals pcat.CategoryId
+                                        join pro in MTOContext.Processes on pcat.ProcessId equals pro.Id
+                                        select new WorkLineHelper
+                                        {
+                                            WorksheetId = ws.Id,
+                                            OperatorId = (int)ws.OperatorId,
+                                            ProductId = wd.ProductId,
+                                            ProcessId = pro.Id,
+                                            ProductCode = p.Code,
+                                            ProductName = cat.Name + " " + p.Name,
+                                            ProcessName = pro.Name
+                                        };
 
                 var worksheetsDetailsList = new List<WorkLineHelper>();
 
-                if (whereClause != null)
-                {
-                    worksheetsDetailsList = worksheetsDetails.Where(whereClause).ToList();
-                }
-                else
-                    worksheetsDetailsList = worksheetsDetails.ToList();
+                //if (whereClause != null)
+                //{
+                //    worksheetsDetailsList = worksheetsDetails.Where(whereClause).ToList();
+                //}
+                //else
+                worksheetsDetailsList = worksheetsDetails.ToList();
+                               
+                result = (from x in worksheetsDetailsList
+                          join wl in workLinesSelectList
+                          on new { x.WorksheetId, x.ProcessId } equals new { wl.WorksheetId, wl.ProcessId }
+                          select new WorkLineSummary
+                          {
+                              InsertDateTime = (DateTime)wl.InsertDateTime,
+                              OperatorId = x.OperatorId,
+                              FriendlyName = wl.OperatorName,
+                              PersianDate = wl.PersianDateTime,
+                              ProductCode = x.ProductCode,
+                              ProductName = x.ProductName,
+                              ProcessName = x.ProcessName,
+                          }).ToList();
 
-                foreach (WorkLineHelper item in worksheetsDetailsList)
+                foreach (WorkLineSummary item in result)
                 {
-                    var faDate = Common.Utility.CastToFaDate(item.InsertDateTime);
-                    item.PersianDate = faDate;
-                    item.PersianDateTime = Common.Utility.CastToFaDateTime(item.InsertDateTime); ;
+                    var faDate = Utility.CastToFaDate(item.InsertDateTime);
+                    item.PersianDate = Utility.CastToFaDateTime(item.InsertDateTime); //faDate;
+                    //item.PersianDateTime = Utility.CastToFaDateTime(item.InsertDateTime); 
                     item.Year = faDate.Substring(0, 4).ToSafeInt();
                     item.Month = faDate.Substring(5, 2).ToSafeInt();
                     item.Day = faDate.Substring(8, 2).ToSafeInt();
-                    item.Hour = item.InsertDateTime.Value.Hour;
-                    item.Min = item.InsertDateTime.Value.Minute;
-                    item.Sec = item.InsertDateTime.Value.Second;
+                    //item.Hour = item.InsertDateTime.Value.Hour;
+                    //item.Min = item.InsertDateTime.Value.Minute;
+                    //item.Sec = item.InsertDateTime.Value.Second;
                 }
-
-                //var ss = worksheetsDetails.ToList();
-
-                result = from x in worksheetsDetailsList
-                             join wl in selectList
-                             on  new { x.WorksheetId, x.ProcessId } equals new { wl.WorksheetId, wl.ProcessId }
-                         select new WorkLineSummary
-                         {
-                             OperatorId = x.OperatorId,
-                             FriendlyName = wl.OperatorName,
-                             PersianDate = wl.PersianDateTime,
-                             ProductCode = x.ProductCode,
-                             ProductName = x.ProductName,
-                             ProcessName=x.ProcessName,
-                             Year = x.Year,
-                             Month = x.Month,
-                             Day = x.Day,
-                         };
             }
 
             return result.ToList();

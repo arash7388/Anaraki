@@ -78,8 +78,8 @@
     <br />
     <div class="row">
         <div class="col-sm-12">
-
-
+<label>جهت دسته بندی جدول ، ستون مد نظر را به پنل بالای جدول کشیده و رها کنید</label>
+            <br />
             <telerik:RadGrid ID="RadGridReport" runat="server"
                 AllowFilteringByColumn="True" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False"
                 CellSpacing="-1" GridLines="Both" PageSize="20" Height="605px"
@@ -168,14 +168,7 @@
                             <ItemStyle Font-Names="bkoodak" Font-Size="10" />
                         </telerik:GridBoundColumn>
 
-                        <%-- <telerik:GridBoundColumn DataField="Count" FilterControlAltText="Filter column column" HeaderText="تعداد محصول" ReadOnly="True" SortExpression="Count" UniqueName="column23" AutoPostBackOnFilter="True" CurrentFilterFunction="Contains" DataType="System.Int32" FilterDelay="1200" FilterImageToolTip="فیلتر" MaxLength="50">
-                            <ColumnValidationSettings>
-                                <ModelErrorMessage Text="خطایی رخ داد" />
-                            </ColumnValidationSettings>
-                            <HeaderStyle Font-Names="bkoodak" Font-Bold="True" Font-Size="Medium" Width="120px" />
-                            <ItemStyle Font-Names="bkoodak" Font-Size="10" />
-                        </telerik:GridBoundColumn>--%>
-                        <telerik:GridCalculatedColumn HeaderText="تعداد" UniqueName="TotalItems" DataType="System.Int32"
+                        <telerik:GridCalculatedColumn HeaderText="تعداد فرآیند" UniqueName="columnTotalItems" DataType="System.Int32"
                             DataFields="Count" Expression="{0}" FooterText="جمع : "
                             Aggregate="Sum">
                             <HeaderStyle Font-Names="bkoodak" Font-Bold="True" Font-Size="Medium" Width="120px" />

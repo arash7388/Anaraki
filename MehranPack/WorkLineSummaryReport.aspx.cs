@@ -19,17 +19,19 @@ namespace MehranPack
                 //RadGridLocalizationProvider.CurrentProvider = new CustomLocalizationProvider();
                 BindDrpOp();
                 BindDrpReportType();
+                Session["Result"] = null;
+                //List<Filter> filters = new List<Filter>();
+                //filters.Add(new Filter("InsertDateTime", OperationType.GreaterThanOrEqual, DateTime.Now.AddDays(-7)));
+                //filters.Add(new Filter("InsertDateTime", OperationType.LessThanOrEqual, DateTime.Now));
 
-                List<Filter> filters = new List<Filter>();
-                filters.Add(new Filter("InsertDateTime", OperationType.GreaterThanOrEqual, DateTime.Now.AddDays(-7)));
-                filters.Add(new Filter("InsertDateTime", OperationType.LessThanOrEqual, DateTime.Now));
+                //var whereClause = ExpressionBuilder.GetExpression<WorkLineHelper>(filters);
 
-                var whereClause = ExpressionBuilder.GetExpression<WorkLineHelper>(filters);
-
-                Session["Result"] = new WorkLineRepository().GetAllForSummaryReport(1,whereClause);
+                //Session["Result"] = new WorkLineRepository().GetAllForSummaryReport(1,whereClause);
+                //BindGrid();
             }
 
-            BindGrid();
+            if (Session["Result"] != null && ((List<WorkLineSummary>)Session["Result"]).Any())
+                BindGrid();
         }
 
         private void BindDrpOp()
@@ -74,6 +76,8 @@ namespace MehranPack
 
             var whereClause = filters.Count > 0 ? ExpressionBuilder.GetExpression<WorkLineHelper>(filters) : null;
             RadGridReport.Columns[1].Visible = drpReportType.SelectedValue.ToSafeInt() == 2;
+            RadGridReport.Columns[2].Visible = drpReportType.SelectedValue.ToSafeInt() == 2;
+            RadGridReport.Columns[7].Visible = drpReportType.SelectedValue.ToSafeInt() == 1;
             Session["Result"] = new WorkLineRepository().GetAllForSummaryReport(drpReportType.SelectedValue.ToSafeInt(), whereClause);
             BindGrid();
         }

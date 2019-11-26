@@ -67,6 +67,9 @@ namespace MehranPack
         {
             if (!Page.IsPostBack)
             {
+                BindDrpUsers();
+                BindDrpColors();
+
                 if (Page.RouteData.Values["Id"].ToSafeInt() != 0)
                 {
                     var repo = new WorksheetRepository();
@@ -74,6 +77,8 @@ namespace MehranPack
 
                     dtWorksheet.Date = tobeEditedWorksheet.InsertDateTime.ToString();
                     txtPart.Text = tobeEditedWorksheet.PartNo.ToString();
+                    drpColor.SelectedValue = tobeEditedWorksheet.ColorId.ToString();
+                    drpOperator.SelectedValue = tobeEditedWorksheet.OperatorId.ToString();
 
                     var details = new List<WorksheetDetailHelper>();
 
@@ -97,8 +102,7 @@ namespace MehranPack
 
                 dtWorksheet.LoadCurrentDateTime = true;
 
-                BindDrpUsers();
-                BindDrpColors();
+
             }
 
             BindTreeview();

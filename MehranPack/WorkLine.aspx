@@ -65,11 +65,11 @@
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:BoundField>
 
-                    <asp:BoundField DataField="PersianInsertDateTime" HeaderText="زمان ایجاد">
+                    <asp:BoundField DataField="PersianDateTime" HeaderText="زمان ایجاد">
                         <HeaderStyle HorizontalAlign="Center" />
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:BoundField>
-
+                    
                     <asp:TemplateField ShowHeader="False">
                         <ItemTemplate>
                             <asp:LinkButton ID="btnEdit" runat="server" CausesValidation="false"
