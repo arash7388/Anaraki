@@ -11,6 +11,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(wreport));
             Telerik.Reporting.Barcodes.Code128Encoder code128Encoder1 = new Telerik.Reporting.Barcodes.Code128Encoder();
+            Telerik.Reporting.TableGroup tableGroup1 = new Telerik.Reporting.TableGroup();
+            Telerik.Reporting.TableGroup tableGroup2 = new Telerik.Reporting.TableGroup();
+            Telerik.Reporting.TableGroup tableGroup3 = new Telerik.Reporting.TableGroup();
+            Telerik.Reporting.Barcodes.Code128Encoder code128Encoder2 = new Telerik.Reporting.Barcodes.Code128Encoder();
             Telerik.Reporting.Drawing.StyleRule styleRule1 = new Telerik.Reporting.Drawing.StyleRule();
             Telerik.Reporting.Drawing.StyleRule styleRule2 = new Telerik.Reporting.Drawing.StyleRule();
             Telerik.Reporting.Drawing.StyleRule styleRule3 = new Telerik.Reporting.Drawing.StyleRule();
@@ -28,12 +32,16 @@
             this.textBox3 = new Telerik.Reporting.TextBox();
             this.textBox2 = new Telerik.Reporting.TextBox();
             this.detailSection1 = new Telerik.Reporting.DetailSection();
+            this.textBox14 = new Telerik.Reporting.TextBox();
+            this.barcode2 = new Telerik.Reporting.Barcode();
             this.reportFooterSection1 = new Telerik.Reporting.ReportFooterSection();
             this.textBox7 = new Telerik.Reporting.TextBox();
             this.textBox15 = new Telerik.Reporting.TextBox();
             this.pageFooterSection1 = new Telerik.Reporting.PageFooterSection();
-            this.barcode2 = new Telerik.Reporting.Barcode();
-            this.textBox14 = new Telerik.Reporting.TextBox();
+            this.sqlDataSource2 = new Telerik.Reporting.SqlDataSource();
+            this.table1 = new Telerik.Reporting.Table();
+            this.textBox18 = new Telerik.Reporting.TextBox();
+            this.barcode1 = new Telerik.Reporting.Barcode();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // sqlDataSource1
@@ -222,9 +230,32 @@
             this.detailSection1.Style.BorderStyle.Top = Telerik.Reporting.Drawing.BorderType.Solid;
             this.detailSection1.Style.Font.Name = "Tahoma";
             // 
+            // textBox14
+            // 
+            this.textBox14.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Mm(157D), Telerik.Reporting.Drawing.Unit.Mm(2.99D));
+            this.textBox14.Name = "textBox14";
+            this.textBox14.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Mm(29.56D), Telerik.Reporting.Drawing.Unit.Mm(6D));
+            this.textBox14.Style.Font.Name = "IRANSansWeb";
+            this.textBox14.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
+            this.textBox14.Value = "= Fields.ProcessName";
+            // 
+            // barcode2
+            // 
+            code128Encoder1.ShowText = false;
+            this.barcode2.Encoder = code128Encoder1;
+            this.barcode2.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Mm(97D), Telerik.Reporting.Drawing.Unit.Mm(1.99D));
+            this.barcode2.Name = "barcode2";
+            this.barcode2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Mm(59D), Telerik.Reporting.Drawing.Unit.Mm(8D));
+            this.barcode2.Style.Color = System.Drawing.Color.Black;
+            this.barcode2.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(12D);
+            this.barcode2.Value = "=IsNull(Fields.WID, \"\") + \",\" + IsNull(Fields.OperatorId, \"\") + \",\" + IsNull(Fiel" +
+    "ds.ProcessId, \"\")  + \"#\"";
+            // 
             // reportFooterSection1
             // 
-            this.reportFooterSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(0.4D);
+            this.reportFooterSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(1.4D);
+            this.reportFooterSection1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.table1});
             this.reportFooterSection1.Name = "reportFooterSection1";
             // 
             // textBox7
@@ -249,26 +280,52 @@
             this.textBox7});
             this.pageFooterSection1.Name = "pageFooterSection1";
             // 
-            // barcode2
+            // sqlDataSource2
             // 
-            code128Encoder1.ShowText = false;
-            this.barcode2.Encoder = code128Encoder1;
-            this.barcode2.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Mm(97D), Telerik.Reporting.Drawing.Unit.Mm(1.99D));
-            this.barcode2.Name = "barcode2";
-            this.barcode2.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Mm(59D), Telerik.Reporting.Drawing.Unit.Mm(8D));
-            this.barcode2.Style.Color = System.Drawing.Color.Black;
-            this.barcode2.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(12D);
-            this.barcode2.Value = "=IsNull(Fields.WID, \"\") + \",\" + IsNull(Fields.OperatorId, \"\") + \",\" + IsNull(Fiel" +
-    "ds.ProcessId, \"\")  + \"#\"";
+            this.sqlDataSource2.ConnectionString = "Anaraki";
+            this.sqlDataSource2.Name = "sqlDataSource2";
+            this.sqlDataSource2.SelectCommand = resources.GetString("sqlDataSource2.SelectCommand");
             // 
-            // textBox14
+            // table1
             // 
-            this.textBox14.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Mm(157D), Telerik.Reporting.Drawing.Unit.Mm(2.99D));
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Mm(29.56D), Telerik.Reporting.Drawing.Unit.Mm(6D));
-            this.textBox14.Style.Font.Name = "IRANSansWeb";
-            this.textBox14.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
-            this.textBox14.Value = "= Fields.ProcessName";
+            this.table1.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Mm(48.14D)));
+            this.table1.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Mm(58.32D)));
+            this.table1.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Mm(9D)));
+            this.table1.Body.SetCellContent(0, 1, this.textBox18);
+            this.table1.Body.SetCellContent(0, 0, this.barcode1);
+            tableGroup1.Name = "tableGroup1";
+            tableGroup2.Name = "tableGroup2";
+            this.table1.ColumnGroups.Add(tableGroup1);
+            this.table1.ColumnGroups.Add(tableGroup2);
+            this.table1.DataSource = this.sqlDataSource2;
+            this.table1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.textBox18,
+            this.barcode1});
+            this.table1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Mm(83.01D), Telerik.Reporting.Drawing.Unit.Mm(2D));
+            this.table1.Name = "table1";
+            tableGroup3.Groupings.Add(new Telerik.Reporting.Grouping(null));
+            tableGroup3.Name = "detailTableGroup";
+            this.table1.RowGroups.Add(tableGroup3);
+            this.table1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Mm(106.46D), Telerik.Reporting.Drawing.Unit.Mm(9D));
+            this.table1.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
+            // 
+            // textBox18
+            // 
+            this.textBox18.Name = "textBox18";
+            this.textBox18.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Mm(58.32D), Telerik.Reporting.Drawing.Unit.Mm(9D));
+            this.textBox18.StyleName = "";
+            this.textBox18.Value = "= Fields.ProductName + \' \' + Fields.ProcessName";
+            // 
+            // barcode1
+            // 
+            code128Encoder2.ShowText = false;
+            this.barcode1.Encoder = code128Encoder2;
+            this.barcode1.Name = "barcode1";
+            this.barcode1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Mm(48.14D), Telerik.Reporting.Drawing.Unit.Mm(9D));
+            this.barcode1.Stretch = true;
+            this.barcode1.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.barcode1.StyleName = "";
+            this.barcode1.Value = "= Fields.Barcode";
             // 
             // wreport
             // 
@@ -331,5 +388,9 @@
         private Telerik.Reporting.PageFooterSection pageFooterSection1;
         private Telerik.Reporting.TextBox textBox14;
         private Telerik.Reporting.Barcode barcode2;
+        private Telerik.Reporting.SqlDataSource sqlDataSource2;
+        private Telerik.Reporting.Table table1;
+        private Telerik.Reporting.TextBox textBox18;
+        private Telerik.Reporting.Barcode barcode1;
     }
 }
