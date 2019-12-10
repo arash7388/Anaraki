@@ -35,13 +35,13 @@
             this.textBox14 = new Telerik.Reporting.TextBox();
             this.barcode2 = new Telerik.Reporting.Barcode();
             this.reportFooterSection1 = new Telerik.Reporting.ReportFooterSection();
-            this.textBox7 = new Telerik.Reporting.TextBox();
-            this.textBox15 = new Telerik.Reporting.TextBox();
-            this.pageFooterSection1 = new Telerik.Reporting.PageFooterSection();
-            this.sqlDataSource2 = new Telerik.Reporting.SqlDataSource();
             this.table1 = new Telerik.Reporting.Table();
             this.textBox18 = new Telerik.Reporting.TextBox();
             this.barcode1 = new Telerik.Reporting.Barcode();
+            this.sqlDataSource2 = new Telerik.Reporting.SqlDataSource();
+            this.textBox7 = new Telerik.Reporting.TextBox();
+            this.textBox15 = new Telerik.Reporting.TextBox();
+            this.pageFooterSection1 = new Telerik.Reporting.PageFooterSection();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // sqlDataSource1
@@ -253,10 +253,75 @@
             // 
             // reportFooterSection1
             // 
-            this.reportFooterSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(1.4D);
+            this.reportFooterSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(2.3D);
             this.reportFooterSection1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.table1});
             this.reportFooterSection1.Name = "reportFooterSection1";
+            this.reportFooterSection1.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.reportFooterSection1.Style.BorderStyle.Left = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.reportFooterSection1.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.reportFooterSection1.Style.BorderStyle.Top = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.reportFooterSection1.ItemDataBinding += new System.EventHandler(this.ReportFooterSection1_ItemDataBinding);
+            // 
+            // table1
+            // 
+            this.table1.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Mm(60.78D)));
+            this.table1.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Mm(52.61D)));
+            this.table1.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Mm(11.77D)));
+            this.table1.Body.SetCellContent(0, 1, this.textBox18);
+            this.table1.Body.SetCellContent(0, 0, this.barcode1);
+            tableGroup1.Name = "tableGroup1";
+            tableGroup2.Name = "tableGroup2";
+            this.table1.ColumnGroups.Add(tableGroup1);
+            this.table1.ColumnGroups.Add(tableGroup2);
+            this.table1.DataSource = this.sqlDataSource2;
+            this.table1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
+            this.barcode1,
+            this.textBox18});
+            this.table1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Mm(45D), Telerik.Reporting.Drawing.Unit.Mm(6D));
+            this.table1.Name = "table1";
+            tableGroup3.Groupings.Add(new Telerik.Reporting.Grouping(null));
+            tableGroup3.Name = "detailTableGroup";
+            this.table1.RowGroups.Add(tableGroup3);
+            this.table1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Mm(113.39D), Telerik.Reporting.Drawing.Unit.Mm(11.77D));
+            this.table1.Style.BorderColor.Bottom = System.Drawing.Color.White;
+            this.table1.Style.BorderColor.Default = System.Drawing.Color.Black;
+            this.table1.Style.BorderColor.Top = System.Drawing.Color.White;
+            this.table1.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.table1.Style.BorderStyle.Left = Telerik.Reporting.Drawing.BorderType.None;
+            this.table1.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.None;
+            this.table1.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(5D);
+            // 
+            // textBox18
+            // 
+            this.textBox18.Name = "textBox18";
+            this.textBox18.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Mm(52.61D), Telerik.Reporting.Drawing.Unit.Mm(11.77D));
+            this.textBox18.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
+            this.textBox18.StyleName = "";
+            this.textBox18.Value = "= Fields.ProductName + \' \' + Fields.ProcessName";
+            // 
+            // barcode1
+            // 
+            code128Encoder2.ShowText = false;
+            this.barcode1.Encoder = code128Encoder2;
+            this.barcode1.Name = "barcode1";
+            this.barcode1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Mm(60.78D), Telerik.Reporting.Drawing.Unit.Mm(11.77D));
+            this.barcode1.Stretch = false;
+            this.barcode1.Style.BorderColor.Default = System.Drawing.Color.White;
+            this.barcode1.Style.BorderStyle.Bottom = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.barcode1.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.None;
+            this.barcode1.Style.BorderStyle.Top = Telerik.Reporting.Drawing.BorderType.Solid;
+            this.barcode1.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(5D);
+            this.barcode1.StyleName = "";
+            this.barcode1.Value = "= Fields.Barcode";
+            // 
+            // sqlDataSource2
+            // 
+            this.sqlDataSource2.ConnectionString = "Anaraki";
+            this.sqlDataSource2.Name = "sqlDataSource2";
+            this.sqlDataSource2.Parameters.AddRange(new Telerik.Reporting.SqlDataSourceParameter[] {
+            new Telerik.Reporting.SqlDataSourceParameter("@id", System.Data.DbType.Int32, "2023")});
+            this.sqlDataSource2.SelectCommand = resources.GetString("sqlDataSource2.SelectCommand");
             // 
             // textBox7
             // 
@@ -279,53 +344,6 @@
             this.textBox15,
             this.textBox7});
             this.pageFooterSection1.Name = "pageFooterSection1";
-            // 
-            // sqlDataSource2
-            // 
-            this.sqlDataSource2.ConnectionString = "Anaraki";
-            this.sqlDataSource2.Name = "sqlDataSource2";
-            this.sqlDataSource2.SelectCommand = resources.GetString("sqlDataSource2.SelectCommand");
-            // 
-            // table1
-            // 
-            this.table1.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Mm(48.14D)));
-            this.table1.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Mm(58.32D)));
-            this.table1.Body.Rows.Add(new Telerik.Reporting.TableBodyRow(Telerik.Reporting.Drawing.Unit.Mm(9D)));
-            this.table1.Body.SetCellContent(0, 1, this.textBox18);
-            this.table1.Body.SetCellContent(0, 0, this.barcode1);
-            tableGroup1.Name = "tableGroup1";
-            tableGroup2.Name = "tableGroup2";
-            this.table1.ColumnGroups.Add(tableGroup1);
-            this.table1.ColumnGroups.Add(tableGroup2);
-            this.table1.DataSource = this.sqlDataSource2;
-            this.table1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
-            this.textBox18,
-            this.barcode1});
-            this.table1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Mm(83.01D), Telerik.Reporting.Drawing.Unit.Mm(2D));
-            this.table1.Name = "table1";
-            tableGroup3.Groupings.Add(new Telerik.Reporting.Grouping(null));
-            tableGroup3.Name = "detailTableGroup";
-            this.table1.RowGroups.Add(tableGroup3);
-            this.table1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Mm(106.46D), Telerik.Reporting.Drawing.Unit.Mm(9D));
-            this.table1.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
-            // 
-            // textBox18
-            // 
-            this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Mm(58.32D), Telerik.Reporting.Drawing.Unit.Mm(9D));
-            this.textBox18.StyleName = "";
-            this.textBox18.Value = "= Fields.ProductName + \' \' + Fields.ProcessName";
-            // 
-            // barcode1
-            // 
-            code128Encoder2.ShowText = false;
-            this.barcode1.Encoder = code128Encoder2;
-            this.barcode1.Name = "barcode1";
-            this.barcode1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Mm(48.14D), Telerik.Reporting.Drawing.Unit.Mm(9D));
-            this.barcode1.Stretch = true;
-            this.barcode1.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.Solid;
-            this.barcode1.StyleName = "";
-            this.barcode1.Value = "= Fields.Barcode";
             // 
             // wreport
             // 

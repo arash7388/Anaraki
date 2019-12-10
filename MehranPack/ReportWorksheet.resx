@@ -148,7 +148,7 @@ INNER JOIN products AS p ON p.Id = d.ProductId
 INNER JOIN categories AS cat ON cat.Id = p.ProductCategoryId
 cross join (select 100 as ProcessId,N'دوباره کاری' as ProcessName union select 200,N'اسقاط') s1
 
-where WorksheetId=2022
+where WorksheetId=@id
 order by ProcessId</value>
   </data>
   <metadata name="$this.ShowSnapGrid" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

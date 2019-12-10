@@ -156,9 +156,21 @@ namespace Repository.DAL
                 cat = allcats.SingleOrDefault(a => a.Id == cat.ParentId);
             }
 
-            if (cat != null) list.Add(cat.Name);
+            if (cat != null)
+                list.Add(cat.Name);
 
             return string.Join(" -> ", list.AsEnumerable().Reverse());
+        }
+
+        public List<Category> GetAllWithFullName()
+        {
+            var allcats = GetAll();
+            foreach (Category item in allcats)
+            {
+                item.Name = GetFullName(item.Id);
+            }
+
+            return allcats.ToList();
         }
     }
 

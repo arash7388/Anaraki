@@ -13,5 +13,6 @@ namespace Repository.Entity.Domain
 
         public Product Product { get; set; }
         public int ProductId { get; set; }
+        public string ACode { get; set; }
     }
 }

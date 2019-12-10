@@ -66,6 +66,7 @@
                         <th>کد محصول</th>
                         <th>گروه محصول</th>
                         <th>نام محصول</th>
+                        <th>ACode</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -110,11 +111,12 @@
 
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-10">
                             <label>جستجو</label>
                             <asp:TextBox runat="server" ID="txtSearchTree" placeholder="نام کالا"></asp:TextBox>
                             <asp:Button runat="server" ID="b1" OnClick="b1_OnClick" Text="جستجو" UseSubmitBehavior="false"/>
-                            <%--<asp:Button runat="server" ID="btnClearSearch" OnClick="btnClearSearch_OnClick" Text="جستجو" />--%>
+                            <br />
+                            <asp:TextBox runat="server" ID="txtACode" placeholder="ACode"></asp:TextBox>
                             <br />
                         </div>
                     </div>
@@ -161,6 +163,7 @@
                     { 'title': 'شناسه محصول' },
                     { 'title': 'کد محصول' },
                     { 'title': 'نام محصول' },
+                    { 'title': 'ACode' },
                     { 'title':"" }
                 ]
             });
@@ -169,12 +172,10 @@
                 parts = url.split("/"),
                 id = parts[parts.length - 1];
 
-            //var methodParams = '{id:' + id + '}'
             var adr = "/DataHandler.ashx?id=" + id
             $.ajax({
                 type: "POST",
                 url: adr,
-                //data: { pID: pID, tID: tID },
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
@@ -184,6 +185,7 @@
                             row["ProductId"],
                             row["ProductCode"],
                             row["ProductName"],
+                            row["ACode"],
                             '<span><button type="button" onclick="onDeleteClicked();">حذف</button></span>'
                         ]).draw(false);
                     });
@@ -211,7 +213,15 @@
         var buttonpressed;
         $('.btnSubmit').click(function () {
             buttonpressed = $(this).attr('id')
-        })
+        });
+
+
+        $('#myModal').on('shown', function (e) {
+            debugger;
+            $("#txtACode").val('');
+            $("#txtSearchTree").val('');
+        });
+
 
         $('#form1').on('submit', function (e) {
             debugger;
@@ -233,6 +243,7 @@
 
                 model = model +
                     '{"ProductId" : "' + row[0] + '",' +
+                    '"ACode" : "' + row[3] + '",' +
                     '"Status" : "-1"}';
             });
 
@@ -301,6 +312,7 @@
                     productId,
                     prCode,
                     prName,
+                    'A' + $("#year").val().substr(2,2) + $("#mounth").val() + $("#txtACode").val(),
                     '<span><button type="button" onclick="onDeleteClicked();">حذف</button></span>'
                 ]).draw(false);
             };

@@ -26,7 +26,8 @@ namespace Repository.DAL
                               CategoryName = c.Name,
                               ProcessId = pc.ProcessId,
                               ProcessName = p.Name,
-                              Order = pc.Order
+                              Order = pc.Order,
+                              ProcessTime = pc.ProcessTime
                           }).ToList();
 
             return result;
@@ -34,6 +35,8 @@ namespace Repository.DAL
 
         public List<ProCatHelper> GetGroupedList()
         {
+            var catRepo = new CategoryRepository();
+
             var result = (from pc in MTOContext.ProcessCategories
                          join p in MTOContext.Processes on pc.ProcessId equals p.Id
                          join c in MTOContext.Categories on pc.CategoryId equals c.Id
@@ -41,7 +44,7 @@ namespace Repository.DAL
                          select new ProCatHelper
                          {
                              CategoryId = g.Key.CategoryId,
-                             CategoryName = g.Key.Name,
+                             CategoryName =  g.Key.Name,
                              //ProcessId=p.Id,
                              //ProcessNames= string.Join(",", MTOContext.ProcessCategories.Include("Process").Where(a=>a.CategoryId== g.Key.CategoryId).Select(a=>a.Process.Name).ToArray())
                              //ProcessNames = MTOContext.ProcessCategories.Select(a => a.ProcessId.ToString()).FirstOrDefault()
@@ -50,6 +53,7 @@ namespace Repository.DAL
             foreach(var r in result)
             {
                 r.ProcessNames = string.Join("," , MTOContext.ProcessCategories.Include("Process").Where(a => a.CategoryId == r.CategoryId).Select(a => a.Process.Name).ToArray());
+                r.CategoryName = catRepo.GetFullName(r.CategoryId);
             }
 
             return result.ToList();
@@ -74,5 +78,6 @@ namespace Repository.DAL
         public string ProcessName { get; set; }
 
         public int Order { get; set; }
+        public int ProcessTime { get; set; }
     }
 }

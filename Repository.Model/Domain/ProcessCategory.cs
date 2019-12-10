@@ -22,5 +22,7 @@ namespace Repository.Entity.Domain
 
         public int Order { get; set; }
 
+        public int ProcessTime { get; set; }
+
     }
 }

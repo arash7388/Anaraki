@@ -26,5 +26,10 @@ namespace MehranPack
             //
             
         }
+
+        private void ReportFooterSection1_ItemDataBinding(object sender, EventArgs e)
+        {
+           
+        }
     }
 }

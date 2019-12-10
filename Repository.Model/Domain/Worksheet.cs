@@ -23,5 +23,7 @@ namespace Repository.Entity.Domain
 
         public virtual ICollection<WorksheetDetail> WorksheetDetails { get; set; }
 
-}
+        
+
+    }
 }

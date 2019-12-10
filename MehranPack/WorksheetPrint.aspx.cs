@@ -61,16 +61,16 @@ namespace MehranPack
             InstanceReportSource reportSource = new InstanceReportSource();
             reportSource.ReportDocument = report;
 
-
             //Assigning the report to the report viewer.
             ReportViewer1.ReportSource = reportSource;
-            //ReportViewer1.
 
             //Calling the RefreshReport method (only in WinForms applications).
-            ReportViewer1.RefreshReport();
+                       
 
+            var table1 = report.Items.Find("table1", true)[0] ;
+            ((table1 as Telerik.Reporting.Table).DataSource as Telerik.Reporting.SqlDataSource).Parameters[0].Value = id;
             //Telerik.Reporting.UriReportSource uriReportSource = new Telerik.Reporting.UriReportSource();
-
+            ReportViewer1.RefreshReport();
             //// Specifying an URL or a file path
             //uriReportSource.Uri = "~/Reports/ord.trdx";
 

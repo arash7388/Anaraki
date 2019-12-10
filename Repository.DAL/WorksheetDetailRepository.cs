@@ -16,7 +16,9 @@ namespace Repository.DAL
                 Id = a.Id,
                 ProductId = a.ProductId,
                 ProductCode = a.Product.Code,
-                ProductName = a.Product.Name
+                ProductName = a.Product.Name,
+                ACode=a.ACode
+                
             }).ToList();
         }
     }
@@ -30,6 +32,7 @@ namespace Repository.DAL
 
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
+        public string ACode { get; set; }
 
 
     }

@@ -27,10 +27,17 @@ namespace MehranPack
             else
             if (e.CommandName == "DeleteCat")
             {
-                var msg = Utility.AesEncrypt("آیا از حذف گروه اطمینان دارید؟");
-                //var aqn = Utility.AesEncrypt(typeof(Category).AssemblyQualifiedName);
-                var table = Utility.AesEncrypt("Categories");
-                Response.Redirect("Confirmation.aspx?Id=" + e.CommandArgument + "&m=" + msg + "&t=" + table);
+                var data = new ConfirmData();
+
+                data.Command = "Delete";
+                data.Id = e.CommandArgument.ToSafeInt();
+                data.Msg = "آیا از حذف اطمینان دارید؟";
+                data.Table = "Categories";
+                data.RedirectAdr = "CategoryList.aspx";
+
+                Session["ConfirmData"] = data;
+                Response.RedirectToRoute("Confirmation");
+                Response.End();
             }
         }
 

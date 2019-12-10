@@ -48,6 +48,12 @@
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:BoundField>
 
+                     <asp:BoundField DataField="ProcessTime" HeaderText="زمان" Visible="true">
+                        <ControlStyle BorderColor="#FFFF99" BorderStyle="Solid" />
+                        <HeaderStyle HorizontalAlign="Left" />
+                        <ItemStyle HorizontalAlign="Center" />
+                    </asp:BoundField>
+
                     <%--   <asp:TemplateField ShowHeader="False">
                                 <ItemTemplate>
                                     <asp:LinkButton ID="btnEdit" runat="server" CausesValidation="false"
@@ -91,6 +97,15 @@
                 </div>
                 <div class="col-md-2">
                     <asp:TextBox runat="server" ID="txtOrder" CssClass="form-control" AutoCompleteType="None" autocomplete="off"></asp:TextBox>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2 " align="left">
+                    زمان فرآیند:
+                </div>
+                <div class="col-md-2">
+                    <asp:TextBox runat="server" ID="txtProcessTime" CssClass="form-control" AutoCompleteType="None" autocomplete="off"></asp:TextBox>
                 </div>
             </div>
 

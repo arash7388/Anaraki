@@ -49,7 +49,7 @@ namespace MehranPack
         {
             var repo = new WorksheetDetailRepository();
             var js = new JavaScriptSerializer();
-            return js.Serialize(repo.Get(a=>a.WorksheetId==id).ToList());
+            return js.Serialize(repo.Get(a => a.WorksheetId == id).ToList());
             //return new
         }
 
@@ -91,6 +91,7 @@ namespace MehranPack
                             ProductName = d.Product.Name,
                             CategoryId = d.Product.ProductCategoryId,
                             CategoryName = new CategoryRepository().GetById(d.Product.ProductCategoryId).Name,
+                            ACode=d.ACode
                             //InsertDateTime = ((DateTime)d.InsertDateTime).ToFaDate(),
                         });
                     }
@@ -111,8 +112,6 @@ namespace MehranPack
             if (Session["GridSource"] == null)
                 Session["GridSource"] = new List<WorksheetDetailHelper>();
 
-            //gridInput.DataSource = Session["GridSource"];
-            //gridInput.DataBind();
         }
 
         private void BindDrpColors()
@@ -135,7 +134,7 @@ namespace MehranPack
 
 
         [WebMethod]
-        public static string Save(int userId,string date, int id, Repository.Entity.Domain.Worksheet model)
+        public static string Save(int userId, string date, int id, Repository.Entity.Domain.Worksheet model)
         {
             if (model == null)
             {
@@ -143,7 +142,7 @@ namespace MehranPack
                 return "اطلاعاتی برای ذخیره کردن یافت نشد";
             }
 
-            if(!model.WorksheetDetails.Any())
+            if (!model.WorksheetDetails.Any())
                 return "هیچ ردیفی ثبت نشده است";
 
             //if(model.WorksheetDetails.GroupBy(a=>a.ProductId).Where(a => a.Count() > 1).Count()>0)
@@ -187,6 +186,7 @@ namespace MehranPack
                         ProductId = item.ProductId,
                         UpdateDateTime = DateTime.Now,
                         WorksheetId = tobeEdited.Id,
+                        ACode = item.ACode
                     });
                 }
             }

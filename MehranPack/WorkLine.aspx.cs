@@ -24,6 +24,9 @@ namespace MehranPack
                 Session["Result"] = gridWorkLine.DataSource;
                 txtBarcodeInput.Focus();
             }
+
+            if (!Page.IsPostBack)
+                txtBarcodeInput.Text = "";
         }
 
         [WebMethod]

@@ -37,7 +37,7 @@ namespace MehranPack
             CategoryRepository repo = new CategoryRepository();
             List<Repository.Entity.Domain.Category> source = new List<Repository.Entity.Domain.Category>();
             source.Add(new Repository.Entity.Domain.Category() {Id = -1, Name = "انتخاب کنید"});
-            source.AddRange(repo.GetAll());
+            source.AddRange(repo.GetAllWithFullName());
 
             drpParentCat.DataSource = source;
             drpParentCat.DataValueField = "Id";

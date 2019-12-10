@@ -15,7 +15,7 @@ namespace MehranPack
         {
             if (!Page.IsPostBack)
             {
-                List<ProcessCategoryHelper> tobeEditedPC = new List<ProcessCategoryHelper>() ;
+                List<ProcessCategoryHelper> tobeEditedPC = new List<ProcessCategoryHelper>();
 
                 if (Page.RouteData.Values["Id"].ToSafeInt() != 0)
                 {
@@ -33,7 +33,8 @@ namespace MehranPack
                             CategoryName = pc.CategoryName,
                             ProcessId = pc.ProcessId,
                             ProcessName = pc.ProcessName,
-                            Order = pc.Order
+                            Order = pc.Order,
+                            ProcessTime = pc.ProcessTime
                         });
                     }
 
@@ -88,7 +89,7 @@ namespace MehranPack
 
         private void BindDrpCat()
         {
-            var source = new CategoryRepository().GetAll().ToList();
+            var source = new CategoryRepository().GetAllWithFullName().ToList();
             drpCat.DataSource = source;
             drpCat.DataValueField = "Id";
             drpCat.DataTextField = "Name";
@@ -101,12 +102,12 @@ namespace MehranPack
             {
                 var catId = drpCat.SelectedValue.ToSafeInt();
                 var existingCatPr = new ProcessCategoryRepository().Get(a => a.CategoryId == catId).FirstOrDefault();
-                if (Page.RouteData.Values["Id"].ToSafeInt() == 0 && existingCatPr !=null) throw new LocalException("duplicate cat", " فرآیندهای این گروه محصول قبلا ثبت شده اند");
+                if (Page.RouteData.Values["Id"].ToSafeInt() == 0 && existingCatPr != null) throw new LocalException("duplicate cat", " فرآیندهای این گروه محصول قبلا ثبت شده اند");
 
                 var gridSource = (List<ProcessCategoryHelper>)Session["GridSource"];
                 var dupOrder = gridSource.GroupBy(a => a.Order).Where(a => a.Count() > 1).Count();
 
-                if (dupOrder>0)
+                if (dupOrder > 0)
                     throw new LocalException("duplicate order", "ترتیب تکراری در سطرهای ثبت شده");
 
                 //foreach(var item in gridSource)
@@ -124,7 +125,8 @@ namespace MehranPack
                         {
                             CategoryId = item.CategoryId,
                             ProcessId = item.ProcessId,
-                            Order = item.Order
+                            Order = item.Order,
+                            ProcessTime = item.ProcessTime
                         };
 
                         uow.ProcessCategories.Create(newPC);
@@ -153,7 +155,8 @@ namespace MehranPack
                         {
                             CategoryId = item.CategoryId,
                             ProcessId = item.ProcessId,
-                            Order = item.Order
+                            Order = item.Order,
+                            ProcessTime = item.ProcessTime
                         };
 
                         uow.ProcessCategories.Create(newPC);
@@ -162,7 +165,7 @@ namespace MehranPack
 
                 var result = uow.SaveChanges();
                 if (result.IsSuccess)
-                  ((Main)Page.Master).SetGeneralMessage("اطلاعات با موفقیت ذخیره شد", MessageType.Success);
+                    ((Main)Page.Master).SetGeneralMessage("اطلاعات با موفقیت ذخیره شد", MessageType.Success);
                 else
                     ((Main)Page.Master).SetGeneralMessage(result.ResultMessage, MessageType.Error);
 
@@ -176,7 +179,7 @@ namespace MehranPack
 
         private void ClearControls()
         {
-            drpCat.Enabled = drpProcesses.Enabled = txtOrder.Enabled = false;
+            drpCat.Enabled = drpProcesses.Enabled = txtOrder.Enabled = txtProcessTime.Enabled= false;
             gridInput.Enabled = false;
         }
 
@@ -190,7 +193,9 @@ namespace MehranPack
             try
             {
                 if (string.IsNullOrEmpty(txtOrder.Text)) throw new LocalException("order is empty", "ترتیب  را وارد نمایید");
-                if (txtOrder.Text.ToSafeInt()==0) throw new LocalException("order is empty", "ترتیب  باید عددی مثبت باشد ");
+                if (string.IsNullOrEmpty(txtProcessTime.Text)) throw new LocalException("time is empty", "زمان  را وارد نمایید");
+                if (txtOrder.Text.ToSafeInt() == 0) throw new LocalException("order is empty", "ترتیب  باید عددی مثبت باشد ");
+                if (txtProcessTime.Text.ToSafeInt() == 0) throw new LocalException("time is empty", "زمان  باید عددی مثبت باشد ");
                 var gridSource = (List<ProcessCategoryHelper>)Session["GridSource"];
 
                 if (gridSource != null && gridSource.Any() && gridSource.Any(a => a.Order == txtOrder.Text.ToSafeInt()))
@@ -200,8 +205,8 @@ namespace MehranPack
                     throw new LocalException("duplicate process", "فرآیند نباید تکراری باشد");
 
                 var maxOrder = gridSource.Any() ? gridSource.Max(a => a.Order) : 0;
-                if(txtOrder.Text.ToSafeInt() - maxOrder !=1)
-                    throw new LocalException("invalid order(other than +1)", $"ترتیب ها باید پشت سر هم ثبت شوند. ترتیب قابل قبول بعدی {maxOrder+1} است ");
+                if (txtOrder.Text.ToSafeInt() - maxOrder != 1)
+                    throw new LocalException("invalid order(other than +1)", $"ترتیب ها باید پشت سر هم ثبت شوند. ترتیب قابل قبول بعدی {maxOrder + 1} است ");
 
 
                 var addedInput = new ProcessCategoryHelper()
@@ -209,7 +214,8 @@ namespace MehranPack
                     CategoryId = drpCat.SelectedValue.ToSafeInt(),
                     ProcessId = drpProcesses.SelectedValue.ToSafeInt(),
                     ProcessName = new ProcessRepository().GetById(drpProcesses.SelectedValue.ToSafeInt()).Name,
-                    Order = txtOrder.Text.ToSafeInt()
+                    Order = txtOrder.Text.ToSafeInt(),
+                    ProcessTime=txtProcessTime.Text.ToSafeInt()
                 };
 
                 if (Session["GridSource"] == null)
