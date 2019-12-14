@@ -235,11 +235,11 @@
     <Compile Include="ProductList.aspx.designer.cs">
       <DependentUpon>ProductList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ReportWorksheet.cs">
+    <Compile Include="ReportWorksheets.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ReportWorksheet.Designer.cs">
-      <DependentUpon>ReportWorksheet.cs</DependentUpon>
+    <Compile Include="ReportWorksheets.Designer.cs">
+      <DependentUpon>ReportWorksheets.cs</DependentUpon>
     </Compile>
     <Compile Include="WorkLine.aspx.cs">
       <DependentUpon>WorkLine.aspx</DependentUpon>
@@ -430,8 +430,8 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
-    <EmbeddedResource Include="ReportWorksheet.resx">
-      <DependentUpon>ReportWorksheet.cs</DependentUpon>
+    <EmbeddedResource Include="ReportWorksheets.resx">
+      <DependentUpon>ReportWorksheets.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

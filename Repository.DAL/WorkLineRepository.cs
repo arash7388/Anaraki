@@ -177,7 +177,7 @@ namespace Repository.DAL
                 //}
                 //else
                 worksheetsDetailsList = worksheetsDetails.ToList();
-                               
+
                 result = (from x in worksheetsDetailsList
                           join wl in workLinesSelectList
                           on new { x.WorksheetId, x.ProcessId } equals new { wl.WorksheetId, wl.ProcessId }
@@ -205,6 +205,101 @@ namespace Repository.DAL
                     //item.Sec = item.InsertDateTime.Value.Second;
                 }
             }
+            else if (reportType == 3)
+            {
+                var worksheetsDetails = from ws in MTOContext.Worksheets
+                                        join wd in MTOContext.WorksheetDetails on ws.Id equals wd.WorksheetId
+                                        join p in MTOContext.Products on wd.ProductId equals p.Id
+                                        join cat in MTOContext.Categories on p.ProductCategoryId equals cat.Id
+                                        join pcat in MTOContext.ProcessCategories on cat.Id equals pcat.CategoryId
+                                        join pro in MTOContext.Processes on pcat.ProcessId equals pro.Id
+                                        select new WorkLineHelper
+                                        {
+                                            WorksheetId = ws.Id,
+                                            OperatorId = (int)ws.OperatorId,
+                                            ProductId = wd.ProductId,
+                                            ProcessId = pro.Id,
+                                            ProductCode = p.Code,
+                                            ProductName = cat.Name + " " + p.Name,
+                                            ProcessName = pro.Name,
+                                            ProcessTime = pcat.ProcessTime
+                                        };
+
+                var worksheetsDetailsList = new List<WorkLineHelper>();
+
+                worksheetsDetailsList = worksheetsDetails.ToList();
+
+                result = (from x in worksheetsDetailsList
+                          join wl in workLinesSelectList
+                          on new { x.WorksheetId, x.ProcessId } equals new { wl.WorksheetId, wl.ProcessId }
+                          select new WorkLineSummary
+                          {
+                              InsertDateTime = (DateTime)wl.InsertDateTime,
+                              OperatorId = x.OperatorId,
+                              FriendlyName = wl.OperatorName,
+                              PersianDate = wl.PersianDateTime,
+                              ProductCode = x.ProductCode,
+                              ProductName = x.ProductName,
+                              ProcessName = x.ProcessName,
+                              ProcessTime = x.ProcessTime
+                          }).ToList();
+
+                //calcing allowed time
+                var allowedTimeResult = from r in result
+                         group r by new { r.OperatorId, r.FriendlyName } into g
+                         select new WorkLineSummary
+                         {
+                             OperatorId = g.Key.OperatorId,
+                             FriendlyName = g.Key.FriendlyName,
+                             ProcessTime = g.Sum(a => a.ProcessTime)
+                         };
+
+
+                //calcing spent time
+                var groupedByWIDProcess = from x in result
+                                          group x by new { x.ProcessId, x.ProcessName, x.OperatorId, x.FriendlyName, x.InsertDateTime } into g
+                                          select new WorkLineSummary
+                                          {
+                                              OperatorId = g.Key.OperatorId,
+                                              FriendlyName = g.Key.FriendlyName,
+                                              ProcessId = g.Key.ProcessId,
+                                              ProcessName = g.Key.ProcessName,
+                                              InsertDateTime = g.Key.InsertDateTime
+                                          };
+
+                var groupedByWIDProcessList = groupedByWIDProcess.ToList();
+                groupedByWIDProcessList = groupedByWIDProcessList.OrderBy(a=>a.OperatorId).ThenBy(a=>a.InsertDateTime).ToList();
+
+                WorkLineSummary item, prevItem, nextItem;
+                for (int i = 0; i < groupedByWIDProcessList.Count; i++)
+                {
+                    item = groupedByWIDProcessList[i];
+
+                    if (i != 0)
+                        prevItem = groupedByWIDProcessList[i - 1];
+                    else
+                        prevItem = null;
+
+                    if (i != groupedByWIDProcessList.Count - 1)
+                        nextItem = groupedByWIDProcessList[i + 1];
+                    else
+                        nextItem = null;
+                                       
+                    var faDate = Utility.CastToFaDate(item.InsertDateTime);
+                    item.PersianDate = Utility.CastToFaDateTime(item.InsertDateTime);
+                    item.Year = faDate.Substring(0, 4).ToSafeInt();
+                    item.Month = faDate.Substring(5, 2).ToSafeInt();
+                    item.Day = faDate.Substring(8, 2).ToSafeInt();
+
+                    if (prevItem?.OperatorId == item.OperatorId && item.Year == prevItem.Year && item.Month==prevItem.Month && item.Day==prevItem.Day)
+                        prevItem.ProcessDuration = Math.Truncate((item.InsertDateTime - prevItem.InsertDateTime).TotalSeconds).ToSafeInt();
+
+                }
+               
+
+                result = groupedByWIDProcessList;
+
+            }
 
             return result.ToList();
         }
@@ -226,6 +321,7 @@ namespace Repository.DAL
         public int Hour { get; set; }
         public int Min { get; set; }
         public int Sec { get; set; }
+        public int ProcessTime { get; set; }
     }
 
     public class WorkLineSummary
@@ -245,5 +341,7 @@ namespace Repository.DAL
         public int Day { get; set; }
         public int ProductId { get; set; }
         public int ProcessId { get; set; }
+        public int ProcessTime { get; set; }
+        public int ProcessDuration { get; set; }
     }
 }

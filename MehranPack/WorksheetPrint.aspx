@@ -17,7 +17,22 @@
     <div>
     
     </div>
-        <telerik:ReportViewer ID="ReportViewer1" runat="server" Width="100%"  ProgressText="در حال آماده سازی..." Height="596px"></telerik:ReportViewer>
+        <telerik:ReportViewer ID="ReportViewer1" runat="server" Width="100%"  
+            ProgressText="در حال آماده سازی..." Height="596px"></telerik:ReportViewer>
     </form>
+    <script type="text/javascript">
+    ReportViewer.prototype.PrintReport = function () {
+        switch (this.defaultPrintFormat) {
+            case "Default":
+                this.DefaultPrint();
+                break;
+            case "PDF":
+                this.PrintAs("PDF");
+                previewFrame = document.getElementById(this.previewFrameID);
+                previewFrame.onload = function () { previewFrame.contentDocument.execCommand("print", true, null); }
+                break;
+        }
+    };
+</script>
 </body>
 </html>

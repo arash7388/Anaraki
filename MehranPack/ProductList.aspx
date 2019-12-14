@@ -13,7 +13,7 @@
         <div class="col-md-10">
             <hr class="hrBlue" />
             <asp:GridView runat="server" AutoGenerateColumns="False" Width="512px" ID="gridProduct" CssClass="table table-bordered table-striped"
-                OnRowCommand="gridProduct_OnRowCommand" DataKeyNames="Id">
+                OnRowCommand="gridProduct_OnRowCommand" DataKeyNames="Id" AllowPaging="true" PageSize="10" OnPageIndexChanging="gridProduct_OnPageIndexChanging">
                 <Columns>
                     <asp:BoundField DataField="Id" HeaderText="شناسه">
                         <ControlStyle BorderColor="#FFFF99" BorderStyle="Solid" />

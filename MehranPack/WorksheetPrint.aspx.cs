@@ -16,16 +16,14 @@ namespace MehranPack
         {
             CheckShamsiDateFunctions();
             int id;
-             
+
             if (Page.Request.QueryString[0].ToSafeInt() == 0)
                 id = new WorksheetRepository().GetMaxId();
             else
                 id = Page.Request.QueryString[0].ToSafeInt();
 
-            //Telerik.Reporting.SqlDataSource sqlDataSource = new Telerik.Reporting.SqlDataSource();
-            Report report = new wreport();
+            Report report = new ReportWorksheets();
 
-            //report.ReportParameters.Add("WorksheetId", ReportParameterType.Integer, id);
             Telerik.Reporting.SqlDataSource sqlDataSource = new Telerik.Reporting.SqlDataSource();
             sqlDataSource.ConnectionString = "Tarin";
             sqlDataSource.SelectCommand =
@@ -54,31 +52,14 @@ namespace MehranPack
             sqlDataSource.Parameters.Add("@id", System.Data.DbType.Int32, id);
             report.DataSource = sqlDataSource;
 
-            // Assigning the ObjectDataSource component to the DataSource property of the report.
-            //report.DataSource = new WorksheetRepository().GetWorksheetForPrint(id);
-
-            // Use the InstanceReportSource to pass the report to the viewer for displaying
             InstanceReportSource reportSource = new InstanceReportSource();
             reportSource.ReportDocument = report;
 
-            //Assigning the report to the report viewer.
             ReportViewer1.ReportSource = reportSource;
 
-            //Calling the RefreshReport method (only in WinForms applications).
-                       
-
-            var table1 = report.Items.Find("table1", true)[0] ;
+            var table1 = report.Items.Find("table1", true)[0];
             ((table1 as Telerik.Reporting.Table).DataSource as Telerik.Reporting.SqlDataSource).Parameters[0].Value = id;
-            //Telerik.Reporting.UriReportSource uriReportSource = new Telerik.Reporting.UriReportSource();
             ReportViewer1.RefreshReport();
-            //// Specifying an URL or a file path
-            //uriReportSource.Uri = "~/Reports/ord.trdx";
-
-            //// Adding the initial parameter values
-            //uriReportSource.Parameters.Add(new Telerik.Reporting.Parameter("Id", "1"));
-            //ReportViewer1.ReportSource = uriReportSource;
-            //ReportViewer1.RefreshReport();
-
         }
 
         private void CheckShamsiDateFunctions()
@@ -256,6 +237,7 @@ namespace MehranPack
 
                       RETURN @ResultVar 
                   END ";
+
             var uow = new UnitOfWork();
 
             uow.ExecCommand(cmd);

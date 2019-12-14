@@ -1,5 +1,3 @@
-using System.Runtime.Remoting.Channels;
-
 namespace MehranPack
 {
     using System;
@@ -10,11 +8,11 @@ namespace MehranPack
     using Telerik.Reporting.Drawing;
 
     /// <summary>
-    /// Summary description for Report1.
+    /// Summary description for Report2.
     /// </summary>
-    public partial class Report1 : Telerik.Reporting.Report
+    public partial class ReportWorksheets : Telerik.Reporting.Report
     {
-        public Report1()
+        public ReportWorksheets()
         {
             //
             // Required for telerik Reporting designer support
@@ -24,7 +22,6 @@ namespace MehranPack
             //
             // TODO: Add any constructor code after InitializeComponent call
             //
-            
         }
     }
 }

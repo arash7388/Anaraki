@@ -116,6 +116,7 @@
                             <asp:TextBox runat="server" ID="txtSearchTree" placeholder="نام کالا"></asp:TextBox>
                             <asp:Button runat="server" ID="b1" OnClick="b1_OnClick" Text="جستجو" UseSubmitBehavior="false"/>
                             <br />
+                            <label>شناسه</label>&nbsp;
                             <asp:TextBox runat="server" ID="txtACode" placeholder="ACode"></asp:TextBox>
                             <br />
                         </div>
@@ -191,7 +192,8 @@
                     });
                 },
                 error: function (data) {
-                    alert("Error" + data);
+                    //debugger;
+                    //alert("Error" + data.Message);
                 }
 
             });
@@ -216,11 +218,11 @@
         });
 
 
-        $('#myModal').on('shown', function (e) {
-            debugger;
-            $("#txtACode").val('');
-            $("#txtSearchTree").val('');
-        });
+        $('#myModal')
+            .on('show.bs.modal', function () {
+                $("#txtACode").val('');
+                $("#txtSearchTree").val('');
+            });
 
 
         $('#form1').on('submit', function (e) {
@@ -287,6 +289,12 @@
 
 
         function onNodeClicked(productId, catId) {
+
+            if ($("#txtACode").val() == "") {
+                alert('شناسه کالا را وارد نمایید');
+                return;
+            }
+
             $('#myModal').modal('hide');
             var t = $('#table1').DataTable();
 

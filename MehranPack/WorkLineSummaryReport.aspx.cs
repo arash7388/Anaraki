@@ -53,6 +53,7 @@ namespace MehranPack
             var source = new  List<KeyValuePair<int, string>>();
             source.Add(new KeyValuePair<int, string>(1, "براساس فرآیند"));
             source.Add(new KeyValuePair<int, string>(2, "بر اساس محصول-فرآیند"));
+            source.Add(new KeyValuePair<int, string>(3, "بر اساس  زمان تولید"));
 
             drpReportType.DataSource = source;
             drpReportType.DataValueField = "Key";
@@ -75,10 +76,12 @@ namespace MehranPack
             if (dtTo.Date != "") filters.Add(new Filter("InsertDateTime", OperationType.LessThanOrEqual, dtTo.Date.ToEnDate().AddDays(1).AddSeconds(-1)));
 
             var whereClause = filters.Count > 0 ? ExpressionBuilder.GetExpression<WorkLineHelper>(filters) : null;
-            RadGridReport.Columns[1].Visible = drpReportType.SelectedValue.ToSafeInt() == 2;
-            RadGridReport.Columns[2].Visible = drpReportType.SelectedValue.ToSafeInt() == 2;
-            RadGridReport.Columns[7].Visible = drpReportType.SelectedValue.ToSafeInt() == 1;
-            Session["Result"] = new WorkLineRepository().GetAllForSummaryReport(drpReportType.SelectedValue.ToSafeInt(), whereClause);
+
+            var repType = drpReportType.SelectedValue.ToSafeInt();
+            RadGridReport.Columns[1].Visible = repType == 2 || repType == 3;
+            RadGridReport.Columns[2].Visible = repType == 2 || repType == 3;
+            RadGridReport.Columns[7].Visible = repType == 1 || repType == 3;
+            Session["Result"] = new WorkLineRepository().GetAllForSummaryReport(repType, whereClause);
             BindGrid();
         }
 

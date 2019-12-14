@@ -14,6 +14,7 @@ namespace MehranPack
                 ProductRepository productRepository = new ProductRepository();
                 gridProduct.DataSource = productRepository.GetAllWithCatName();
                 gridProduct.DataBind();
+                Session["Result"] = gridProduct.DataSource;
             }
         }
 
@@ -27,7 +28,6 @@ namespace MehranPack
                 if (e.CommandName == "DeleteProduct")
                 {
                     var msg = Utility.AesEncrypt("آیا از حذف محصول اطمینان دارید؟");
-                    //var aqn = Utility.AesEncrypt(typeof(ProductCategory).AssemblyQualifiedName);
                     var table = Utility.AesEncrypt("Products");
                     Response.Redirect("Confirmation.aspx?Id=" + e.CommandArgument + "&m=" + msg + "&t=" + table);
                 }
@@ -36,6 +36,13 @@ namespace MehranPack
         protected void btnAddProduct_Click(object sender, EventArgs e)
         {
             Response.Redirect("Product.aspx");
+        }
+
+        protected void gridProduct_OnPageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gridProduct.PageIndex = e.NewPageIndex;
+            gridProduct.DataSource = Session["Result"];
+            gridProduct.DataBind();
         }
     }
 }

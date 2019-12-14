@@ -75,7 +75,7 @@ namespace MehranPack
                     var repo = new WorksheetRepository();
                     var tobeEditedWorksheet = repo.GetByIdWithDetails(Page.RouteData.Values["Id"].ToSafeInt());
 
-                    dtWorksheet.Date = tobeEditedWorksheet.InsertDateTime.ToString();
+                    dtWorksheet.Date = tobeEditedWorksheet.Date.ToFaDateTime().ToString();
                     txtPart.Text = tobeEditedWorksheet.PartNo.ToString();
                     drpColor.SelectedValue = tobeEditedWorksheet.ColorId.ToString();
                     drpOperator.SelectedValue = tobeEditedWorksheet.OperatorId.ToString();
@@ -91,7 +91,7 @@ namespace MehranPack
                             ProductName = d.Product.Name,
                             CategoryId = d.Product.ProductCategoryId,
                             CategoryName = new CategoryRepository().GetById(d.Product.ProductCategoryId).Name,
-                            ACode=d.ACode
+                            ACode = d.ACode
                             //InsertDateTime = ((DateTime)d.InsertDateTime).ToFaDate(),
                         });
                     }
@@ -99,9 +99,10 @@ namespace MehranPack
                     Session["GridSource"] = details;
                 }
                 else
+                {
+                    dtWorksheet.LoadCurrentDateTime = true;
                     Session["GridSource"] = new List<InputHelper>();
-
-                dtWorksheet.LoadCurrentDateTime = true;
+                }
 
 
             }

@@ -174,6 +174,22 @@
                             <HeaderStyle Font-Names="bkoodak" Font-Bold="True" Font-Size="Medium" Width="120px" />
                             <ItemStyle Font-Names="bkoodak" Font-Size="10" />
                         </telerik:GridCalculatedColumn>
+                        
+                        <telerik:GridBoundColumn DataField="ProcessTime" FilterControlAltText="Filter column column" HeaderText="زمان مجاز" ReadOnly="True" SortExpression="Count" UniqueName="column23391" AutoPostBackOnFilter="True" CurrentFilterFunction="Contains" DataType="System.Int32" FilterDelay="1200" FilterImageToolTip="فیلتر" MaxLength="50">
+                            <ColumnValidationSettings>
+                                <ModelErrorMessage Text="خطایی رخ داد" />
+                            </ColumnValidationSettings>
+                            <HeaderStyle Font-Names="bkoodak" Font-Bold="True" Font-Size="Medium" Width="120px" />
+                            <ItemStyle Font-Names="bkoodak" Font-Size="10" />
+                        </telerik:GridBoundColumn>
+
+                        <telerik:GridBoundColumn DataField="ProcessDuration" FilterControlAltText="Filter column column" HeaderText="زمان طی شده" ReadOnly="True" SortExpression="Count" UniqueName="column233912" AutoPostBackOnFilter="True" CurrentFilterFunction="Contains" DataType="System.Int32" FilterDelay="1200" FilterImageToolTip="فیلتر" MaxLength="50">
+                            <ColumnValidationSettings>
+                                <ModelErrorMessage Text="خطایی رخ داد" />
+                            </ColumnValidationSettings>
+                            <HeaderStyle Font-Names="bkoodak" Font-Bold="True" Font-Size="Medium" Width="120px" />
+                            <ItemStyle Font-Names="bkoodak" Font-Size="10" />
+                        </telerik:GridBoundColumn>
 
                     </Columns>
                 </MasterTableView>
