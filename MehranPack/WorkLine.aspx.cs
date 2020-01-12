@@ -14,16 +14,16 @@ namespace MehranPack
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!Page.IsPostBack)
-            {
-                //this.Master.Visible = false;
-                var repo = new WorkLineRepository();
-                gridWorkLine.DataSource = repo.GetTodayWorkLine();
-                gridWorkLine.DataBind();
-                lblCurrentDate.Text = Common.Utility.CastToFaDate(DateTime.Now).ToPersianNumber();
-                Session["Result"] = gridWorkLine.DataSource;
-                txtBarcodeInput.Focus();
-            }
+
+
+            //this.Master.Visible = false;
+            var repo = new WorkLineRepository();
+            gridWorkLine.DataSource = repo.GetTodayWorkLine();
+            gridWorkLine.DataBind();
+            lblCurrentDate.Text = Common.Utility.CastToFaDate(DateTime.Now).ToPersianNumber();
+            Session["Result"] = gridWorkLine.DataSource;
+            txtBarcodeInput.Focus();
+
 
             if (!Page.IsPostBack)
                 txtBarcodeInput.Text = "";
@@ -37,14 +37,29 @@ namespace MehranPack
 
             var worksheetId = parts[0].ToSafeInt();
             var operatorId = parts[1].ToSafeInt();
-            //var productId = parts[2].ToSafeInt();
             var processId = parts[2].ToSafeInt();
-            //var order = parts[4].ToSafeInt();
 
-            var prevProcess = HttpContext.Current.Session[worksheetId + "#" + operatorId].ToSafeInt();
+            var workLinerepo = new WorkLineRepository();
+            var thisWorksheetWorkLines = workLinerepo.Get(a => a.WorksheetId == worksheetId);
+                       
+            var prevProcessOfThisWorksheet = thisWorksheetWorkLines.Any() ? thisWorksheetWorkLines.Max(a=>a.ProcessId) : 0;
 
-            if (prevProcess != 0 && prevProcess >= processId)
-                return "عدم رعایت ترتیب فرآیند";
+            if (thisWorksheetWorkLines != null && thisWorksheetWorkLines.Any())
+                if (prevProcessOfThisWorksheet != 0 && prevProcessOfThisWorksheet >= processId)
+                    return "عدم رعایت ترتیب فرآیند";
+
+            if (HttpContext.Current.Session["worksheetProcesses" + "#" + worksheetId] == null)
+            {
+                HttpContext.Current.Session["worksheetProcesses" + "#" + worksheetId] = new WorksheetRepository().GetWorksheetProcesses(worksheetId);
+            }
+
+            var thisWorksheetProcesses = (List<int>)HttpContext.Current.Session["worksheetProcesses" + "#" + worksheetId];
+            var indexOfPrevProcess = thisWorksheetProcesses.IndexOf(prevProcessOfThisWorksheet);
+            var indexOfNextProcess = indexOfPrevProcess + 1;
+            var nextProcessOfThisWorksheet = thisWorksheetProcesses[indexOfNextProcess];
+
+            if(processId != nextProcessOfThisWorksheet)
+                return "عدم رعایت ترتیب فرآیند"; 
 
             //if (prevOrder == 0 && order  != 1)
             //    return "عدم رعایت ترتیب فرآیند";

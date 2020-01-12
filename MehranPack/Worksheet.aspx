@@ -84,9 +84,9 @@
         <div class="col-md-6">
             <button type="button" class="btn btn-info btn-standard" data-toggle="modal" data-target="#myModal">اضافه کردن کالا</button>
             &nbsp;
-            <asp:Button Style="min-width: 100px !important" runat="server" ID="btnSave" Text="ذخیره" CssClass="btn btn-black btn-standard btnSubmit" ></asp:Button>
+            <asp:Button Style="min-width: 100px !important" runat="server" ID="btnSave" Text="ذخیره" CssClass="btn btn-black btn-standard btnSubmit"></asp:Button>
             &nbsp;
-            <asp:Button Style="min-width: 100px !important" runat="server" ID="btnSaveAndPrint" Text="ذخیره و چاپ" CssClass="btn btn-black btn-standard btnSubmit" ></asp:Button>
+            <asp:Button Style="min-width: 100px !important" runat="server" ID="btnSaveAndPrint" Text="ذخیره و چاپ" CssClass="btn btn-black btn-standard btnSubmit"></asp:Button>
             <%--<asp:Button runat="server" ID="Button1" Text="اضافه" CssClass="btn btn-info btn-standard" OnClick="btnAdd_Click"></asp:Button>--%>
         </div>
     </div>
@@ -114,10 +114,12 @@
                         <div class="col-md-10">
                             <label>جستجو</label>
                             <asp:TextBox runat="server" ID="txtSearchTree" placeholder="نام کالا"></asp:TextBox>
-                            <asp:Button runat="server" ID="b1" OnClick="b1_OnClick" Text="جستجو" UseSubmitBehavior="false"/>
+                            <asp:Button runat="server" ID="b1" OnClick="b1_OnClick" Text="جستجو" UseSubmitBehavior="false" />
                             <br />
-                            <label>شناسه</label>&nbsp;
-                            <asp:TextBox runat="server" ID="txtACode" placeholder="ACode"></asp:TextBox>
+                            <label>شناسه</label>&nbsp;&nbsp;
+                            
+                            <asp:TextBox runat="server" ID="txtACode" placeholder="ACode" Width="86"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="txtACodePrefix" placeholder="" Width="85"></asp:TextBox>
                             <br />
                         </div>
                     </div>
@@ -165,7 +167,7 @@
                     { 'title': 'کد محصول' },
                     { 'title': 'نام محصول' },
                     { 'title': 'ACode' },
-                    { 'title':"" }
+                    { 'title': "" }
                 ]
             });
 
@@ -181,7 +183,7 @@
                 dataType: "json",
                 success: function (data) {
                     jQuery.each(data, function (i, row) {
-                       
+
                         tbl.row.add([
                             row["ProductId"],
                             row["ProductCode"],
@@ -220,6 +222,8 @@
 
         $('#myModal')
             .on('show.bs.modal', function () {
+                debugger;
+                $("#txtACodePrefix").val('A' + $("#year").val().substring(2, 4) + $("#mounth").val());
                 $("#txtACode").val('');
                 $("#txtSearchTree").val('');
             });
@@ -227,12 +231,13 @@
 
         $('#form1').on('submit', function (e) {
             debugger;
+            e.preventDefault();
             var operatorId = $("#drpOperator").val();
             var colorId = $("#drpColor").val();
             var partNo = $("#txtPart").val();
             var date = $("#year").val() + "/" + $("#mounth").val() + "/" + $("#day").val()
 
-            e.preventDefault();
+
 
             var allRows = tbl.rows().data();
             var model0 = '{"OperatorId":' + operatorId + ',"ColorId":' + colorId + ',"PartNo":"' + partNo + '","Date":"' + date + '","WorksheetDetails": ['
@@ -268,10 +273,10 @@
                 success: function (data) {
                     if (data.d == "OK") {
                         debugger;
-                        if (buttonpressed=="btnSave")
+                        if (buttonpressed == "btnSave")
                             window.location.href = window.location.origin + "/worksheetlist";
                         else if (buttonpressed == "btnSaveAndPrint")
-                            window.location.href = window.location.origin + "/worksheetprint.aspx?id="+id;
+                            window.location.href = window.location.origin + "/worksheetprint.aspx?id=" + id;
 
                     }
                     else alert(data.d);
@@ -284,7 +289,7 @@
         });
 
         function onDeleteClicked() {
-           tbl.row('.selected').remove().draw(false);
+            tbl.row('.selected').remove().draw(false);
         }
 
 
@@ -295,35 +300,54 @@
                 return;
             }
 
-            $('#myModal').modal('hide');
-            var t = $('#table1').DataTable();
-
-            //var checkState = $("#activeCheckBox")[0].checked == true ? "checked=\"true\"" : "";
+            var ACode = $("#txtACodePrefix").val() + $("#txtACode").val();
 
             $.ajax({
                 type: "POST",
-                url: '<%= ResolveUrl("~/worksheet.aspx/GetProductCodeAndName") %>',
-                data: '{productId:' + productId + '}',
+                url: '<%= ResolveUrl("~/worksheet.aspx/HasDuplicateACode") %>',
+                data: '{ACode:"' + ACode + '"}',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: onSuccess,
+                success: function (data) {
+                    debugger;
+                    if (data.d == "false") {
+                        $('#myModal').modal('hide');
+                        var t = $('#table1').DataTable();
+
+                        //var checkState = $("#activeCheckBox")[0].checked == true ? "checked=\"true\"" : "";
+
+                        $.ajax({
+                            type: "POST",
+                            url: '<%= ResolveUrl("~/worksheet.aspx/GetProductCodeAndName") %>',
+                            data: '{productId:' + productId + '}',
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: onSuccess,
+                            failure: function (response) {
+                                alert('error in GetProductName!');
+                            }
+                        });
+
+                        function onSuccess(response) {
+                            var prCode = response.d.split(',')[0];
+                            var prName = response.d.split(',')[1];
+
+                            t.row.add([
+                                productId,
+                                prCode,
+                                prName,
+                                $("#txtACodePrefix").val() + $("#txtACode").val(),
+                                '<span><button type="button" onclick="onDeleteClicked();">حذف</button></span>'
+                            ]).draw(false);
+                        };
+                    }
+                    else
+                        alert('شناسه کالا تکراری است')
+                },
                 failure: function (response) {
                     alert('error in GetProductName!');
                 }
             });
-
-            function onSuccess(response) {
-                var prCode = response.d.split(',')[0];
-                var prName = response.d.split(',')[1];
-
-                t.row.add([
-                    productId,
-                    prCode,
-                    prName,
-                    'A' + $("#year").val().substr(2,2) + $("#mounth").val() + $("#txtACode").val(),
-                    '<span><button type="button" onclick="onDeleteClicked();">حذف</button></span>'
-                ]).draw(false);
-            };
         }
 
     </script>

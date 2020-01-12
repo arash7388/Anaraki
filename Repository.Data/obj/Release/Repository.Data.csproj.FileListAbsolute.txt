@@ -94,3 +94,4 @@ E:\Tarin\Repository.Data\obj\Release\Repository.Data.dll
 E:\Tarin\Repository.Data\obj\Release\Repository.Data.pdb
 E:\Tarin\Repository.Data\obj\Release\Repository.Data.Migrations.workline.resources
 E:\Tarin\Repository.Data\obj\Release\Repository.Data.Migrations.wid.resources
+E:\Tarin\Repository.Data\obj\Release\Repository.Data.Migrations.acodetime.resources

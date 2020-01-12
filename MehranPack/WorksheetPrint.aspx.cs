@@ -14,6 +14,8 @@ namespace MehranPack
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            var processRepo = new ProcessRepository();
+            var finishProductionProcessId = processRepo.Get(a => a.Name == "اتمام تولید").FirstOrDefault().Id;
             CheckShamsiDateFunctions();
             int id;
 
@@ -47,7 +49,28 @@ namespace MehranPack
             "where WId = @id " +
             "group by WID,[Date],PartNo,ColorName,OperatorId,OperatorName,ProcessId,ProcessName " +
             "order by ProcessId";
-            //"order by p.code,pcat.[order]";
+
+            //"select WID,[Date],PartNo,ColorName,OperatorId,OperatorName,ProcessId,ProcessName "+
+            //" from (select WID,[Date],PartNo,ColorName,OperatorId,OperatorName,ProcessId,ProcessName from (" +
+            //"SELECT distinct w.Id WID, dbo.shamsidate(w.Date) as [Date] ,w.PartNo,c.Name ColorName, u.FriendlyName OperatorName," +
+            //"    pro.Name ProcessName," +
+            //"    pro.Id ProcessId," +
+            //"    cat.Id CatId," +
+            //"    u.Id OperatorId " +
+            //"FROM worksheets w " +
+            //"join Colors c on c.Id = w.ColorId " +
+            //"join Users u on u.Id = w.OperatorId " +
+            //"join WorksheetDetails d on w.Id = d.WorksheetId " +
+            //"join Products p on p.Id = d.ProductId " +
+            //"join Categories cat on cat.Id = p.ProductCategoryId " +
+            //"join ProcessCategories pcat on pcat.CategoryId = cat.Id " +
+            //"join Processes pro on pro.Id = pcat.ProcessId" +
+            //") s1 " +
+            //"where WId = @id " +
+            //"group by WID,[Date],PartNo,ColorName,OperatorId,OperatorName,ProcessId,ProcessName " +
+            //"union all select Id,cast([Date] as varchar(20)),null,null,OperatorId,null,"+ finishProductionProcessId + ",N'اتمام تولید' from worksheets wk " +
+            //"where wk.Id = @id) ss " +
+            //"order by ProcessId ";
 
             sqlDataSource.Parameters.Add("@id", System.Data.DbType.Int32, id);
             report.DataSource = sqlDataSource;

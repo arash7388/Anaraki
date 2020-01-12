@@ -50,10 +50,13 @@ namespace MehranPack
 
         private void BindDrpReportType()
         {
-            var source = new  List<KeyValuePair<int, string>>();
+            var source = new List<KeyValuePair<int, string>>();
             source.Add(new KeyValuePair<int, string>(1, "براساس فرآیند"));
             source.Add(new KeyValuePair<int, string>(2, "بر اساس محصول-فرآیند"));
-            source.Add(new KeyValuePair<int, string>(3, "بر اساس  زمان تولید"));
+            source.Add(new KeyValuePair<int, string>(3, "بر اساس  زمان تولید "));
+            source.Add(new KeyValuePair<int, string>(4, "بر اساس  زمان تولید روزانه"));
+            source.Add(new KeyValuePair<int, string>(5, "بر اساس  زمان تولید هفتگی"));
+            source.Add(new KeyValuePair<int, string>(6, "بر اساس  زمان تولید ماهانه"));
 
             drpReportType.DataSource = source;
             drpReportType.DataValueField = "Key";
@@ -78,9 +81,22 @@ namespace MehranPack
             var whereClause = filters.Count > 0 ? ExpressionBuilder.GetExpression<WorkLineHelper>(filters) : null;
 
             var repType = drpReportType.SelectedValue.ToSafeInt();
-            RadGridReport.Columns[1].Visible = repType == 2 || repType == 3;
-            RadGridReport.Columns[2].Visible = repType == 2 || repType == 3;
-            RadGridReport.Columns[7].Visible = repType == 1 || repType == 3;
+            //0 FriendlyName
+            //1 ProductName
+            //2 ProcessName
+            //3 PersianDate
+            //4 Year
+            //5 Month
+            //6 Day
+            //7 Count
+            //8 ProcessTime
+            //9 ProcessDuration
+
+            RadGridReport.Columns[1].Visible = repType == 2;
+            RadGridReport.Columns[2].Visible = repType == 2;
+            RadGridReport.Columns[3].Visible = repType == 1 || repType == 2;
+            RadGridReport.Columns[7].Visible = repType == 1;
+            RadGridReport.Columns[4].Visible = RadGridReport.Columns[5].Visible = RadGridReport.Columns[6].Visible = repType == 1;
             Session["Result"] = new WorkLineRepository().GetAllForSummaryReport(repType, whereClause);
             BindGrid();
         }

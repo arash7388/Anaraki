@@ -32,5 +32,29 @@ namespace Repository.DAL
         {
             throw new NotImplementedException();
         }
+
+        public List<int> GetWorksheetProcesses(int worksheetId)
+        {
+            var result = new List<int>();
+
+            var w = MTOContext.Worksheets.Include(a=>a.WorksheetDetails)
+                                .FirstOrDefault(a => a.Id == worksheetId);
+
+            foreach(WorksheetDetail d in w.WorksheetDetails)
+            {
+                var product = MTOContext.Products.Include(a=>a.ProductCategory).FirstOrDefault(a => a.Id == d.ProductId);
+                var processesOfThisCat = MTOContext.ProcessCategories.Where(a => a.CategoryId == product.ProductCategoryId);
+
+                foreach(var p in processesOfThisCat)
+                {
+                    if (!result.Contains(p.ProcessId))
+                        result.Add(p.ProcessId);
+                }
+            }
+
+            result.Sort();
+
+            return result;
+        }
     }
 }

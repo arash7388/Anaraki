@@ -90,10 +90,17 @@
                     Status = -1,
                     InsertDateTime = DateTime.Now
                 });
-
-
-                context.SaveChanges();
             }
+
+            if (!context.Processes.Any(a => a.Name == "اتمام تولید"))
+                context.Processes.Add(new Process()
+                {
+                    Name = "اتمام تولید",
+                    Status = -1,
+                    InsertDateTime = DateTime.Now
+                });
+
+            context.SaveChanges();
 
         }
     }

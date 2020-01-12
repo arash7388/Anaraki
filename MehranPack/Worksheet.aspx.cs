@@ -24,10 +24,23 @@ namespace MehranPack
             if (p != null)
             {
                 HttpContext.Current.Session["ProductId"] = p.Id;
-                return p.Code + "," + p.Name;
+                var catRepo = new CategoryRepository();
+                var cat = catRepo.Find(p.ProductCategoryId)?.Name;
+                return p.Code + "," + cat + " " + p.Name;
             }
 
             return "";
+        }
+
+        [WebMethod]
+        public static string HasDuplicateACode(string ACode)
+        {
+            //var q = HttpContext.Current.Request.QueryString[0];
+            //todo in edit mode it counts the edited worksheet and is not right
+            if (new WorksheetDetailRepository().Get(a => a.ACode == ACode).Any())
+                return "true";
+
+            return "false";
         }
 
         [WebMethod]
@@ -151,6 +164,9 @@ namespace MehranPack
 
             var uow = new UnitOfWork();
 
+            if (model.WorksheetDetails.GroupBy(a => a.ACode).Where(a => a.Count() > 1).Any())
+                return "شناسه کالای تکراری در ردیف ها";
+
             if (id.ToSafeInt() == 0)
             {
                 var w = new Repository.Entity.Domain.Worksheet();
@@ -175,6 +191,7 @@ namespace MehranPack
 
                 tobeEdited.UpdateDateTime = DateTime.Now;
                 tobeEdited.Date = Utility.AdjustTimeOfDate(date.ToEnDate());
+                tobeEdited.OperatorId = model.OperatorId;
                 tobeEdited.UserId = userId;
                 tobeEdited.ColorId = model.ColorId;
                 tobeEdited.PartNo = model.PartNo;
