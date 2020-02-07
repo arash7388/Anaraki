@@ -16,7 +16,7 @@ namespace Repository.DAL
     {
         public List<Category> GetAllMainCats()
         {
-            var res = from c in MTOContext.Categories where c.ParentId == null orderby c.Name select c;
+            var res = from c in DBContext.Categories where c.ParentId == null orderby c.Name select c;
 
             return res.ToList();
         }
@@ -25,7 +25,7 @@ namespace Repository.DAL
         {
             if(parentId!=0)
             {
-                var res = from c in MTOContext.Categories where c.ParentId == parentId orderby c.Name select c;
+                var res = from c in DBContext.Categories where c.ParentId == parentId orderby c.Name select c;
                 return res.ToList();
             }
 
@@ -35,8 +35,8 @@ namespace Repository.DAL
         }
         public List<CategoryHelper> GetAllWithParents()
         {
-            var result = from p in MTOContext.Categories
-                         join i in MTOContext.Categories
+            var result = from p in DBContext.Categories
+                         join i in DBContext.Categories
                 on p.Parent equals i into ps
                          from pp in ps.DefaultIfEmpty()
                 select new CategoryHelper
@@ -86,17 +86,17 @@ namespace Repository.DAL
         }
         public List<Category> GetFirstSixElements()
         {
-            return MTOContext.Categories.Take(6).ToList();
+            return DBContext.Categories.Take(6).ToList();
         }
 
         public List<Category> GetLastSixElements()
         {
-            return MTOContext.Categories.OrderByDescending(a=>a.InsertDateTime).Take(6).ToList();
+            return DBContext.Categories.OrderByDescending(a=>a.InsertDateTime).Take(6).ToList();
         }
 
         public List<KeyValuePair<int, string>> GetAllIdName()
         {
-            var cats = from c in MTOContext.Categories
+            var cats = from c in DBContext.Categories
                 select new 
                 {
                     Key = c.Id,
@@ -117,11 +117,11 @@ namespace Repository.DAL
         {
             var result = new List<Category>();
 
-            var rootNodes = MTOContext.Categories.Where(a => a.ParentId == null).ToList();
+            var rootNodes = DBContext.Categories.Where(a => a.ParentId == null).ToList();
 
             foreach (Category category in rootNodes)
             {
-                var leaves = MTOContext.GetAllLeafCategories(category.Id.ToSafeString());
+                var leaves = DBContext.GetAllLeafCategories(category.Id.ToSafeString());
                 foreach (Category leaf in leaves)
                 {
                     result.Add(leaf);
@@ -136,7 +136,7 @@ namespace Repository.DAL
             var catProp = new CategoryPropRepository().GetById(catPropId);
             if (catProp != null)
             {
-                var result = MTOContext.Categories.SingleOrDefault(a => a.Id == catProp.CategoryId);
+                var result = DBContext.Categories.SingleOrDefault(a => a.Id == catProp.CategoryId);
                 return result;
             }
 

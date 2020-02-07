@@ -17,7 +17,7 @@ namespace Repository.DAL
             if (username == "" || password == "")
                 throw new LocalException("Username or password is empty", "نام کاربری یا کلمه عبور خالی است");
 
-            var result = from u in base.MTOContext.Users
+            var result = from u in base.DBContext.Users
                 where u.Username == username && u.Password == password
                 select u;
 

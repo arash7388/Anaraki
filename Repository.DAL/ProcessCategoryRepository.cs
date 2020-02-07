@@ -14,9 +14,9 @@ namespace Repository.DAL
     {
         public List<ProcessCategoryHelper> GetByCatIdWithDetails(int catId)
         {
-            var result = (from pc in MTOContext.ProcessCategories
-                          join p in MTOContext.Processes on pc.ProcessId equals p.Id
-                          join c in MTOContext.Categories on pc.CategoryId equals c.Id
+            var result = (from pc in DBContext.ProcessCategories
+                          join p in DBContext.Processes on pc.ProcessId equals p.Id
+                          join c in DBContext.Categories on pc.CategoryId equals c.Id
                           where pc.CategoryId==catId
                          
                           select new ProcessCategoryHelper
@@ -37,22 +37,22 @@ namespace Repository.DAL
         {
             var catRepo = new CategoryRepository();
 
-            var result = (from pc in MTOContext.ProcessCategories
-                         join p in MTOContext.Processes on pc.ProcessId equals p.Id
-                         join c in MTOContext.Categories on pc.CategoryId equals c.Id
+            var result = (from pc in DBContext.ProcessCategories
+                         join p in DBContext.Processes on pc.ProcessId equals p.Id
+                         join c in DBContext.Categories on pc.CategoryId equals c.Id
                          group pc by new { pc.CategoryId, c.Name } into g
                          select new ProCatHelper
                          {
                              CategoryId = g.Key.CategoryId,
                              CategoryName =  g.Key.Name,
                              //ProcessId=p.Id,
-                             //ProcessNames= string.Join(",", MTOContext.ProcessCategories.Include("Process").Where(a=>a.CategoryId== g.Key.CategoryId).Select(a=>a.Process.Name).ToArray())
-                             //ProcessNames = MTOContext.ProcessCategories.Select(a => a.ProcessId.ToString()).FirstOrDefault()
+                             //ProcessNames= string.Join(",", DBContext.ProcessCategories.Include("Process").Where(a=>a.CategoryId== g.Key.CategoryId).Select(a=>a.Process.Name).ToArray())
+                             //ProcessNames = DBContext.ProcessCategories.Select(a => a.ProcessId.ToString()).FirstOrDefault()
                          }).ToList();
 
             foreach(var r in result)
             {
-                r.ProcessNames = string.Join("," , MTOContext.ProcessCategories.Include("Process").Where(a => a.CategoryId == r.CategoryId).Select(a => a.Process.Name).ToArray());
+                r.ProcessNames = string.Join("," , DBContext.ProcessCategories.Include("Process").Where(a => a.CategoryId == r.CategoryId).Select(a => a.Process.Name).ToArray());
                 r.CategoryName = catRepo.GetFullName(r.CategoryId);
             }
 

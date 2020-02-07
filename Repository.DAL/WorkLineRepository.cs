@@ -19,12 +19,12 @@ namespace Repository.DAL
             var endOfDay = DateTime.Now;
             var endofDayTillMidnight = new DateTime(endOfDay.Year, endOfDay.Month, endOfDay.Day, 23, 59, 59);
 
-            var result = from wl in MTOContext.WorkLines
+            var result = from wl in DBContext.WorkLines
                          where wl.InsertDateTime > prevDay && wl.InsertDateTime < endofDayTillMidnight
-                         //join p in MTOContext.Products on wl.ProductId equals p.Id
-                         //join c in MTOContext.Categories on p.ProductCategoryId equals c.Id
-                         join pro in MTOContext.Processes on wl.ProcessId equals pro.Id
-                         join u in MTOContext.Users on wl.OperatorId equals u.Id
+                         //join p in DBContext.Products on wl.ProductId equals p.Id
+                         //join c in DBContext.Categories on p.ProductCategoryId equals c.Id
+                         join pro in DBContext.Processes on wl.ProcessId equals pro.Id
+                         join u in DBContext.Users on wl.OperatorId equals u.Id
                          orderby wl.InsertDateTime descending
                          select new WorkLineHelper
                          {
@@ -54,11 +54,9 @@ namespace Repository.DAL
 
         public List<WorkLineHelper> GetAllForReport(System.Linq.Expressions.Expression<Func<WorkLineHelper, bool>> whereClause)
         {
-            var result = from wl in MTOContext.WorkLines
-                             //join p in MTOContext.Products on wl.ProductId equals p.Id
-                             //join c in MTOContext.Categories on p.ProductCategoryId equals c.Id
-                         join pro in MTOContext.Processes on wl.ProcessId equals pro.Id
-                         join u in MTOContext.Users on wl.OperatorId equals u.Id
+            var result = from wl in DBContext.WorkLines
+                         join pro in DBContext.Processes on wl.ProcessId equals pro.Id
+                         join u in DBContext.Users on wl.OperatorId equals u.Id
                          orderby wl.InsertDateTime descending
 
                          select new WorkLineHelper
@@ -69,9 +67,6 @@ namespace Repository.DAL
                              OperatorName = u.FriendlyName,
                              ProcessId = wl.ProcessId,
                              ProcessName = pro.Name,
-                             //ProductCode = p.Code,
-                             //ProductId = wl.ProductId,
-                             //ProductName = c.Name + " " + p.Name,
                              WorksheetId = wl.WorksheetId
                          };
 
@@ -95,9 +90,8 @@ namespace Repository.DAL
 
         public List<WorkLineSummary> GetAllForSummaryReport(int reportType, System.Linq.Expressions.Expression<Func<WorkLineHelper, bool>> whereClause)
         {
-
-            var workLinesSelect = from wl in MTOContext.WorkLines
-                                  join u in MTOContext.Users on wl.OperatorId equals u.Id
+            var workLinesSelect = from wl in DBContext.WorkLines
+                                  join u in DBContext.Users on wl.OperatorId equals u.Id
 
                                   select new WorkLineHelper
                                   {
@@ -152,12 +146,12 @@ namespace Repository.DAL
             }
             else if (reportType == 2)
             {
-                var worksheetsDetails = from ws in MTOContext.Worksheets
-                                        join wd in MTOContext.WorksheetDetails on ws.Id equals wd.WorksheetId
-                                        join p in MTOContext.Products on wd.ProductId equals p.Id
-                                        join cat in MTOContext.Categories on p.ProductCategoryId equals cat.Id
-                                        join pcat in MTOContext.ProcessCategories on cat.Id equals pcat.CategoryId
-                                        join pro in MTOContext.Processes on pcat.ProcessId equals pro.Id
+                var worksheetsDetails = from ws in DBContext.Worksheets
+                                        join wd in DBContext.WorksheetDetails on ws.Id equals wd.WorksheetId
+                                        join p in DBContext.Products on wd.ProductId equals p.Id
+                                        join cat in DBContext.Categories on p.ProductCategoryId equals cat.Id
+                                        join pcat in DBContext.ProcessCategories on cat.Id equals pcat.CategoryId
+                                        join pro in DBContext.Processes on pcat.ProcessId equals pro.Id
                                         select new WorkLineHelper
                                         {
                                             WorksheetId = ws.Id,
@@ -171,11 +165,6 @@ namespace Repository.DAL
 
                 var worksheetsDetailsList = new List<WorkLineHelper>();
 
-                //if (whereClause != null)
-                //{
-                //    worksheetsDetailsList = worksheetsDetails.Where(whereClause).ToList();
-                //}
-                //else
                 worksheetsDetailsList = worksheetsDetails.ToList();
 
                 result = (from x in worksheetsDetailsList
@@ -196,24 +185,20 @@ namespace Repository.DAL
                 {
                     var faDate = Utility.CastToFaDate(item.InsertDateTime);
                     item.PersianDate = Utility.CastToFaDateTime(item.InsertDateTime); //faDate;
-                    //item.PersianDateTime = Utility.CastToFaDateTime(item.InsertDateTime); 
                     item.Year = faDate.Substring(0, 4).ToSafeInt();
                     item.Month = faDate.Substring(5, 2).ToSafeInt();
                     item.Day = faDate.Substring(8, 2).ToSafeInt();
-                    //item.Hour = item.InsertDateTime.Value.Hour;
-                    //item.Min = item.InsertDateTime.Value.Minute;
-                    //item.Sec = item.InsertDateTime.Value.Second;
                 }
             }
             else if (reportType == 3)
             {
-                var worksheetsDetails = from ws in MTOContext.Worksheets
-                                        join u in MTOContext.Users on ws.OperatorId equals u.Id
-                                        join wd in MTOContext.WorksheetDetails on ws.Id equals wd.WorksheetId
-                                        join p in MTOContext.Products on wd.ProductId equals p.Id
-                                        join cat in MTOContext.Categories on p.ProductCategoryId equals cat.Id
-                                        join pcat in MTOContext.ProcessCategories on cat.Id equals pcat.CategoryId
-                                        join pro in MTOContext.Processes on pcat.ProcessId equals pro.Id
+                var worksheetsDetails = from ws in DBContext.Worksheets
+                                        join u in DBContext.Users on ws.OperatorId equals u.Id
+                                        join wd in DBContext.WorksheetDetails on ws.Id equals wd.WorksheetId
+                                        join p in DBContext.Products on wd.ProductId equals p.Id
+                                        join cat in DBContext.Categories on p.ProductCategoryId equals cat.Id
+                                        join pcat in DBContext.ProcessCategories on cat.Id equals pcat.CategoryId
+                                        join pro in DBContext.Processes on pcat.ProcessId equals pro.Id
                                         select new WorkLineHelper
                                         {
                                             WorksheetId = ws.Id,
@@ -314,15 +299,15 @@ namespace Repository.DAL
                 result = finalJoinedResult;
 
             }
-            else if (reportType == 4 || reportType == 5 || reportType == 6)
+            else if (reportType == 4)
             {
-                var worksheetsDetails = from ws in MTOContext.Worksheets
-                                        join u in MTOContext.Users on ws.OperatorId equals u.Id
-                                        join wd in MTOContext.WorksheetDetails on ws.Id equals wd.WorksheetId
-                                        join p in MTOContext.Products on wd.ProductId equals p.Id
-                                        join cat in MTOContext.Categories on p.ProductCategoryId equals cat.Id
-                                        join pcat in MTOContext.ProcessCategories on cat.Id equals pcat.CategoryId
-                                        join pro in MTOContext.Processes on pcat.ProcessId equals pro.Id
+                var worksheetsDetails = from ws in DBContext.Worksheets
+                                        join u in DBContext.Users on ws.OperatorId equals u.Id
+                                        join wd in DBContext.WorksheetDetails on ws.Id equals wd.WorksheetId
+                                        join p in DBContext.Products on wd.ProductId equals p.Id
+                                        join cat in DBContext.Categories on p.ProductCategoryId equals cat.Id
+                                        join pcat in DBContext.ProcessCategories on cat.Id equals pcat.CategoryId
+                                        join pro in DBContext.Processes on pcat.ProcessId equals pro.Id
                                         select new WorkLineHelper
                                         {
                                             WorksheetId = ws.Id,
@@ -333,114 +318,215 @@ namespace Repository.DAL
                                             ProductCode = p.Code,
                                             ProductName = cat.Name + " " + p.Name,
                                             ProcessName = pro.Name,
-                                            ProcessTime = pcat.ProcessTime
+                                            ProcessTime = pcat.ProcessTime,
+                                            InsertDateTime = ws.InsertDateTime
                                         };
 
-                var worksheetsDetailsList = worksheetsDetails.ToList();
+                var worksheetsDetailsList = new List<WorkLineHelper>();
+
+                if (whereClause != null)
+                    worksheetsDetailsList = worksheetsDetails.Where(whereClause).ToList();
+                else
+                    worksheetsDetailsList = worksheetsDetails.ToList();
 
                 //calcing allowed time
-                var allowedTimeResult = from r in worksheetsDetailsList
-                                        group r by new { r.WorksheetId,r.OperatorId,r.OperatorName } into g
-                                        select new WorkLineSummary
-                                        {
-                                            WorksheetId = g.Key.WorksheetId ?? -1,
-                                            OperatorId = g.Key.OperatorId,
-                                            FriendlyName = g.Key.OperatorName,
-                                            ProcessTime = g.Sum(a => a.ProcessTime)
-                                        };
+                var operatorAllowedTimeResult = from r in worksheetsDetailsList
+                                                group r by new { r.InsertDateTime, r.OperatorId, r.OperatorName } into g
+                                                select new WorkLineSummary
+                                                {
+                                                    InsertDateTime = g.Key.InsertDateTime ?? DateTime.MinValue,
+                                                    OperatorId = g.Key.OperatorId,
+                                                    FriendlyName = g.Key.OperatorName,
+                                                    ProcessTime = g.Sum(a => a.ProcessTime)
+                                                };
 
-                foreach (WorkLineHelper it in workLinesSelectList)
+                var operatorAllowedTimeResultList = operatorAllowedTimeResult.ToList();
+                SetDateProps(operatorAllowedTimeResultList);
+
+                var operatorAllowedTimeResultInADay = from r in operatorAllowedTimeResultList
+                                                      group r by new { r.Year, r.Month, r.Day, r.OperatorId, r.FriendlyName } into g
+                                                      select new WorkLineSummary
+                                                      {
+                                                          Year = g.Key.Year,
+                                                          Month = g.Key.Month,
+                                                          Day = g.Key.Day,
+                                                          OperatorId = g.Key.OperatorId,
+                                                          FriendlyName = g.Key.FriendlyName,
+                                                          ProcessTime = g.Sum(a => a.ProcessTime)
+                                                      };
+
+                var operatorAllowedTimeResultInADayList = operatorAllowedTimeResultInADay.ToList();
+
+                workLinesSelectList = workLinesSelect.ToList();
+                SetDataProps(workLinesSelectList);
+                workLinesSelectList = workLinesSelectList.OrderBy(a => a.OperatorId).ThenBy(a => a.InsertDateTime).ToList();
+
+                WorkLineHelper item, prevItem;
+                for (int i = 0; i < workLinesSelectList.Count; i++)
                 {
-                    var faDate = Utility.CastToFaDate(it.InsertDateTime);
-                    it.PersianDate = faDate;
-                    it.PersianDateTime = Utility.CastToFaDateTime(it.InsertDateTime); ;
-                    it.Year = faDate.Substring(0, 4).ToSafeInt();
-                    it.Month = faDate.Substring(5, 2).ToSafeInt();
-                    it.Day = faDate.Substring(8, 2).ToSafeInt();
-                }
-
-                result = (from x in worksheetsDetailsList
-                          join wl in workLinesSelectList
-                          on new { WID = x.WorksheetId, PID = x.ProcessId, OID = x.OperatorId } equals new { WID = wl.WorksheetId, PID = wl.ProcessId, OID = wl.OperatorId }
-                          select new WorkLineSummary
-                          {
-                              WorksheetId = x.WorksheetId ?? -1,
-                              InsertDateTime = (DateTime)wl.InsertDateTime,
-                              OperatorId = x.OperatorId,
-                              FriendlyName = wl.OperatorName,
-                              PersianDate = wl.PersianDateTime,
-                              ProductCode = x.ProductCode,
-                              ProductName = x.ProductName,
-                              ProcessName = x.ProcessName,
-                              ProcessTime = x.ProcessTime,
-                              ProcessId = x.ProcessId,
-                              Year = wl.Year,
-                              Month = wl.Month,
-                              Day = wl.Day
-                          }).ToList();
-
-                //var abc = result.Where(a => a.OperatorId == 1012).Select(a => new { a.WorksheetId, a.InsertDateTime, a.ProductName, a.ProcessName, a.Month, a.Day });
-
-                //calcing spent time
-                var groupedByWIDProcess = from x in result
-                                          group x by new {x.WorksheetId, x.ProcessId, x.ProcessName, x.InsertDateTime, x.Year, x.Month, x.Day } into g
-                                          select new WorkLineSummary
-                                          {
-                                              WorksheetId=g.Key.WorksheetId,
-                                              ProcessId = g.Key.ProcessId,
-                                              ProcessName = g.Key.ProcessName,
-                                              InsertDateTime = g.Key.InsertDateTime,
-                                              Year = g.Key.Year,
-                                              Month = g.Key.Month,
-                                              Day = g.Key.Day
-                                          };
-
-                var tt = groupedByWIDProcess.ToList();
-                var kk = tt.Where(a => a.OperatorId == 1014).Select(a => new { a.Year, a.Month, a.Day, a.FriendlyName, a.ProcessId });
-                var groupedByWIDProcessList = groupedByWIDProcess.ToList();
-                groupedByWIDProcessList = groupedByWIDProcessList.OrderBy(a => a.OperatorId).ThenBy(a => a.InsertDateTime).ToList();
-
-                WorkLineSummary item, prevItem;
-                for (int i = 0; i < groupedByWIDProcessList.Count; i++)
-                {
-                    item = groupedByWIDProcessList[i];
+                    item = workLinesSelectList[i];
 
                     if (i != 0)
-                        prevItem = groupedByWIDProcessList[i - 1];
+                        prevItem = workLinesSelectList[i - 1];
                     else
                         prevItem = null;
 
                     if (prevItem?.WorksheetId == item.WorksheetId && item.Year == prevItem.Year && item.Month == prevItem.Month && item.Day == prevItem.Day)
-                        prevItem.ProcessDuration = Math.Truncate((item.InsertDateTime - prevItem.InsertDateTime).TotalSeconds).ToSafeInt();
+                        prevItem.ProcessDuration = Math.Truncate(((TimeSpan)(item.InsertDateTime - prevItem.InsertDateTime)).TotalSeconds).ToSafeInt();
                 }
 
-                var sumSpentTimeResult = from r in groupedByWIDProcessList
-                                         group r by new { r.WorksheetId, r.Year, r.Month, r.Day } into g
-                                         select new WorkLineSummary
-                                         {
-                                             Year = g.Key.Year,
-                                             Month = g.Key.Month,
-                                             Day = g.Key.Day,
-                                             WorksheetId=g.Key.WorksheetId,
-                                             ProcessDuration = g.Sum(a => a.ProcessDuration)
-                                         };
+                var sumSpentTimeResultOperatorInADay = from r in workLinesSelectList
+                                                       group r by new { r.OperatorId, r.Year, r.Month, r.Day } into g
+                                                       select new WorkLineSummary
+                                                       {
+                                                           Year = g.Key.Year,
+                                                           Month = g.Key.Month,
+                                                           Day = g.Key.Day,
+                                                           OperatorId = g.Key.OperatorId,
+                                                           ProcessDuration = g.Sum(a => a.ProcessDuration)
+                                                       };
 
-                var finalJoinedResult = from r in allowedTimeResult
-                                        join s in sumSpentTimeResult on r.WorksheetId equals s.WorksheetId
-                                        select new WorkLineSummary
+                operatorAllowedTimeResultInADayList = operatorAllowedTimeResultInADay.ToList();
+                var sumSpentTimeResultOperatorInADayList = sumSpentTimeResultOperatorInADay.ToList();
+
+                foreach (var element in operatorAllowedTimeResultInADayList)
+                {
+                    var sumItem = sumSpentTimeResultOperatorInADayList.FirstOrDefault(a => a.OperatorId == element.OperatorId && a.Year == element.Year && a.Month == element.Month && a.Day == element.Day);
+                    if (sumItem != null)
+                    {
+                        element.ProcessDuration = sumItem.ProcessDuration;
+                    }
+                }
+
+                result = operatorAllowedTimeResultInADayList;
+            }
+            else if (reportType == 6)
+            {
+                var worksheetsDetails = from ws in DBContext.Worksheets
+                                        join u in DBContext.Users on ws.OperatorId equals u.Id
+                                        join wd in DBContext.WorksheetDetails on ws.Id equals wd.WorksheetId
+                                        join p in DBContext.Products on wd.ProductId equals p.Id
+                                        join cat in DBContext.Categories on p.ProductCategoryId equals cat.Id
+                                        join pcat in DBContext.ProcessCategories on cat.Id equals pcat.CategoryId
+                                        join pro in DBContext.Processes on pcat.ProcessId equals pro.Id
+                                        select new WorkLineHelper
                                         {
-                                            WorksheetId=r.WorksheetId,
-                                            OperatorId = r.OperatorId,
-                                            FriendlyName = r.FriendlyName,
-                                            ProcessTime = r.ProcessTime,
-                                            ProcessDuration = s.ProcessDuration
+                                            WorksheetId = ws.Id,
+                                            OperatorId = (int)ws.OperatorId,
+                                            OperatorName = u.FriendlyName,
+                                            ProductId = wd.ProductId,
+                                            ProcessId = pro.Id,
+                                            ProductCode = p.Code,
+                                            ProductName = cat.Name + " " + p.Name,
+                                            ProcessName = pro.Name,
+                                            ProcessTime = pcat.ProcessTime,
+                                            InsertDateTime = ws.InsertDateTime
                                         };
 
+                var worksheetsDetailsList = new List<WorkLineHelper>();
 
-                result = finalJoinedResult;
+                if (whereClause != null)
+                    worksheetsDetailsList = worksheetsDetails.Where(whereClause).ToList();
+                else
+                    worksheetsDetailsList = worksheetsDetails.ToList();
+
+                //calcing allowed time
+                var operatorAllowedTimeResult = from r in worksheetsDetailsList
+                                                group r by new { r.InsertDateTime, r.OperatorId, r.OperatorName } into g
+                                                select new WorkLineSummary
+                                                {
+                                                    InsertDateTime = g.Key.InsertDateTime ?? DateTime.MinValue,
+                                                    OperatorId = g.Key.OperatorId,
+                                                    FriendlyName = g.Key.OperatorName,
+                                                    ProcessTime = g.Sum(a => a.ProcessTime)
+                                                };
+
+                var operatorAllowedTimeResultList = operatorAllowedTimeResult.ToList();
+                SetDateProps(operatorAllowedTimeResultList);
+
+                var operatorAllowedTimeResultInAMonth = from r in operatorAllowedTimeResultList
+                                                      group r by new { r.Year, r.Month, r.OperatorId, r.FriendlyName } into g
+                                                      select new WorkLineSummary
+                                                      {
+                                                          Year = g.Key.Year,
+                                                          Month = g.Key.Month,
+                                                          OperatorId = g.Key.OperatorId,
+                                                          FriendlyName = g.Key.FriendlyName,
+                                                          ProcessTime = g.Sum(a => a.ProcessTime)
+                                                      };
+
+                var operatorAllowedTimeResultInAMonthList = operatorAllowedTimeResultInAMonth.ToList();
+
+                workLinesSelectList = workLinesSelect.ToList();
+                SetDataProps(workLinesSelectList);
+                workLinesSelectList = workLinesSelectList.OrderBy(a => a.OperatorId).ThenBy(a => a.InsertDateTime).ToList();
+
+                WorkLineHelper item, prevItem;
+                for (int i = 0; i < workLinesSelectList.Count; i++)
+                {
+                    item = workLinesSelectList[i];
+
+                    if (i != 0)
+                        prevItem = workLinesSelectList[i - 1];
+                    else
+                        prevItem = null;
+
+                    if (prevItem?.WorksheetId == item.WorksheetId && item.Year == prevItem.Year && item.Month == prevItem.Month)
+                        prevItem.ProcessDuration = Math.Truncate(((TimeSpan)(item.InsertDateTime - prevItem.InsertDateTime)).TotalSeconds).ToSafeInt();
+                }
+
+                var sumSpentTimeResultOperatorInAMonth = from r in workLinesSelectList
+                                                       group r by new { r.OperatorId, r.Year, r.Month } into g
+                                                       select new WorkLineSummary
+                                                       {
+                                                           Year = g.Key.Year,
+                                                           Month = g.Key.Month,
+                                                           OperatorId = g.Key.OperatorId,
+                                                           ProcessDuration = g.Sum(a => a.ProcessDuration)
+                                                       };
+
+                operatorAllowedTimeResultInAMonthList = operatorAllowedTimeResultInAMonthList.ToList();
+                var sumSpentTimeResultOperatorInAMonthList = sumSpentTimeResultOperatorInAMonth.ToList();
+
+                foreach (var element in operatorAllowedTimeResultInAMonthList)
+                {
+                    var sumItem = sumSpentTimeResultOperatorInAMonthList.FirstOrDefault(a => a.OperatorId == element.OperatorId && a.Year == element.Year && a.Month == element.Month);
+                    if (sumItem != null)
+                    {
+                        element.ProcessDuration = sumItem.ProcessDuration;
+                    }
+                }
+
+                result = operatorAllowedTimeResultInAMonthList;
             }
 
             return result.ToList();
+        }
+
+        private static void SetDataProps(List<WorkLineHelper> workLineHelperList)
+        {
+            foreach (WorkLineHelper it in workLineHelperList)
+            {
+                var faDate = Utility.CastToFaDate(it.InsertDateTime);
+                it.PersianDate = faDate;
+                it.PersianDateTime = Utility.CastToFaDateTime(it.InsertDateTime); ;
+                it.Year = faDate.Substring(0, 4).ToSafeInt();
+                it.Month = faDate.Substring(5, 2).ToSafeInt();
+                it.Day = faDate.Substring(8, 2).ToSafeInt();
+            }
+        }
+
+        private static void SetDateProps(List<WorkLineSummary> summaryList)
+        {
+            foreach (var it in summaryList)
+            {
+                var faDate = Utility.CastToFaDate(it.InsertDateTime);
+                it.PersianDate = faDate;
+                it.PersianDateTime = Utility.CastToFaDateTime(it.InsertDateTime); ;
+                it.Year = faDate.Substring(0, 4).ToSafeInt();
+                it.Month = faDate.Substring(5, 2).ToSafeInt();
+                it.Day = faDate.Substring(8, 2).ToSafeInt();
+            }
         }
     }
 
@@ -461,6 +547,7 @@ namespace Repository.DAL
         public int Min { get; set; }
         public int Sec { get; set; }
         public int ProcessTime { get; set; }
+        public int ProcessDuration { get; set; }
     }
 
     public class WorkLineSummary

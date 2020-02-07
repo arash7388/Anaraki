@@ -132,6 +132,7 @@
             };
 
             $("#txtBarcodeInput").on("keypress", function (e) {
+                debugger;
                 if (e.keyCode == 35) {
                     debugger;
                     var inputTxt = $("#txtBarcodeInput").val();

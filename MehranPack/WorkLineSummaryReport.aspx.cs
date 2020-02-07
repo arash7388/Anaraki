@@ -55,7 +55,7 @@ namespace MehranPack
             source.Add(new KeyValuePair<int, string>(2, "بر اساس محصول-فرآیند"));
             source.Add(new KeyValuePair<int, string>(3, "بر اساس  زمان تولید "));
             source.Add(new KeyValuePair<int, string>(4, "بر اساس  زمان تولید روزانه"));
-            source.Add(new KeyValuePair<int, string>(5, "بر اساس  زمان تولید هفتگی"));
+            //source.Add(new KeyValuePair<int, string>(5, "بر اساس  زمان تولید هفتگی"));
             source.Add(new KeyValuePair<int, string>(6, "بر اساس  زمان تولید ماهانه"));
 
             drpReportType.DataSource = source;
@@ -96,7 +96,10 @@ namespace MehranPack
             RadGridReport.Columns[2].Visible = repType == 2;
             RadGridReport.Columns[3].Visible = repType == 1 || repType == 2;
             RadGridReport.Columns[7].Visible = repType == 1;
-            RadGridReport.Columns[4].Visible = RadGridReport.Columns[5].Visible = RadGridReport.Columns[6].Visible = repType == 1;
+            RadGridReport.Columns[4].Visible = RadGridReport.Columns[5].Visible = repType == 1 || repType == 4 || repType == 6;
+            RadGridReport.Columns[6].Visible = repType == 1 || repType == 4;
+            RadGridReport.Columns[8].Visible = repType == 4 || repType == 3 || repType == 6;
+            RadGridReport.Columns[9].Visible = repType == 4 || repType == 3 || repType == 6;
             Session["Result"] = new WorkLineRepository().GetAllForSummaryReport(repType, whereClause);
             BindGrid();
         }
@@ -141,6 +144,18 @@ namespace MehranPack
             //        //cell.Style["font-size"] = (4 + e.Item.ItemIndex * 0.8) + "pt";
             //    }
             //}
+        }
+
+        protected void drpReportType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (drpReportType.SelectedValue.ToSafeInt() == 4 || drpReportType.SelectedValue.ToSafeInt() == 6)
+            {
+                lblHint.Visible = true;
+            }
+            else
+            {
+                lblHint.Visible = false;
+            }
         }
 
         //public class CustomLocalizationProvider : RadGridLocalizationProvider

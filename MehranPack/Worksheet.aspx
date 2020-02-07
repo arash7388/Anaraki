@@ -21,7 +21,7 @@
             اپراتور:
         </div>
 
-        <div class="col-sm-4">
+        <div class="col-sm-5">
             <asp:DropDownList runat="server" ID="drpOperator"></asp:DropDownList>
         </div>
 
@@ -30,7 +30,7 @@
             تاریخ:
         </div>
 
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <uc:PersianCalender runat="server" ID="dtWorksheet" AllowEmpty="False" timepanel-visible="False" />
         </div>
     </div>
@@ -40,8 +40,16 @@
             پارت:
         </div>
 
-        <div class="col-sm-4">
+        <div class="col-sm-2">
             <asp:TextBox runat="server" ID="txtPart"></asp:TextBox>
+        </div>
+
+         <div class="col-sm-1" align="left">
+            موم:
+        </div>
+
+        <div class="col-sm-2">
+            <asp:TextBox runat="server" ID="txtWaxNo"></asp:TextBox>
         </div>
 
 
@@ -49,7 +57,7 @@
             رنگ:
         </div>
 
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <asp:DropDownList runat="server" ID="drpColor"></asp:DropDownList>
         </div>
     </div>
@@ -235,12 +243,13 @@
             var operatorId = $("#drpOperator").val();
             var colorId = $("#drpColor").val();
             var partNo = $("#txtPart").val();
+            var waxNo = $("#txtWaxNo").val();
             var date = $("#year").val() + "/" + $("#mounth").val() + "/" + $("#day").val()
 
 
 
             var allRows = tbl.rows().data();
-            var model0 = '{"OperatorId":' + operatorId + ',"ColorId":' + colorId + ',"PartNo":"' + partNo + '","Date":"' + date + '","WorksheetDetails": ['
+            var model0 = '{"OperatorId":' + operatorId + ',"ColorId":' + colorId + ',"PartNo":"' + partNo + '","WaxNo":"' + waxNo +'","Date":"' + date + '","WorksheetDetails": ['
             var model = model0;
 
             jQuery.each(allRows, function (i, row) {

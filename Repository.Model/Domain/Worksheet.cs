@@ -14,6 +14,7 @@ namespace Repository.Entity.Domain
         public DateTime Date { get; set; }
 
         public string PartNo { get; set; }
+        public string WaxNo { get; set; }
 
         public Color Color { get; set; }
         public int ColorId { get; set; }

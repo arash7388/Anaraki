@@ -90,6 +90,7 @@ namespace MehranPack
 
                     dtWorksheet.Date = tobeEditedWorksheet.Date.ToFaDateTime().ToString();
                     txtPart.Text = tobeEditedWorksheet.PartNo.ToString();
+                    txtWaxNo.Text = tobeEditedWorksheet.WaxNo.ToString();
                     drpColor.SelectedValue = tobeEditedWorksheet.ColorId.ToString();
                     drpOperator.SelectedValue = tobeEditedWorksheet.OperatorId.ToString();
 
@@ -174,6 +175,7 @@ namespace MehranPack
                 var insDateTime = model.InsertDateTime;
                 w.Date = Utility.AdjustTimeOfDate(date.ToEnDate());
                 w.PartNo = model.PartNo;
+                w.WaxNo = model.WaxNo;
                 w.InsertDateTime = insDateTime;
                 w.OperatorId = model.OperatorId;
                 w.ColorId = model.ColorId;
@@ -195,6 +197,7 @@ namespace MehranPack
                 tobeEdited.UserId = userId;
                 tobeEdited.ColorId = model.ColorId;
                 tobeEdited.PartNo = model.PartNo;
+                tobeEdited.WaxNo = model.WaxNo;
 
                 foreach (WorksheetDetail item in model.WorksheetDetails)
                 {

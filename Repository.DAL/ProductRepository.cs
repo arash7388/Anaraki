@@ -20,8 +20,8 @@ namespace Repository.DAL
 
         public List<ProductHelper> GetAllWithCatName()
         {
-            var r = from p in MTOContext.Products
-                    join c in MTOContext.Categories.DefaultIfEmpty() on p.ProductCategoryId equals c.Id
+            var r = from p in DBContext.Products
+                    join c in DBContext.Categories.DefaultIfEmpty() on p.ProductCategoryId equals c.Id
                     select new ProductHelper
                     {
                         Id = p.Id,
@@ -39,7 +39,7 @@ namespace Repository.DAL
 
         public List<ProductHelper> GetAllWithCatRecursive()
         {
-            var result =  MTOContext.Products.Select(a => new ProductHelper()
+            var result =  DBContext.Products.Select(a => new ProductHelper()
             {
                 Id = a.Id,
                 Code = a.Code,
@@ -60,7 +60,7 @@ namespace Repository.DAL
             if (id == -1)
                 return "";
 
-            var cat = MTOContext.Categories.Find(id);
+            var cat = DBContext.Categories.Find(id);
             if (cat != null && cat.ParentId == null)
                 return cat.Name;
             return  GetCatFullPath((int)cat.ParentId) + "->" + cat.Name ;
@@ -68,8 +68,8 @@ namespace Repository.DAL
 
         public List<ProductHelper> GetByCatIdWithCatName(int? catId=null)
         {
-            var r = from p in MTOContext.Products
-                    join c in MTOContext.Categories.DefaultIfEmpty() on p.ProductCategoryId equals c.Id
+            var r = from p in DBContext.Products
+                    join c in DBContext.Categories.DefaultIfEmpty() on p.ProductCategoryId equals c.Id
                 select new ProductHelper
                 {
                     Id = p.Id,
@@ -90,7 +90,7 @@ namespace Repository.DAL
 
         public string GetCodeById(int pid)
         {
-            var singleOrDefault = MTOContext.Products.SingleOrDefault(a => a.Id == pid);
+            var singleOrDefault = DBContext.Products.SingleOrDefault(a => a.Id == pid);
             if (singleOrDefault != null)
                 return singleOrDefault.Code;
 
@@ -99,7 +99,7 @@ namespace Repository.DAL
 
         public List<ProductSupplyHelper> GetProductSupply(Expression<Func<ProductSupplyHelper, bool>> filter)
         {
-            var grouped = from d in MTOContext.InputOutputDetails join i in MTOContext.InputOutput
+            var grouped = from d in DBContext.InputOutputDetails join i in DBContext.InputOutput
                           on d.InputOutputId equals  i.Id
             
             group d by  new {i.InOutType, d.ProductId}
@@ -126,8 +126,8 @@ namespace Repository.DAL
             }
 
             var result = from g in list
-                         join p in MTOContext.Products on g.Key equals p.Id
-                         join c in MTOContext.Categories on p.ProductCategoryId equals c.Id
+                         join p in DBContext.Products on g.Key equals p.Id
+                         join c in DBContext.Categories on p.ProductCategoryId equals c.Id
                          select new ProductSupplyHelper
                          {
                              Id = g.Key,
@@ -152,11 +152,11 @@ namespace Repository.DAL
 
         public List<ProductSupplyHelper> GetProductSupplyWithCategory(Expression<Func<ProductSupplyHelper, bool>> filter)
         {
-            var joined = from d in MTOContext.InputOutputDetails
-                join i in MTOContext.InputOutput on d.InputOutputId equals i.Id
-                join p in MTOContext.Products on d.ProductId equals p.Id
-                join c in MTOContext.Categories on p.ProductCategoryId equals c.Id
-                join c2 in MTOContext.Categories on c.ParentId equals c2.Id
+            var joined = from d in DBContext.InputOutputDetails
+                join i in DBContext.InputOutput on d.InputOutputId equals i.Id
+                join p in DBContext.Products on d.ProductId equals p.Id
+                join c in DBContext.Categories on p.ProductCategoryId equals c.Id
+                join c2 in DBContext.Categories on c.ParentId equals c2.Id
                 into y
                 from a in y.DefaultIfEmpty()
                 select new Helper
@@ -220,12 +220,12 @@ namespace Repository.DAL
 
         public List<ProductSupplyHelper> GetProductSupplyWithCategory2(Expression<Func<ProductSupplyHelper, bool>> filter)
         {
-            var joined2 = from d in MTOContext.InputOutputDetails
-                         join i in MTOContext.InputOutput on d.InputOutputId equals i.Id
-                         join p in MTOContext.Products on d.ProductId equals p.Id
-                         join c in MTOContext.Categories on p.ProductCategoryId equals c.Id
-                         join c2 in MTOContext.Categories on c.ParentId equals c2.Id
-                         //join c3 in MTOContext.Categories on c2.ParentId equals c3.Id
+            var joined2 = from d in DBContext.InputOutputDetails
+                         join i in DBContext.InputOutput on d.InputOutputId equals i.Id
+                         join p in DBContext.Products on d.ProductId equals p.Id
+                         join c in DBContext.Categories on p.ProductCategoryId equals c.Id
+                         join c2 in DBContext.Categories on c.ParentId equals c2.Id
+                         //join c3 in DBContext.Categories on c2.ParentId equals c3.Id
                          into y
                          from a in y.DefaultIfEmpty()
                          select new Helper
@@ -245,7 +245,7 @@ namespace Repository.DAL
                          };
 
             var joined = from j in joined2
-                          join c3 in MTOContext.Categories on j.ParentId equals c3.Id
+                          join c3 in DBContext.Categories on j.ParentId equals c3.Id
                           into y from a in y.DefaultIfEmpty()
                           select new Helper
                           {

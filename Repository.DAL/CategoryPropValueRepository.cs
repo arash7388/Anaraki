@@ -11,9 +11,9 @@ namespace Repository.DAL
     {
         public List<CategoryPropValueHelper> GetAllByOrder()
         {
-            var result = from v in MTOContext.CategoryPropValues
-                join p in MTOContext.CategoryProps on v.CategoryPropId equals p.Id
-                join c in MTOContext.Categories on p.CategoryId equals c.Id
+            var result = from v in DBContext.CategoryPropValues
+                join p in DBContext.CategoryProps on v.CategoryPropId equals p.Id
+                join c in DBContext.Categories on p.CategoryId equals c.Id
                 orderby c.Id, p.Id
                 //select v;
                 select new CategoryPropValueHelper()
@@ -33,7 +33,7 @@ namespace Repository.DAL
 
         public List<CategoryPropValue> GetPropValues(int propId)
         {
-            var result = from v in MTOContext.CategoryPropValues where v.CategoryPropId == propId select v;
+            var result = from v in DBContext.CategoryPropValues where v.CategoryPropId == propId select v;
                          
             return result.ToList();
         }

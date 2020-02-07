@@ -11,7 +11,7 @@ namespace Repository.DAL
     {
         public List<City> GetAllByOrder()
         {
-            var result = from c in MTOContext.Cities orderby c.Name  select c ;
+            var result = from c in DBContext.Cities orderby c.Name  select c ;
             return result.ToList();
         }
     }

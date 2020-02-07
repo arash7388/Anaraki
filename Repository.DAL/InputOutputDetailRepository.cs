@@ -14,7 +14,7 @@ namespace Repository.DAL
     {
         public List<InputOutputDetailHelper> GetByFilter(Expression<Func<InputOutputDetailHelper, bool>> filter = null)
         {
-            var res = from d in MTOContext.InputOutputDetails
+            var res = from d in DBContext.InputOutputDetails
                     .Include(a => a.InputOutput)
                     .Include(a => a.Customer)
                     .Include(a => a.Product)
@@ -98,7 +98,7 @@ namespace Repository.DAL
         public List<InputOutputDetail> GetAllIns()
         {
             return
-                MTOContext.InputOutputDetails.Include(a => a.Product)
+                DBContext.InputOutputDetails.Include(a => a.Product)
                     .Include(a => a.Customer)
                     .Where(a => a.InputOutput.InOutType == (int) InOutType.In)
                     .OrderByDescending(a => a.Id)
@@ -108,7 +108,7 @@ namespace Repository.DAL
         public List<InputOutputDetail> GetAllOuts()
         {
             return
-                MTOContext.InputOutputDetails.Include(a => a.Product)
+                DBContext.InputOutputDetails.Include(a => a.Product)
                     .Include(a => a.Customer)
                     .Where(a => a.InputOutput.InOutType == (int) InOutType.Out)
                     .OrderByDescending(a => a.Id)
@@ -118,8 +118,8 @@ namespace Repository.DAL
         public int GetProductSupply(int pid, DateTime dateTime)
         {
             var totIn =
-                from d in MTOContext.InputOutputDetails.Where(a => a.ProductId == pid && a.InsertDateTime <= dateTime)
-                join i in MTOContext.InputOutput on d.InputOutputId equals i.Id
+                from d in DBContext.InputOutputDetails.Where(a => a.ProductId == pid && a.InsertDateTime <= dateTime)
+                join i in DBContext.InputOutput on d.InputOutputId equals i.Id
                 where i.InOutType == (int) InOutType.In
                 group d by d.ProductId
                 into x
@@ -129,8 +129,8 @@ namespace Repository.DAL
                 };
 
             var totOut =
-                from d in MTOContext.InputOutputDetails.Where(a => a.ProductId == pid && a.InsertDateTime <= dateTime)
-                join i in MTOContext.InputOutput on d.InputOutputId equals i.Id
+                from d in DBContext.InputOutputDetails.Where(a => a.ProductId == pid && a.InsertDateTime <= dateTime)
+                join i in DBContext.InputOutput on d.InputOutputId equals i.Id
                 where i.InOutType == (int) InOutType.Out
                 group d by d.ProductId
                 into x
@@ -151,7 +151,7 @@ namespace Repository.DAL
         public List<int> CheckSupplyValidationBeforeDeleteInput(int receiptId)
         {
             var negativePids = new List<int>();
-            var r = MTOContext.InputOutput.SingleOrDefault(a => a.Id == receiptId);
+            var r = DBContext.InputOutput.SingleOrDefault(a => a.Id == receiptId);
             foreach (InputOutputDetail tobeRemovedDetail in r.InputOutputDetails)
             {
                 var listWithRunning = GetListWithRunningSupply((DateTime) r.InsertDateTime, tobeRemovedDetail);
@@ -171,7 +171,7 @@ namespace Repository.DAL
         {
             var negativePids = new List<int>();
             var receiptsToBeChecked =
-                MTOContext.InputOutputDetails.Include(a => a.InputOutput).Where(
+                DBContext.InputOutputDetails.Include(a => a.InputOutput).Where(
                     a => a.InsertDateTime > insertDateTime
                          && a.ProductId == pid).ToList();
 
@@ -213,7 +213,7 @@ namespace Repository.DAL
         private List<DetailWithRunningSupply> GetListWithRunningSupply(DateTime insertDateTime, InputOutputDetail tobeRemovedDetail)
         {
             var receiptsToBeChecked =
-                MTOContext.InputOutputDetails.Include(a => a.InputOutput).Where(
+                DBContext.InputOutputDetails.Include(a => a.InputOutput).Where(
                     a => a.InsertDateTime > insertDateTime
                          && a.ProductId == tobeRemovedDetail.ProductId).ToList();
 

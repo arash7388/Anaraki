@@ -38,8 +38,9 @@
         <div class="col-xs-3 col-sm-1" align="left">
             نوع گزارش:
         </div>
-        <div class="col-xs-6 col-sm-3">
-            <asp:DropDownList runat="server" ID="drpReportType" CssClass="form-control paddingTop0" Height="29"></asp:DropDownList>
+        <div class="col-xs-9 col-sm-11">
+            <asp:DropDownList runat="server" ID="drpReportType" CssClass="paddingTop0" Height="29" Width="180" OnSelectedIndexChanged="drpReportType_SelectedIndexChanged"></asp:DropDownList>
+            &nbsp;<asp:Label runat="server" ID="lblHint" Font-Size="Small" ForeColor="Red" Visible="true" CssClass="alert-danger">توجه:جهت صحیح بودن خروجی گزارش باید تاریخ ثبت برگه و تاریخ تولید اوپراتور یکسان باشند</asp:Label>
         </div>
     </div>
     <div class="row">
@@ -47,7 +48,7 @@
             اوپراتور:
         </div>
         <div class="col-xs-6 col-sm-3">
-            <asp:DropDownList runat="server" ID="drpOperator" CssClass="form-control paddingTop0" Height="29"></asp:DropDownList>
+            <asp:DropDownList runat="server" ID="drpOperator" CssClass="form-control paddingTop0" Width="180" Height="29"></asp:DropDownList>
         </div>
         <div class="col-xs-6 col-sm-3 col-sm-offset-5" align="left">
             <span class="input-group-btn">
@@ -144,7 +145,7 @@
                             <ItemStyle Font-Names="bkoodak" Font-Size="10" />
                         </telerik:GridBoundColumn>
 
-                        <telerik:GridBoundColumn DataField="Year" FilterControlAltText="Filter column column" HeaderText="سال" ReadOnly="True" SortExpression="Count" UniqueName="column239" AutoPostBackOnFilter="True" CurrentFilterFunction="Contains" DataType="System.Int32" FilterDelay="1200" FilterImageToolTip="فیلتر" MaxLength="50">
+                        <telerik:GridBoundColumn DataField="Year" FilterControlAltText="Filter column column" HeaderText="سال" ReadOnly="True" SortExpression="Count" UniqueName="columnYear" AutoPostBackOnFilter="True" CurrentFilterFunction="Contains" DataType="System.Int32" FilterDelay="1200" FilterImageToolTip="فیلتر" MaxLength="50">
                             <ColumnValidationSettings>
                                 <ModelErrorMessage Text="خطایی رخ داد" />
                             </ColumnValidationSettings>
@@ -152,7 +153,7 @@
                             <ItemStyle Font-Names="bkoodak" Font-Size="10" />
                         </telerik:GridBoundColumn>
 
-                        <telerik:GridBoundColumn DataField="Month" FilterControlAltText="Filter column column" HeaderText="ماه" ReadOnly="True" SortExpression="Count" UniqueName="column1239" AutoPostBackOnFilter="True" CurrentFilterFunction="Contains" DataType="System.Int32" FilterDelay="1200" FilterImageToolTip="فیلتر" MaxLength="50">
+                        <telerik:GridBoundColumn DataField="Month" FilterControlAltText="Filter column column" HeaderText="ماه" ReadOnly="True" SortExpression="Count" UniqueName="columnMonth" AutoPostBackOnFilter="True" CurrentFilterFunction="Contains" DataType="System.Int32" FilterDelay="1200" FilterImageToolTip="فیلتر" MaxLength="50">
                             <ColumnValidationSettings>
                                 <ModelErrorMessage Text="خطایی رخ داد" />
                             </ColumnValidationSettings>
@@ -160,7 +161,7 @@
                             <ItemStyle Font-Names="bkoodak" Font-Size="10" />
                         </telerik:GridBoundColumn>
 
-                        <telerik:GridBoundColumn DataField="Day" FilterControlAltText="Filter column column" HeaderText="روز" ReadOnly="True" SortExpression="Count" UniqueName="column2339" AutoPostBackOnFilter="True" CurrentFilterFunction="Contains" DataType="System.Int32" FilterDelay="1200" FilterImageToolTip="فیلتر" MaxLength="50">
+                        <telerik:GridBoundColumn DataField="Day" FilterControlAltText="Filter column column" HeaderText="روز" ReadOnly="True" SortExpression="Count" UniqueName="columnDay" AutoPostBackOnFilter="True" CurrentFilterFunction="Contains" DataType="System.Int32" FilterDelay="1200" FilterImageToolTip="فیلتر" MaxLength="50">
                             <ColumnValidationSettings>
                                 <ModelErrorMessage Text="خطایی رخ داد" />
                             </ColumnValidationSettings>

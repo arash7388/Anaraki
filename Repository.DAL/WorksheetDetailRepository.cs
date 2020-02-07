@@ -11,7 +11,7 @@ namespace Repository.DAL
     {
         public List<WorksheetDetailHelper> GetAllDetails(int wid)
         {
-            return MTOContext.WorksheetDetails.Include("Product").Where(a => a.WorksheetId == wid).Select(a => new WorksheetDetailHelper
+            return DBContext.WorksheetDetails.Include("Product").Where(a => a.WorksheetId == wid).Select(a => new WorksheetDetailHelper
             {
                 Id = a.Id,
                 ProductId = a.ProductId,

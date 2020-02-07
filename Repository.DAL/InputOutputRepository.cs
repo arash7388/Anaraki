@@ -14,22 +14,22 @@ namespace Repository.DAL
         public InputOutput GetByIdWithDetails(int id)
         {
             var det =
-                MTOContext.InputOutputDetails.Where(d => d.InputOutputId == id)
+                DBContext.InputOutputDetails.Where(d => d.InputOutputId == id)
                     .Include(b => b.Product).ToList();
 
-            var i = MTOContext.InputOutput.SingleOrDefault(a => a.Id == id);
+            var i = DBContext.InputOutput.SingleOrDefault(a => a.Id == id);
             i.InputOutputDetails = det;
             return i;
         }
 
         public List<InputOutput> GetAllIns()
         {
-            return MTOContext.InputOutput.Where(a => a.InOutType == (int) InOutType.In).ToList();
+            return DBContext.InputOutput.Where(a => a.InOutType == (int) InOutType.In).ToList();
         }
 
         public List<InputOutput> GetAllOuts()
         {
-            return MTOContext.InputOutput.Where(a => a.InOutType == (int)InOutType.Out).ToList();
+            return DBContext.InputOutput.Where(a => a.InOutType == (int)InOutType.Out).ToList();
         }
     }
 }

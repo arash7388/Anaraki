@@ -9,21 +9,21 @@
 
     public class BaseRepository<T> : IRepository<T>, IDisposable where T : class
     {
-        protected readonly MTOContext MTOContext;
+        protected readonly MTOContext DBContext;
         protected readonly DbSet<T> DbSet;
         private bool _isTemp;
 
         
-        public BaseRepository(MTOContext mtoContext = null)
+        public BaseRepository(MTOContext context = null)
         {
-            if (mtoContext == null)
+            if (context == null)
             {
-                mtoContext = new MTOContext();
+                context = new MTOContext();
                 this._isTemp = true;
             }
 
-            this.DbSet = mtoContext.Set<T>();
-            this.MTOContext = mtoContext;
+            this.DbSet = context.Set<T>();
+            this.DBContext = context;
         }
 
         public virtual int Count
@@ -107,7 +107,7 @@
 
         public virtual void Delete(T entity)
         {
-            if (this.MTOContext.Entry(entity).State == EntityState.Detached)
+            if (this.DBContext.Entry(entity).State == EntityState.Detached)
             {               
                 this.DbSet.Attach(entity);
             }
@@ -120,7 +120,7 @@
             var entitiesToDelete = this.Filter(predicate);
             foreach (var entity in entitiesToDelete)
             {
-                if (this.MTOContext.Entry(entity).State == EntityState.Detached)
+                if (this.DBContext.Entry(entity).State == EntityState.Detached)
                 {
                     this.DbSet.Attach(entity);
                 }
@@ -131,7 +131,7 @@
 
         public virtual void Update(T entity)
         {
-            var entry = this.MTOContext.Entry(entity);
+            var entry = this.DBContext.Entry(entity);
             this.DbSet.Attach(entity);
             entry.State = EntityState.Modified;
 
@@ -140,8 +140,8 @@
         public void Dispose()
         {
             if (this._isTemp)
-                if (this.MTOContext != null)
-                    this.MTOContext.Dispose();
+                if (this.DBContext != null)
+                    this.DBContext.Dispose();
 
         }
     }

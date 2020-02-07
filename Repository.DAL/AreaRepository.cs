@@ -11,7 +11,7 @@ namespace Repository.DAL
     {
         public List<Area> GetAllByOrder()
         {
-            var res = MTOContext.Areas.Include("City").OrderBy(a => a.City.Name).ThenBy(a => a.Name);
+            var res = DBContext.Areas.Include("City").OrderBy(a => a.City.Name).ThenBy(a => a.Name);
 
             return res.ToList();
         }

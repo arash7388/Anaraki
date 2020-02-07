@@ -11,7 +11,7 @@ namespace Repository.DAL
     {
         //public List<KeyValuePair<int, string>> GetAllIdName()
         //{
-        //    var catProps = from c in MTOContext.CategoryProps
+        //    var catProps = from c in DBContext.CategoryProps
         //               select new
         //               {
         //                   Key = c.Id,
@@ -28,14 +28,14 @@ namespace Repository.DAL
 
         public List<CategoryProp> GetByCatId(int catId)
         {
-            var result = from p in MTOContext.CategoryProps where p.CategoryId == catId select p;
+            var result = from p in DBContext.CategoryProps where p.CategoryId == catId select p;
 
             return result.ToList();
         }
 
         public List<CategoryProp> GetPropHaveDatasourceByCatId(int catId)
         {
-            var result = from p in MTOContext.CategoryProps where p.CategoryId == catId && p.HasDatasource select p;
+            var result = from p in DBContext.CategoryProps where p.CategoryId == catId && p.HasDatasource select p;
 
             return result.ToList();
         }

@@ -348,7 +348,7 @@ namespace Repository.DAL
         
         public void RejectChanges()
         {
-            //this.MTOContext.RejectChanges();
+            //this.DBContext.RejectChanges();
         }
 
         public void Dispose()

@@ -19,9 +19,9 @@ namespace Repository.DAL
         //    IQueryable<TagHelper> rslt = null;
         //    try
         //    {
-        //        var tags = from a in MTOContext.Tags select a;
+        //        var tags = from a in DBContext.Tags select a;
 
-        //        var tagPosts = MTOContext.TagPosts.Where(a => a.PostId == postId);
+        //        var tagPosts = DBContext.TagPosts.Where(a => a.PostId == postId);
 
         //        rslt = from t in tags
         //            join pt in tagPosts on t.Id equals pt.TagId
