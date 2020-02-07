@@ -90,7 +90,7 @@ namespace MehranPack
 
                     dtWorksheet.Date = tobeEditedWorksheet.Date.ToFaDateTime().ToString();
                     txtPart.Text = tobeEditedWorksheet.PartNo.ToString();
-                    txtWaxNo.Text = tobeEditedWorksheet.WaxNo.ToString();
+                    txtWaxNo.Text = tobeEditedWorksheet.WaxNo.ToSafeString();
                     drpColor.SelectedValue = tobeEditedWorksheet.ColorId.ToString();
                     drpOperator.SelectedValue = tobeEditedWorksheet.OperatorId.ToString();
 

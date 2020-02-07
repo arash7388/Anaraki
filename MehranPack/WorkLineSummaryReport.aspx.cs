@@ -57,6 +57,10 @@ namespace MehranPack
             source.Add(new KeyValuePair<int, string>(4, "بر اساس  زمان تولید روزانه"));
             //source.Add(new KeyValuePair<int, string>(5, "بر اساس  زمان تولید هفتگی"));
             source.Add(new KeyValuePair<int, string>(6, "بر اساس  زمان تولید ماهانه"));
+            source.Add(new KeyValuePair<int, string>(7, "بر اساس  تاخیر تولید روزانه"));
+            source.Add(new KeyValuePair<int, string>(8, "بر اساس  تعجیل تولید روزانه"));
+            source.Add(new KeyValuePair<int, string>(9, "بر اساس  تاخیر تولید ماهانه"));
+            source.Add(new KeyValuePair<int, string>(10, "بر اساس  تعجیل تولید ماهانه"));
 
             drpReportType.DataSource = source;
             drpReportType.DataValueField = "Key";
@@ -93,13 +97,13 @@ namespace MehranPack
             //9 ProcessDuration
 
             RadGridReport.Columns[1].Visible = repType == 2;
-            RadGridReport.Columns[2].Visible = repType == 2;
+            RadGridReport.Columns[2].Visible = repType == 2 || repType == 7 || repType == 8 || repType == 9 || repType == 10;
             RadGridReport.Columns[3].Visible = repType == 1 || repType == 2;
             RadGridReport.Columns[7].Visible = repType == 1;
-            RadGridReport.Columns[4].Visible = RadGridReport.Columns[5].Visible = repType == 1 || repType == 4 || repType == 6;
-            RadGridReport.Columns[6].Visible = repType == 1 || repType == 4;
-            RadGridReport.Columns[8].Visible = repType == 4 || repType == 3 || repType == 6;
-            RadGridReport.Columns[9].Visible = repType == 4 || repType == 3 || repType == 6;
+            RadGridReport.Columns[4].Visible = RadGridReport.Columns[5].Visible = repType == 1 || repType == 4 || repType == 6 || repType == 7 || repType == 8 || repType == 9 || repType == 10 ;
+            RadGridReport.Columns[6].Visible = repType == 1 || repType == 4 || repType == 7 || repType == 8;
+            RadGridReport.Columns[8].Visible = repType == 4 || repType == 3 || repType == 6 || repType == 7 || repType == 8 || repType == 9 || repType == 10;
+            RadGridReport.Columns[9].Visible = repType == 4 || repType == 3 || repType == 6 || repType == 7 || repType == 8 || repType == 9 || repType == 10;
             Session["Result"] = new WorkLineRepository().GetAllForSummaryReport(repType, whereClause);
             BindGrid();
         }
