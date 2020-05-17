@@ -19,7 +19,7 @@ namespace MehranPack
             Debuging.Info("ProcessList Page_Load");
             if (!Page.IsPostBack)
             {
-                 Session["Result"] = gridList.DataSource = new ProcessRepository().GetAll().OrderBy(a => a.Name).ToList();
+                 Session["Result"] = gridList.DataSource = new ProcessRepository().GetAll().OrderBy(a => a.Id).ToList();
                 gridList.DataBind();
             }
         }

@@ -2,10 +2,7 @@
 using Repository.Entity.Domain;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Core.Objects.DataClasses;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Repository.DAL
 {
@@ -273,7 +270,7 @@ namespace Repository.DAL
                     item.Day = faDate.Substring(8, 2).ToSafeInt();
 
                     if (prevItem?.OperatorId == item.OperatorId && item.Year == prevItem.Year && item.Month == prevItem.Month && item.Day == prevItem.Day)
-                        prevItem.ProcessDuration = Math.Truncate((item.InsertDateTime - prevItem.InsertDateTime).TotalSeconds).ToSafeInt();
+                        prevItem.ProcessDuration = Math.Truncate((item.InsertDateTime - prevItem.InsertDateTime).TotalMinutes).ToSafeInt();
                 }
 
                 var sumSpentTimeResult = from r in groupedByWIDProcessList
@@ -372,7 +369,7 @@ namespace Repository.DAL
                         prevItem = null;
 
                     if (prevItem?.WorksheetId == item.WorksheetId && item.Year == prevItem.Year && item.Month == prevItem.Month && item.Day == prevItem.Day)
-                        prevItem.ProcessDuration = Math.Truncate(((TimeSpan)(item.InsertDateTime - prevItem.InsertDateTime)).TotalSeconds).ToSafeInt();
+                        prevItem.ProcessDuration = Math.Truncate(((TimeSpan)(item.InsertDateTime - prevItem.InsertDateTime)).TotalMinutes).ToSafeInt();
                 }
 
                 var sumSpentTimeResultOperatorInADay = from r in workLinesSelectList
@@ -472,7 +469,7 @@ namespace Repository.DAL
                         prevItem = null;
 
                     if (prevItem?.WorksheetId == item.WorksheetId && item.Year == prevItem.Year && item.Month == prevItem.Month)
-                        prevItem.ProcessDuration = Math.Truncate(((TimeSpan)(item.InsertDateTime - prevItem.InsertDateTime)).TotalSeconds).ToSafeInt();
+                        prevItem.ProcessDuration = Math.Truncate(((TimeSpan)(item.InsertDateTime - prevItem.InsertDateTime)).TotalMinutes).ToSafeInt();
                 }
 
                 var sumSpentTimeResultOperatorInAMonth = from r in workLinesSelectList
@@ -576,7 +573,7 @@ namespace Repository.DAL
                         prevItem = null;
 
                     if (prevItem?.WorksheetId == item.WorksheetId && item.Year == prevItem.Year && item.Month == prevItem.Month && item.Day == prevItem.Day)
-                        prevItem.ProcessDuration = Math.Truncate(((TimeSpan)(item.InsertDateTime - prevItem.InsertDateTime)).TotalSeconds).ToSafeInt();
+                        prevItem.ProcessDuration = Math.Truncate(((TimeSpan)(item.InsertDateTime - prevItem.InsertDateTime)).TotalMinutes).ToSafeInt();
                 }
 
                 var sumSpentTimeResultOperatorProcessInADay = from r in workLinesSelectList
@@ -692,7 +689,7 @@ namespace Repository.DAL
                         prevItem = null;
 
                     if (prevItem?.WorksheetId == item.WorksheetId && item.Year == prevItem.Year && item.Month == prevItem.Month)
-                        prevItem.ProcessDuration = Math.Truncate(((TimeSpan)(item.InsertDateTime - prevItem.InsertDateTime)).TotalSeconds).ToSafeInt();
+                        prevItem.ProcessDuration = Math.Truncate(((TimeSpan)(item.InsertDateTime - prevItem.InsertDateTime)).TotalMinutes).ToSafeInt();
                 }
 
                 var sumSpentTimeResultOperatorProcessInADay = from r in workLinesSelectList

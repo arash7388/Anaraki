@@ -1,5 +1,4 @@
-﻿using System.Configuration;
-using System.Data.Entity.Core.Objects;
+﻿using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
 using CodeFirstStoreFunctions;
 using Repository.Entity.Map;
@@ -7,18 +6,13 @@ using Repository.Entity.Map;
 namespace Repository.Data
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.ComponentModel.DataAnnotations;
     using System.Data.Entity;
     using System.Data.Entity.ModelConfiguration;
-    using System.Data.Entity.Validation;
     using System.Reflection;
 
     using Repository.Data.Migrations;
     using Repository.Entity.Domain;
-
-    //using TimeSheet.Models;
 
     public class MTOContext : DbContext
     {

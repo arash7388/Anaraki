@@ -49,17 +49,6 @@
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:BoundField>
 
-                    <%--<asp:BoundField DataField="ProductCode" HeaderText="کد محصول">
-                        <ControlStyle BorderColor="#FFFF99" BorderStyle="Solid" />
-                        <HeaderStyle HorizontalAlign="Center" />
-                        <ItemStyle HorizontalAlign="Center" />
-                    </asp:BoundField>
-
-                    <asp:BoundField DataField="ProductName" HeaderText="نام محصول">
-                        <HeaderStyle HorizontalAlign="Center" />
-                        <ItemStyle HorizontalAlign="Center" />
-                    </asp:BoundField>--%>
-
                     <asp:BoundField DataField="ProcessName" HeaderText="فرآیند">
                         <HeaderStyle HorizontalAlign="Center" />
                         <ItemStyle HorizontalAlign="Center" />
@@ -132,10 +121,11 @@
             };
 
             $("#txtBarcodeInput").on("keypress", function (e) {
-                debugger;
+
                 if (e.keyCode == 35) {
                     debugger;
                     var inputTxt = $("#txtBarcodeInput").val();
+                    var inputTxt1 = '<%#Session["InputBarcode"] != null ? Session["InputBarcode"].ToString() : "" %>';
                     var paramss = '{input:"' + inputTxt + '"}'
                     $.ajax({
                         url: '<%= ResolveUrl("~/workline.aspx/AddRow") %>',
@@ -144,10 +134,11 @@
                         dataType: "json",
                         contentType: "application/json; charset=utf-8",
                         success: function (data) {
+                            debugger;
                             if (data.d == "OK") {
                                 $("#txtBarcodeInput").val('');
                                 toastr["success"]("ردیف با موفقیت اضافه شد")
-
+                                $("#txtBarcodeInput").val('');
                                 setTimeout(function () { window.location.href = window.location.origin + "/workline.aspx"; }, 1200);
                             }
                             else {

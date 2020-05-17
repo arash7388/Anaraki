@@ -41,6 +41,11 @@ namespace Repository.DAL
             var w = DBContext.Worksheets.Include(a => a.WorksheetDetails)
                                 .FirstOrDefault(a => a.Id == worksheetId);
 
+            if(w == null)
+            {
+                return null;
+            }
+
             foreach (WorksheetDetail d in w.WorksheetDetails)
             {
                 var product = DBContext.Products.Include(a => a.ProductCategory).FirstOrDefault(a => a.Id == d.ProductId);

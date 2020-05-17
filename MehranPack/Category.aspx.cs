@@ -61,13 +61,26 @@ namespace MehranPack
                     if(u.Categories.Get(a=>a.Code==txtCode.Text).Any())
                         throw new LocalException("Duplicate code", "کد گروه تکراری است");
 
-                    u.Categories.Create(new Repository.Entity.Domain.Category()
+                    var newCat = new Repository.Entity.Domain.Category()
                     {
                         Code = txtCode.Text,
                         Name = txtName.Text,
                         ParentId = parentId,
                         Image = fileUploadControl.FileBytes
-                    });
+                    };
+
+                    u.Categories.Create(newCat);
+
+                    var p = u.Processes.Filter(a => a.Name == "اتمام تولید").FirstOrDefault();
+                    if(p!=null)
+                    {
+                        u.ProcessCategories.Create(new Repository.Entity.Domain.ProcessCategory
+                        {
+                            Process = p,
+                            Category = newCat,
+                            Order=99
+                        });
+                    }
                 }
                 else
                 {

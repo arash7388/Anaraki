@@ -318,8 +318,13 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
-                    debugger;
                     if (data.d == "false") {
+
+                        if (hasClientSideDuplicateACode(ACode)) {
+                            alert('شناسه کالا تکراری است');
+                            return;
+                        }
+                            
                         $('#myModal').modal('hide');
                         var t = $('#table1').DataTable();
 
@@ -357,6 +362,31 @@
                     alert('error in GetProductName!');
                 }
             });
+        }
+
+        function hasClientSideDuplicateACode(ACode) {
+            var result = false;
+
+            $("#table1 tr").each(function (index) {
+                debugger;
+                if (index !== 0) {
+
+                    $row = $(this);
+
+                    var acode = "";
+
+                    if ($row.context.children[3] != null)
+                        acode = $row.context.children[3].innerText;
+
+                    if (ACode == acode) {
+                        result = true;
+                        return;
+                    }
+
+                }
+            });
+
+            return result;
         }
 
     </script>

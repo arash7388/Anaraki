@@ -24,8 +24,9 @@ namespace MehranPack
             Session["Result"] = gridWorkLine.DataSource;
             txtBarcodeInput.Focus();
 
+            Session["InputBarcode"] = txtBarcodeInput.Text;
 
-            if (!Page.IsPostBack)
+            //if (!Page.IsPostBack)
                 txtBarcodeInput.Text = "";
         }
 
@@ -50,7 +51,11 @@ namespace MehranPack
 
             if (HttpContext.Current.Session["worksheetProcesses" + "#" + worksheetId] == null)
             {
-                HttpContext.Current.Session["worksheetProcesses" + "#" + worksheetId] = new WorksheetRepository().GetWorksheetProcesses(worksheetId);
+                var wsheetProcesses = new WorksheetRepository().GetWorksheetProcesses(worksheetId);
+                if (wsheetProcesses == null)
+                    return "برگه کاری ردیف ندارد";
+
+                HttpContext.Current.Session["worksheetProcesses" + "#" + worksheetId] = wsheetProcesses;
             }
 
             var thisWorksheetProcesses = (List<int>)HttpContext.Current.Session["worksheetProcesses" + "#" + worksheetId];
