@@ -127,27 +127,7 @@ namespace MehranPack
 
         protected void RadGridReport_OnItemCreated(object sender, GridItemEventArgs e)
         {
-            //if (e.Item is GridDataItem)
-            //{
-            //    GridDataItem item = (GridDataItem)e.Item;
-            //    foreach (TableCell cell in item.Cells)
-            //    {
-            //        cell.Style["font-family"] = "tahoma";
-            //        cell.Style["text-align"] = "center";
-            //        //cell.Style["font-size"] = (4 + e.Item.ItemIndex * 0.8) + "pt";
-
-            //    }
-            //}
-            //else if (e.Item is GridHeaderItem)
-            //{
-            //    GridHeaderItem item = (GridHeaderItem)e.Item;
-            //    foreach (TableCell cell in item.Cells)
-            //    {
-            //        cell.Style["font-family"] = "tahoma";
-            //        cell.Style["text-align"] = "center";
-            //        //cell.Style["font-size"] = (4 + e.Item.ItemIndex * 0.8) + "pt";
-            //    }
-            //}
+           
         }
 
         protected void drpReportType_SelectedIndexChanged(object sender, EventArgs e)

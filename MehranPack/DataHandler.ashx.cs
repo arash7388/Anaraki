@@ -1,4 +1,5 @@
-﻿using Repository.DAL;
+﻿using Common;
+using Repository.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,16 +16,30 @@ namespace MehranPack
 
         public void ProcessRequest(HttpContext context)
         {
-            if (!int.TryParse(context.Request["id"], out int id))
-                return;
+            try
+            {
+                if (context.Request["id"] == null)
+                    return;
 
-            var serializer = new JavaScriptSerializer();
+                if (!int.TryParse(context.Request["id"], out int id))
+                    return;
 
-            var details = new WorksheetDetailRepository().GetAllDetails(id).ToList();
+                var serializer = new JavaScriptSerializer();
 
-            var json = serializer.Serialize(details);
-            context.Response.ContentType = "application/json";
-            context.Response.Write(json);
+                var details = new WorksheetDetailRepository().GetAllDetails(id).ToList();
+
+                if (details.ToList().Any())
+                {
+                    var json = serializer.Serialize(details);
+                    context.Response.ContentType = "application/json";
+                    context.Response.Write(json);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debuging.Error(ex.Message + "\r\n" + ex.StackTrace);
+            }
+            
         }
 
         public bool IsReusable

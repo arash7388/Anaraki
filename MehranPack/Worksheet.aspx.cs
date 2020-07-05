@@ -267,6 +267,24 @@ namespace MehranPack
 
         }
 
+        protected void TreeView_TreeNodeExpanded(object sender, TreeNodeEventArgs e)
+        {
+            if (e.Node.Parent == null)
+                return;
+            string strNodeValue = e.Node.Value;
+            foreach (TreeNode node in e.Node.Parent.ChildNodes)
+            {
+                if (node.Value != strNodeValue)
+                {
+                    node.Collapse();
+                }
+                else
+                {
+                    node.Expand();
+                }
+            }
+        }
+
         private void BindTreeRecursive(List<Repository.Entity.Domain.Category> hierarchicalData, TreeNode node)
         {
             foreach (Repository.Entity.Domain.Category category in hierarchicalData)

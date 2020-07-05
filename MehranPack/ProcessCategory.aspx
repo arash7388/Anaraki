@@ -23,7 +23,7 @@
     <div class="row">
         <div class="col-md-10">
             <asp:GridView runat="server" AutoGenerateColumns="False" Width="512px" ID="gridInput" CssClass="table table-bordered table-striped" DataKeyNames="Id"
-                OnRowCommand="gridSource_RowCommand" AllowPaging="True" PageSize="10"
+                OnRowCommand="gridSource_RowCommand" AllowPaging="True" PageSize="14"
                 EmptyDataText="اطلاعاتی جهت نمایش وجود ندارد"
                 OnRowDeleting="gridInput_OnRowDeleting" OnRowDeleted="gridInput_OnRowDeleted">
 

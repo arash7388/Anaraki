@@ -12,7 +12,7 @@
 
     <div class="row">
         <div class="col-md-12 text-center">
-            <h3>برگه کار</h3>
+            <h3>کاربرگ</h3>
         </div>
     </div>
     <hr class="hrBlue" />
@@ -41,7 +41,7 @@
         </div>
 
         <div class="col-sm-2">
-            <asp:TextBox runat="server" ID="txtPart"></asp:TextBox>
+            <asp:TextBox runat="server" ID="txtPart" oninput="this.value = this.value.toUpperCase()"></asp:TextBox>
         </div>
 
          <div class="col-sm-1" align="left">
@@ -49,7 +49,7 @@
         </div>
 
         <div class="col-sm-2">
-            <asp:TextBox runat="server" ID="txtWaxNo"></asp:TextBox>
+            <asp:TextBox runat="server" ID="txtWaxNo" oninput="this.value = this.value.toUpperCase()"></asp:TextBox>
         </div>
 
 
@@ -90,12 +90,15 @@
 
     <div class="row">
         <div class="col-md-6">
-            <button type="button" class="btn btn-info btn-standard" data-toggle="modal" data-target="#myModal">اضافه کردن کالا</button>
+            <%--<button type="button" class="btn btn-info btn-standard" data-toggle="modal" data-target="#myModal">اضافه کردن کالا</button>--%>
+            <button type="button" class="btn btn-info btn-standard" onclick="showModalSingleMode();">اضافه کردن کالا</button>
+            &nbsp;
+            <button type="button" class="btn btn-info btn-standard" onclick="showModalMultipleMode();">اضافه کردن چندتایی</button>
             &nbsp;
             <asp:Button Style="min-width: 100px !important" runat="server" ID="btnSave" Text="ذخیره" CssClass="btn btn-black btn-standard btnSubmit"></asp:Button>
             &nbsp;
             <asp:Button Style="min-width: 100px !important" runat="server" ID="btnSaveAndPrint" Text="ذخیره و چاپ" CssClass="btn btn-black btn-standard btnSubmit"></asp:Button>
-            <%--<asp:Button runat="server" ID="Button1" Text="اضافه" CssClass="btn btn-info btn-standard" OnClick="btnAdd_Click"></asp:Button>--%>
+           
         </div>
     </div>
 
@@ -137,7 +140,7 @@
 
                             <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
                                 <ContentTemplate>
-                                    <asp:TreeView runat="server" ID="tv1" OnSelectedNodeChanged="tv1_OnSelectedNodeChanged"></asp:TreeView>
+                                    <asp:TreeView runat="server" ID="tv1" OnSelectedNodeChanged="tv1_OnSelectedNodeChanged" ></asp:TreeView>
                                 </ContentTemplate>
 
                                 <Triggers>
@@ -151,7 +154,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>
+                    <%--<button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>--%>
+                    <button type="button" class="btn btn-default" onclick="cancelAdding();">انصراف</button>
                 </div>
             </div>
 
@@ -184,6 +188,8 @@
                 id = parts[parts.length - 1];
 
             var adr = "/DataHandler.ashx?id=" + id
+            debugger;
+            if(id!=null && id!=0)
             $.ajax({
                 type: "POST",
                 url: adr,
@@ -202,8 +208,7 @@
                     });
                 },
                 error: function (data) {
-                    //debugger;
-                    //alert("Error" + data.Message);
+                    alert("Error:" + data.Message);
                 }
 
             });
@@ -230,7 +235,6 @@
 
         $('#myModal')
             .on('show.bs.modal', function () {
-                debugger;
                 $("#txtACodePrefix").val('A' + $("#year").val().substring(2, 4) + $("#mounth").val());
                 $("#txtACode").val('');
                 $("#txtSearchTree").val('');
@@ -245,9 +249,7 @@
             var partNo = $("#txtPart").val();
             var waxNo = $("#txtWaxNo").val();
             var date = $("#year").val() + "/" + $("#mounth").val() + "/" + $("#day").val()
-
-
-
+                       
             var allRows = tbl.rows().data();
             var model0 = '{"OperatorId":' + operatorId + ',"ColorId":' + colorId + ',"PartNo":"' + partNo + '","WaxNo":"' + waxNo +'","Date":"' + date + '","WorksheetDetails": ['
             var model = model0;
@@ -389,5 +391,43 @@
             return result;
         }
 
+        var multipeMode = false;
+
+        function showModalMultipleMode() {
+            multipeMode = true;
+
+            $("#myModal").modal();
+
+            $("#myModal").on('hidden.bs.modal', function () {
+                $("#myModal").modal();
+            });
+        }
+
+        function showModalSingleMode() {
+            multipeMode = false;
+            $("#myModal").modal();
+
+            $("#myModal").on('hidden.bs.modal', function () {
+               
+            });
+        }
+
+        function cancelAdding() {
+            debugger;
+            multipeMode = false;
+            $("#myModal").unbind('hidden');
+
+            //$("#myModal").on('hidden.bs.modal', function (e) {
+            //    debugger;
+                
+            //    //$(e.currentTarget).unbind('hide');
+            //});
+
+            $("#myModal").modal("hide");
+
+            
+
+           
+        }
     </script>
 </asp:Content>
