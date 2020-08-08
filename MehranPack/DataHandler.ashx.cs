@@ -28,7 +28,7 @@ namespace MehranPack
 
                 var details = new WorksheetDetailRepository().GetAllDetails(id).ToList();
 
-                if (details.ToList().Any())
+                if (details!=null && details.ToList().Any())
                 {
                     var json = serializer.Serialize(details);
                     context.Response.ContentType = "application/json";

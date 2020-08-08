@@ -90,7 +90,7 @@
 
     <div class="row">
         <div class="col-md-6">
-            <%--<button type="button" class="btn btn-info btn-standard" data-toggle="modal" data-target="#myModal">اضافه کردن کالا</button>--%>
+
             <button type="button" class="btn btn-info btn-standard" onclick="showModalSingleMode();">اضافه کردن کالا</button>
             &nbsp;
             <button type="button" class="btn btn-info btn-standard" onclick="showModalMultipleMode();">اضافه کردن چندتایی</button>
@@ -116,7 +116,9 @@
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" onclick="cancelAdding();" >&times;</button>
+                    <%--<button type="button" class="btn btn-default" onclick="cancelAdding();">انصراف</button>--%>
+
                     <h4 class="modal-title">انتخاب کالا</h4>
                 </div>
 
@@ -154,7 +156,6 @@
 
                 </div>
                 <div class="modal-footer">
-                    <%--<button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>--%>
                     <button type="button" class="btn btn-default" onclick="cancelAdding();">انصراف</button>
                 </div>
             </div>
@@ -188,7 +189,7 @@
                 id = parts[parts.length - 1];
 
             var adr = "/DataHandler.ashx?id=" + id
-            debugger;
+
             if(id!=null && id!=0)
             $.ajax({
                 type: "POST",
@@ -251,7 +252,7 @@
             var date = $("#year").val() + "/" + $("#mounth").val() + "/" + $("#day").val()
                        
             var allRows = tbl.rows().data();
-            var model0 = '{"OperatorId":' + operatorId + ',"ColorId":' + colorId + ',"PartNo":"' + partNo + '","WaxNo":"' + waxNo +'","Date":"' + date + '","WorksheetDetails": ['
+            var model0 = '{"OperatorId":' + operatorId + ',"ColorId":' + colorId + ',"PartNo":"' + partNo + '","WaxNo":"' + waxNo +'","Date":"' + '2020/01/01' + '","WorksheetDetails": ['
             var model = model0;
 
             jQuery.each(allRows, function (i, row) {
@@ -293,7 +294,7 @@
                     else alert(data.d);
                 },
                 error: function (data) {
-                    alert("an error occured! " + data.Message);
+                    alert("an error occured! " + data.responseText);
                 }
             });
 
@@ -348,6 +349,7 @@
                             var prCode = response.d.split(',')[0];
                             var prName = response.d.split(',')[1];
 
+                            debugger;
                             t.row.add([
                                 productId,
                                 prCode,
@@ -370,7 +372,6 @@
             var result = false;
 
             $("#table1 tr").each(function (index) {
-                debugger;
                 if (index !== 0) {
 
                     $row = $(this);
@@ -399,7 +400,10 @@
             $("#myModal").modal();
 
             $("#myModal").on('hidden.bs.modal', function () {
-                $("#myModal").modal();
+                setTimeout(function showAgain() {
+                    $("#myModal").modal();
+                }, 2200);
+                
             });
         }
 
@@ -413,21 +417,10 @@
         }
 
         function cancelAdding() {
-            debugger;
             multipeMode = false;
             $("#myModal").unbind('hidden');
 
-            //$("#myModal").on('hidden.bs.modal', function (e) {
-            //    debugger;
-                
-            //    //$(e.currentTarget).unbind('hide');
-            //});
-
             $("#myModal").modal("hide");
-
-            
-
-           
         }
     </script>
 </asp:Content>

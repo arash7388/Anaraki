@@ -122,7 +122,7 @@ namespace MehranPack
             }
 
             BindTreeview();
-            tv1.ExpandAll();
+            tv1.CollapseAll();
 
             if (Session["GridSource"] == null)
                 Session["GridSource"] = new List<WorksheetDetailHelper>();

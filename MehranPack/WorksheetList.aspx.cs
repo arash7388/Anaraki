@@ -19,7 +19,7 @@ namespace MehranPack
             {
 
                 Session["Result"] = gridList.DataSource = new WorksheetRepository().GetAll().OrderByDescending(a => a.Id).ToList();
-                h3Header.InnerText = "لیست برگه های کاری";
+                h3Header.InnerText = "لیست کاربرگ ها";
 
                 gridList.DataBind();
 
