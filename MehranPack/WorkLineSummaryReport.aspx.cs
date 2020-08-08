@@ -95,6 +95,7 @@ namespace MehranPack
             //7 Count
             //8 ProcessTime
             //9 ProcessDuration
+            //10 diffTime
 
             RadGridReport.Columns[1].Visible = repType == 2;
             RadGridReport.Columns[2].Visible = repType == 2 || repType == 7 || repType == 8 || repType == 9 || repType == 10;
@@ -104,6 +105,7 @@ namespace MehranPack
             RadGridReport.Columns[6].Visible = repType == 1 || repType == 4 || repType == 7 || repType == 8;
             RadGridReport.Columns[8].Visible = repType == 4 || repType == 3 || repType == 6 || repType == 7 || repType == 8 || repType == 9 || repType == 10;
             RadGridReport.Columns[9].Visible = repType == 4 || repType == 3 || repType == 6 || repType == 7 || repType == 8 || repType == 9 || repType == 10;
+            RadGridReport.Columns[10].Visible = repType == 7 || repType == 8 || repType == 9 || repType == 10;
             Session["Result"] = new WorkLineRepository().GetAllForSummaryReport(repType, whereClause);
             BindGrid();
         }
@@ -114,7 +116,7 @@ namespace MehranPack
             RadGridReport.ExportSettings.IgnorePaging = true;
             RadGridReport.ExportSettings.ExportOnlyData = true;
             RadGridReport.ExportSettings.OpenInNewWindow = true;
-            RadGridReport.ExportSettings.FileName = "WorkLineSummaryReport-" + DateTime.Now.ToFaDateTime();
+            RadGridReport.ExportSettings.FileName = "گزارش تولید " + drpReportType.SelectedItem.Text + "-" + DateTime.Now.ToFaDateTimeFileName();
             RadGridReport.MasterTableView.ExportToExcel();
         }
 

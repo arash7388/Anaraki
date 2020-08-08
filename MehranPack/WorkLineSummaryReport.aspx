@@ -40,7 +40,7 @@
         </div>
         <div class="col-xs-9 col-sm-11">
             <asp:DropDownList runat="server" ID="drpReportType" CssClass="paddingTop0" Height="29" Width="180" OnSelectedIndexChanged="drpReportType_SelectedIndexChanged"></asp:DropDownList>
-            &nbsp;<asp:Label runat="server" ID="lblHint" Font-Size="Small" ForeColor="Red" Visible="true" CssClass="alert-danger">توجه:جهت صحیح بودن خروجی گزارش باید تاریخ ثبت برگه و تاریخ تولید اوپراتور یکسان باشند</asp:Label>
+            &nbsp;<asp:Label runat="server" ID="lblHint" Font-Size="Small" ForeColor="Red" Visible="true" CssClass="alert-danger">توجه:جهت صحیح بودن خروجی گزارش باید تاریخ ثبت کاربرگ و تاریخ تولید اوپراتور یکسان باشند</asp:Label>
         </div>
     </div>
     <div class="row">
@@ -105,13 +105,7 @@
                     </GroupByExpressions>--%>
 
                     <Columns>
-                        <%--<telerik:GridBoundColumn DataField="WorksheetId" FilterControlAltText="Filter column column" HeaderText="شناسه برگه کار" ReadOnly="True" SortExpression="WorksheetId" UniqueName="column" AutoPostBackOnFilter="True" CurrentFilterFunction="EqualTo" DataType="System.Int32" FilterDelay="1000" FilterImageToolTip="فیلتر" MaxLength="50">
-                            <ColumnValidationSettings>
-                                <ModelErrorMessage Text="" />
-                            </ColumnValidationSettings>
-                            <HeaderStyle Font-Names="bkoodak" Font-Bold="True" Font-Size="Medium" Width="120px" />
-                            <ItemStyle Font-Names="bkoodak" Font-Size="10" />
-                        </telerik:GridBoundColumn>--%>
+
 
                         <telerik:GridBoundColumn DataField="FriendlyName" FilterControlAltText="Filter column2 column" HeaderText="اوپراتور" ReadOnly="True" UniqueName="column234" AllowFiltering="true" AutoPostBackOnFilter="True" FilterImageToolTip="فیلتر" CurrentFilterFunction="Contains" MaxLength="200" DataType="System.string">
                             <ColumnValidationSettings>
@@ -191,6 +185,15 @@
                             <HeaderStyle Font-Names="bkoodak" Font-Bold="True" Font-Size="Medium" Width="120px" />
                             <ItemStyle Font-Names="bkoodak" Font-Size="10" />
                         </telerik:GridBoundColumn>
+
+                        <telerik:GridBoundColumn DataField="DiffTime" FilterControlAltText="Filter column column" HeaderText="تاخیر/تعجیل" ReadOnly="True" SortExpression="DiffTime" UniqueName="column2339132" AutoPostBackOnFilter="True" CurrentFilterFunction="Contains" DataType="System.Int32" FilterDelay="1200" FilterImageToolTip="فیلتر" MaxLength="50">
+                            <ColumnValidationSettings>
+                                <ModelErrorMessage Text="خطایی رخ داد" />
+                            </ColumnValidationSettings>
+                            <HeaderStyle Font-Names="bkoodak" Font-Bold="True" Font-Size="Medium" Width="120px" />
+                            <ItemStyle Font-Names="bkoodak" Font-Size="10" />
+                        </telerik:GridBoundColumn>
+
 
                     </Columns>
                 </MasterTableView>

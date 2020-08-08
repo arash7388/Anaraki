@@ -37,7 +37,7 @@
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:BoundField>
 
-                    <asp:BoundField DataField="WorksheetId" HeaderText="شناسه برگه کار">
+                    <asp:BoundField DataField="WorksheetId" HeaderText="شناسه کاربرگ">
                         <ControlStyle BorderColor="#FFFF99" BorderStyle="Solid" />
                         <HeaderStyle HorizontalAlign="Center" />
                         <ItemStyle HorizontalAlign="Center" />

@@ -78,7 +78,7 @@ namespace MehranPack
 
         protected void btnExportToPdf_OnClick(object sender, ImageClickEventArgs e)
         {
-            RadGridReport.ExportSettings.Pdf.Title = "گزارش برگه های کار";
+            RadGridReport.ExportSettings.Pdf.Title = "گزارش کاربرگ ها";
             RadGridReport.ExportSettings.Pdf.DefaultFontFamily = "Arial Unicode MS";
             RadGridReport.MasterTableView.ExportToPdf();
         }

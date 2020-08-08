@@ -22,6 +22,20 @@
                             <ItemStyle HorizontalAlign="Center" Width="30" />
                         </asp:BoundField>
 
+                       
+                        <asp:TemplateField HeaderText="اوپراتور ">
+                            <ItemTemplate>
+                                <%# GetOperatorName(Eval("OperatorId").ToSafeInt()) %>
+                            </ItemTemplate>
+                            <ItemStyle HorizontalAlign="Center" Width="80" />
+                        </asp:TemplateField>
+
+                        <asp:BoundField DataField="PartNo" HeaderText="پارت">
+                            <ControlStyle BorderColor="#FFFF99" BorderStyle="Solid" />
+                            <HeaderStyle HorizontalAlign="Left" />
+                            <ItemStyle HorizontalAlign="Center" Width="30" />
+                        </asp:BoundField>
+
                         <%--<asp:BoundField DataField="InsertDateTime" HeaderText="تاریخ ایجاد">
                             <HeaderStyle HorizontalAlign="Center" />
                             <ItemStyle HorizontalAlign="Center" Width="200" />

@@ -84,6 +84,11 @@ namespace Common
             return result;
         }
 
+        public static string ToFaDateTimeFileName(this DateTime dt) //اضافه شدن به نام یک فایل
+        {
+            return dt.ToFaDateTime().Replace("/", "").Replace(" ","-").Replace(":","").ToFaString();
+        }
+
         public static string CastToFaDateTime(DateTime? dt)
         {
             if (dt == null)

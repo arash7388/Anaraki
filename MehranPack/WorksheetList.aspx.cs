@@ -35,6 +35,11 @@ namespace MehranPack
             }
         }
 
+        public string GetOperatorName(int opId)
+        {
+            return new UserRepository().GetById(opId)?.FriendlyName;
+        }
+
         protected void gridList_OnRowCommand(object sender, GridViewCommandEventArgs e)
         {
             var routeValues = new RouteValueDictionary();

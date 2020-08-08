@@ -596,17 +596,19 @@ namespace Repository.DAL
 
                 foreach (var element in operatorProcessAllowedTimeResultInADayList)
                 {
-                    var sumItem = sumSpentTimeResultOperatorProcessInADayList.FirstOrDefault(a => a.OperatorId == element.OperatorId && a.Year == element.Year && a.Month == element.Month && a.Day == element.Day && a.ProcessId==element.ProcessId);
-                    
+                    var sumItem = sumSpentTimeResultOperatorProcessInADayList.FirstOrDefault(a => a.OperatorId == element.OperatorId && a.Year == element.Year && a.Month == element.Month && a.Day == element.Day && a.ProcessId == element.ProcessId);
+
                     //takhir
-                    if (reportType==7 &&  sumItem != null && element.ProcessTime< sumItem.ProcessDuration)
+                    if (reportType == 7 && sumItem != null && element.ProcessTime < sumItem.ProcessDuration)
                     {
                         element.ProcessDuration = sumItem.ProcessDuration;
+                        element.DiffTime = element.ProcessTime - element.ProcessDuration;
                         finalResult.Add(element);
                     }
-                    else if (reportType == 8 &&  sumItem != null && element.ProcessTime > sumItem.ProcessDuration)
+                    else if (reportType == 8 && sumItem != null && element.ProcessTime > sumItem.ProcessDuration)
                     {
                         element.ProcessDuration = sumItem.ProcessDuration;
+                        element.DiffTime = element.ProcessTime - element.ProcessDuration;
                         finalResult.Add(element);
                     }
                 }
@@ -717,11 +719,13 @@ namespace Repository.DAL
                     if (reportType == 9 && sumItem != null && element.ProcessTime < sumItem.ProcessDuration)
                     {
                         element.ProcessDuration = sumItem.ProcessDuration;
+                        element.DiffTime = element.ProcessTime - element.ProcessDuration;
                         finalResult.Add(element);
                     }
                     else if (reportType == 10 && sumItem != null && element.ProcessTime > sumItem.ProcessDuration)
                     {
                         element.ProcessDuration = sumItem.ProcessDuration;
+                        element.DiffTime = element.ProcessTime - element.ProcessDuration;
                         finalResult.Add(element);
                     }
                 }
@@ -799,5 +803,6 @@ namespace Repository.DAL
         public int ProcessId { get; set; }
         public int ProcessTime { get; set; }
         public int ProcessDuration { get; set; }
+        public int DiffTime { get; set; }
     }
 }

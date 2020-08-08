@@ -96,7 +96,7 @@
                     </GroupByExpressions>
 
                     <Columns>
-                        <telerik:GridBoundColumn DataField="WorksheetId" FilterControlAltText="Filter column column" HeaderText="شناسه برگه کار" ReadOnly="True" SortExpression="WorksheetId" UniqueName="column" AutoPostBackOnFilter="True" CurrentFilterFunction="EqualTo" DataType="System.Int32" FilterDelay="1000" FilterImageToolTip="فیلتر" MaxLength="50">
+                        <telerik:GridBoundColumn DataField="WorksheetId" FilterControlAltText="Filter column column" HeaderText="شناسه کاربرگ" ReadOnly="True" SortExpression="WorksheetId" UniqueName="column" AutoPostBackOnFilter="True" CurrentFilterFunction="EqualTo" DataType="System.Int32" FilterDelay="1000" FilterImageToolTip="فیلتر" MaxLength="50">
                             <ColumnValidationSettings>
                                 <ModelErrorMessage Text="" />
                             </ColumnValidationSettings>

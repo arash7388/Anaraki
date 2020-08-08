@@ -61,7 +61,7 @@
                             <br />
                             <asp:LinkButton runat="server" ID="LinkButton13" CssClass="btn btn-info btn-standard" Text="صف کارهای تولید " OnClick="lbtnWorkLines_OnClick"></asp:LinkButton>
                             <br />
-                            <asp:LinkButton runat="server" ID="LinkButton16" CssClass="btn btn-info btn-standard" Text="گزارش برگه های کار " OnClick="lbtnWorksheetReport_OnClick"></asp:LinkButton>
+                            <asp:LinkButton runat="server" ID="LinkButton16" CssClass="btn btn-info btn-standard" Text="گزارش کاربرگ ها " OnClick="lbtnWorksheetReport_OnClick"></asp:LinkButton>
                             <br />
                            <asp:LinkButton runat="server" ID="LinkButton14" CssClass="btn btn-info btn-standard" Text="گزارش تولید " OnClick="lbtnWorkLineReport_OnClick"></asp:LinkButton>
                             <br />

@@ -53,7 +53,7 @@ namespace MehranPack
             {
                 var wsheetProcesses = new WorksheetRepository().GetWorksheetProcesses(worksheetId);
                 if (wsheetProcesses == null)
-                    return "برگه کاری ردیف ندارد";
+                    return "کاربرگ ردیف ندارد";
 
                 HttpContext.Current.Session["worksheetProcesses" + "#" + worksheetId] = wsheetProcesses;
             }

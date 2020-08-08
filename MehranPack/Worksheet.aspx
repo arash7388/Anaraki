@@ -131,8 +131,9 @@
                             <br />
                             <label>شناسه</label>&nbsp;&nbsp;
                             
-                            <asp:TextBox runat="server" ID="txtACode" placeholder="ACode" Width="86"></asp:TextBox>
-                            <asp:TextBox runat="server" ID="txtACodePrefix" placeholder="" Width="85"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="txtACode" placeholder="ACode" Width="80"></asp:TextBox>
+                            <asp:TextBox ID="txtACodeMonth" TextMode="Number" runat="server" min="1" max="12" step="1" Width="55"/>
+                            <asp:TextBox runat="server" ID="txtACodePrefix" placeholder="" Width="60"></asp:TextBox>
                             <br />
                         </div>
                     </div>
@@ -236,7 +237,8 @@
 
         $('#myModal')
             .on('show.bs.modal', function () {
-                $("#txtACodePrefix").val('A' + $("#year").val().substring(2, 4) + $("#mounth").val());
+                $("#txtACodePrefix").val('A' + $("#year").val().substring(2, 4));
+                $("#txtACodeMonth").val($("#mounth").val());
                 $("#txtACode").val('');
                 $("#txtSearchTree").val('');
             });
@@ -284,7 +286,6 @@
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
                     if (data.d == "OK") {
-                        debugger;
                         if (buttonpressed == "btnSave")
                             window.location.href = window.location.origin + "/worksheetlist";
                         else if (buttonpressed == "btnSaveAndPrint")
@@ -306,13 +307,13 @@
 
 
         function onNodeClicked(productId, catId) {
-
+            debugger;
             if ($("#txtACode").val() == "") {
                 alert('شناسه کالا را وارد نمایید');
                 return;
             }
 
-            var ACode = $("#txtACodePrefix").val() + $("#txtACode").val();
+            var ACode = $("#txtACodePrefix").val() + ($("#txtACodeMonth").val().length == 1 ? '0' + $("#txtACodeMonth").val() : $("#txtACodeMonth").val()) +  $("#txtACode").val();
 
             $.ajax({
                 type: "POST",
@@ -354,7 +355,7 @@
                                 productId,
                                 prCode,
                                 prName,
-                                $("#txtACodePrefix").val() + $("#txtACode").val(),
+                                $("#txtACodePrefix").val() + ($("#txtACodeMonth").val().length == 1 ? '0' + $("#txtACodeMonth").val() : $("#txtACodeMonth").val()) + $("#txtACode").val(),
                                 '<span><button type="button" onclick="onDeleteClicked();">حذف</button></span>'
                             ]).draw(false);
                         };
