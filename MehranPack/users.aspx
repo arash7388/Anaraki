@@ -19,6 +19,26 @@
        
     </div>
 
+    <div class="row" >
+         <div class="col-md-2" align="left">
+            رمز عبور:
+        </div>
+        <div class="col-md-10">
+            <asp:TextBox runat="server" ID="txtPassword" Height="23" Width="303"></asp:TextBox>
+        </div>
+       
+    </div>
+
+     <div class="row" >
+         <div class="col-md-2" align="left">
+             تکرار رمز:
+        </div>
+        <div class="col-md-10">
+            <asp:TextBox runat="server" ID="txtPasswordConfirm" Height="23" Width="303"></asp:TextBox>
+        </div>
+       
+    </div>
+
    <%-- <div class="row" >
          <div class="col-md-2" align="left">
             تصویر :

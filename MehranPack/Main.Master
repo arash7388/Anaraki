@@ -19,11 +19,11 @@
     </asp:ContentPlaceHolder>
 </head>
 
-<body style="background-image: url(/Images/bg1.jpg); background-repeat: repeat">
+<body style="background-image: url(/Images/bg1.jpg); background-repeat: repeat; font-family:BKoodak">
     <form id="form1" runat="server">
         <asp:HiddenField runat="server" ID="hfUserId" />
         <div class="row">
-            <div class="col-sm-2" style="margin-left: 10px; margin-right: 20px; margin-top: 20px">
+            <div class="col-sm-2" style="margin-left: 10px; margin-right: 10px; margin-top: 20px">
                 <div class="row">
                     <div class="col-xs-12 text-center">
                         <asp:Image runat="server" ID="logo" ImageUrl="Images/logo.png" CssClass="img img-responsive" />
@@ -67,7 +67,8 @@
                             <br />
                              <asp:LinkButton runat="server" ID="LinkButton15" CssClass="btn btn-info btn-standard" Text="گزارش خلاصه تولید " OnClick="lbtnWorkLineSummaryReport_OnClick"></asp:LinkButton>
                             <br />
-                            
+                            <asp:LinkButton runat="server" ID="LinkButton17" CssClass="btn btn-info btn-standard" Text="ورود دستی تایمینگ " OnClick="lbtnManualWorklineInput_OnClick"></asp:LinkButton>
+                            <br />
                             <%--<asp:LinkButton runat="server" ID="lbtnProductType" CssClass="btn btn-info btn-standard" Text="انواع جنس" OnClick="lbtnProductType_OnClick"></asp:LinkButton>
                             <br />
                             <asp:LinkButton runat="server" ID="lbtnOrders" CssClass="btn btn-info btn-standard"  Text="سفارشات" OnClick="lbtnOrders_OnClick"></asp:LinkButton>

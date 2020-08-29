@@ -7,11 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MehranPack {
-    
-    
-    public partial class ProcessCategoryList {
-        
+namespace MehranPack
+{
+
+
+    public partial class ProcessCategoryList
+    {
+
+        /// <summary>
+        /// btnPrTiming control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPrTiming;
+
         /// <summary>
         /// gridList control.
         /// </summary>
@@ -20,7 +31,7 @@ namespace MehranPack {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gridList;
-        
+
         /// <summary>
         /// btnAdd control.
         /// </summary>

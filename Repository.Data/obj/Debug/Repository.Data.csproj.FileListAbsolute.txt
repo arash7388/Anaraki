@@ -126,3 +126,5 @@ E:\Tarin\Repository.Data\obj\Debug\Repository.Data.Migrations.worksheet.resource
 E:\Tarin\Repository.Data\obj\Debug\Repository.Data.Migrations.workline.resources
 E:\Tarin\Repository.Data\obj\Debug\Repository.Data.Migrations.wid.resources
 E:\Tarin\Repository.Data\obj\Debug\Repository.Data.Migrations.acodetime.resources
+E:\Tarin\Repository.Data\obj\Debug\Repository.Data.Migrations.manualwl.resources
+E:\Tarin\Repository.Data\obj\Debug\Repository.Data.Migrations.wlindex.resources

@@ -34,7 +34,38 @@ namespace Repository.DAL
                              //ProductCode = p.Code,
                              //ProductId = wl.ProductId,
                              //ProductName = c.Name + " " + p.Name,
-                             WorksheetId = wl.WorksheetId
+                             WorksheetId = wl.WorksheetId,
+                             Manual = wl.Manual ?? false
+                         };
+
+            var res = result.ToList();
+
+            foreach (WorkLineHelper item in res)
+            {
+                var dt = Common.Utility.CastToFaDateTime(item.InsertDateTime);
+                dt = dt.Substring(11, dt.Length - 11);
+                item.PersianDateTime = dt;
+            }
+
+            return res;
+        }
+
+        public List<WorkLineHelper> GetAllWorkLines()
+        {
+            var result = from wl in DBContext.WorkLines
+                         join pro in DBContext.Processes on wl.ProcessId equals pro.Id
+                         join u in DBContext.Users on wl.OperatorId equals u.Id
+                         orderby wl.InsertDateTime descending
+                         select new WorkLineHelper
+                         {
+                             Id = wl.Id,
+                             InsertDateTime = wl.InsertDateTime,
+                             OperatorId = wl.OperatorId,
+                             OperatorName = u.FriendlyName,
+                             ProcessId = wl.ProcessId,
+                             ProcessName = pro.Name,
+                             WorksheetId = wl.WorksheetId,
+                             Manual = wl.Manual ?? false
                          };
 
             var res = result.ToList();
@@ -782,6 +813,7 @@ namespace Repository.DAL
         public int Sec { get; set; }
         public int ProcessTime { get; set; }
         public int ProcessDuration { get; set; }
+        public bool Manual { get; set; }
     }
 
     public class WorkLineSummary

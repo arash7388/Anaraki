@@ -40,6 +40,7 @@ namespace MehranPack
             var source = new List<KeyValuePair<int, string>>();
             source.Add(new KeyValuePair<int, string>(0, "کاربر سیستمی"));
             source.Add(new KeyValuePair<int, string>(1, "اوپراتور تولید"));
+            source.Add(new KeyValuePair<int, string>(2, "مسئول کنترل کیفیت"));
 
             drpKind.DataSource = source;
             drpKind.DataValueField = "Key";
@@ -52,6 +53,9 @@ namespace MehranPack
             try
             {
                 if (string.IsNullOrEmpty(txtName.Text)) throw new LocalException("Name is empty", "نام  را وارد نمایید");
+                if (string.IsNullOrEmpty(txtPassword.Text)) throw new LocalException("Password is empty", "رمز را وارد نمایید");
+                if (string.IsNullOrEmpty(txtPasswordConfirm.Text)) throw new LocalException("Password confirm is empty", "تکرار رمز را وارد نمایید");
+                if (txtPasswordConfirm.Text!= txtPassword.Text) throw new LocalException("Password and confirm are different", "رمز عبور و تکرار آن یکسان نیستند");
 
                 UnitOfWork uow = new UnitOfWork();
 
@@ -60,9 +64,9 @@ namespace MehranPack
                     var newUser = new Repository.Entity.Domain.User();
 
                     newUser.FriendlyName = newUser.Username =  txtName.Text;
+                    newUser.Password = txtPassword.Text;
                     newUser.Type = drpKind.SelectedValue.ToSafeInt();
                     
-
                     uow.Users.Create(newUser);
                 }
                 else
@@ -72,6 +76,7 @@ namespace MehranPack
                    
                     tobeEditedUser.Username = txtName.Text;
                     tobeEditedUser.FriendlyName = txtName.Text;
+                    tobeEditedUser.Password = txtPassword.Text;
                     tobeEditedUser.Type = drpKind.SelectedValue.ToSafeInt();
                 }
 
@@ -87,7 +92,7 @@ namespace MehranPack
 
         private void ClearControls()
         {
-            txtName.Text = "";
+            txtName.Text = txtPassword.Text = txtPasswordConfirm.Text= "";
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)

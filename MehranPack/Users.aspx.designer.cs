@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MehranPack {
-    
-    
-    public partial class Users {
-        
+namespace MehranPack
+{
+
+
+    public partial class Users
+    {
+
         /// <summary>
         /// txtName control.
         /// </summary>
@@ -20,7 +22,25 @@ namespace MehranPack {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtName;
-        
+
+        /// <summary>
+        /// txtPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPassword;
+
+        /// <summary>
+        /// txtPasswordConfirm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPasswordConfirm;
+
         /// <summary>
         /// drpKind control.
         /// </summary>
@@ -29,7 +49,7 @@ namespace MehranPack {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList drpKind;
-        
+
         /// <summary>
         /// btnSave control.
         /// </summary>
@@ -38,7 +58,7 @@ namespace MehranPack {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSave;
-        
+
         /// <summary>
         /// lblResult control.
         /// </summary>

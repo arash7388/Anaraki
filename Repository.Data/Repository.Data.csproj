@@ -88,6 +88,14 @@
     <Compile Include="Migrations\201912101620026_acode-time.Designer.cs">
       <DependentUpon>201912101620026_acode-time.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008271335408_manual-wl.cs" />
+    <Compile Include="Migrations\202008271335408_manual-wl.Designer.cs">
+      <DependentUpon>202008271335408_manual-wl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008291019509_wl-index.cs" />
+    <Compile Include="Migrations\202008291019509_wl-index.Designer.cs">
+      <DependentUpon>202008291019509_wl-index.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MTOContextFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -135,6 +143,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912101620026_acode-time.resx">
       <DependentUpon>201912101620026_acode-time.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008271335408_manual-wl.resx">
+      <DependentUpon>202008271335408_manual-wl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008291019509_wl-index.resx">
+      <DependentUpon>202008291019509_wl-index.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

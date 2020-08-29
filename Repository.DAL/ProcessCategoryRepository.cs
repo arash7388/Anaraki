@@ -58,6 +58,26 @@ namespace Repository.DAL
 
             return result.ToList();
         }
+
+        public List<ProcessCategoryHelper> GetCatProcessTimingList()
+        {
+            var catRepo = new CategoryRepository();
+
+            var result = (from pc in DBContext.ProcessCategories
+                          join p in DBContext.Processes on pc.ProcessId equals p.Id
+                          join c in DBContext.Categories on pc.CategoryId equals c.Id
+                          select new ProcessCategoryHelper
+                          {
+                              Id = pc.Id,
+                              CategoryId = c.Id,
+                              CategoryName = c.Name,
+                              ProcessId= p.Id,
+                              ProcessName= p.Name,
+                              ProcessTime=pc.ProcessTime
+                          }).ToList();
+
+            return result.ToList();
+        }
     }
 
     public class ProCatHelper

@@ -240,5 +240,10 @@ namespace MehranPack
         {
             Response.Redirect("WorksheetReport.aspx");
         }
+        
+        protected void lbtnManualWorklineInput_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("ManualWorklineInput.aspx");
+        }
     }
 }

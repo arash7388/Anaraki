@@ -6,7 +6,11 @@
     <div class="container" >
         <div class="row">
             <div class="col-md-12">
-                <h3>لیست فرآیندهای گروه محصولات</h3>
+                <h3>لیست فرآیندهای گروه محصولات
+                &nbsp;
+                &nbsp;
+                <asp:Button runat="server" Text="لیست تایمینگ های گروه/فرآیند" CssClass="btn btn-default" ID="btnPrTiming" OnClientClick="location.href = 'ProcessCategoryTiming.aspx'; return false;"/>
+                    </h3>
                 <hr class="hrBlue"/>
             </div>
         </div>

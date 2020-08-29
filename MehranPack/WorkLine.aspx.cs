@@ -14,20 +14,21 @@ namespace MehranPack
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
-            //this.Master.Visible = false;
             var repo = new WorkLineRepository();
-            gridWorkLine.DataSource = repo.GetTodayWorkLine();
+
+            if (chkShowAll.Checked)
+                gridWorkLine.DataSource = repo.GetAllWorkLines();
+            else
+                gridWorkLine.DataSource = repo.GetTodayWorkLine();
+
             gridWorkLine.DataBind();
+
             lblCurrentDate.Text = Common.Utility.CastToFaDate(DateTime.Now).ToPersianNumber();
             Session["Result"] = gridWorkLine.DataSource;
             txtBarcodeInput.Focus();
 
             Session["InputBarcode"] = txtBarcodeInput.Text;
-
-            //if (!Page.IsPostBack)
-                txtBarcodeInput.Text = "";
+            txtBarcodeInput.Text = "";
         }
 
         [WebMethod]
@@ -42,12 +43,12 @@ namespace MehranPack
 
             var workLinerepo = new WorkLineRepository();
             var thisWorksheetWorkLines = workLinerepo.Get(a => a.WorksheetId == worksheetId);
-                       
-            var prevProcessOfThisWorksheet = thisWorksheetWorkLines.Any() ? thisWorksheetWorkLines.Max(a=>a.ProcessId) : 0;
+
+            var prevProcessOfThisWorksheet = thisWorksheetWorkLines.Any() ? thisWorksheetWorkLines.Max(a => a.ProcessId) : 0;
 
             if (thisWorksheetWorkLines != null && thisWorksheetWorkLines.Any())
                 if (prevProcessOfThisWorksheet != 0 && prevProcessOfThisWorksheet >= processId)
-                    return "عدم رعایت ترتیب فرآیند";
+                    return "عدم رعایت ترتیب فرآیند" + "- کاربر:" + new UserRepository().GetById(operatorId)?.Username + "- کاربرگ:" + worksheetId;
 
             if (HttpContext.Current.Session["worksheetProcesses" + "#" + worksheetId] == null)
             {
@@ -63,8 +64,8 @@ namespace MehranPack
             var indexOfNextProcess = indexOfPrevProcess + 1;
             var nextProcessOfThisWorksheet = thisWorksheetProcesses[indexOfNextProcess];
 
-            if(processId != nextProcessOfThisWorksheet)
-                return "عدم رعایت ترتیب فرآیند"; 
+            if (processId != nextProcessOfThisWorksheet)
+                return "عدم رعایت ترتیب فرآیند" + "- کاربر:" + new UserRepository().GetById(operatorId)?.Username + "- کاربرگ:" + worksheetId;
 
             //if (prevOrder == 0 && order  != 1)
             //    return "عدم رعایت ترتیب فرآیند";
@@ -136,6 +137,9 @@ namespace MehranPack
             gridWorkLine.DataBind();
         }
 
-
+        protected void chkShowAll_CheckedChanged(object sender, EventArgs e)
+        {
+            Response.Redirect("workline.aspx");
+        }
     }
 }

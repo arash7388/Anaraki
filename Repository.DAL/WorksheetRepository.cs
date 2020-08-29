@@ -41,7 +41,7 @@ namespace Repository.DAL
             var w = DBContext.Worksheets.Include(a => a.WorksheetDetails)
                                 .FirstOrDefault(a => a.Id == worksheetId);
 
-            if(w == null)
+            if (w == null)
             {
                 return null;
             }
@@ -74,7 +74,7 @@ namespace Repository.DAL
                          join cat in DBContext.Categories on p.ProductCategoryId equals cat.Id
                          select new WorksheetReportHelper
                          {
-                             OperatorId=w.OperatorId,
+                             OperatorId = w.OperatorId,
                              InsertDateTime = w.InsertDateTime,
                              WorksheetId = w.Id,
                              Date = w.Date,
@@ -97,6 +97,48 @@ namespace Repository.DAL
 
             return resultList;
         }
+
+        public List<WorkLineSummary> GetWorksheetAllowedPrTimes(int wid)
+        {
+            var worksheetsDetails = from ws in DBContext.Worksheets
+                                    join u in DBContext.Users on ws.OperatorId equals u.Id
+                                    join wd in DBContext.WorksheetDetails on ws.Id equals wd.WorksheetId
+                                    join p in DBContext.Products on wd.ProductId equals p.Id
+                                    join cat in DBContext.Categories on p.ProductCategoryId equals cat.Id
+                                    join pcat in DBContext.ProcessCategories on cat.Id equals pcat.CategoryId
+                                    join pro in DBContext.Processes on pcat.ProcessId equals pro.Id
+                                    where ws.Id==wid
+                                    select new WorkLineHelper
+                                    {
+                                        WorksheetId = ws.Id,
+                                        OperatorId = (int)ws.OperatorId,
+                                        OperatorName = u.FriendlyName,
+                                        ProductId = wd.ProductId,
+                                        ProcessId = pro.Id,
+                                        ProductCode = p.Code,
+                                        ProductName = cat.Name + " " + p.Name,
+                                        ProcessName = pro.Name,
+                                        ProcessTime = pcat.ProcessTime,
+                                        InsertDateTime = ws.InsertDateTime
+                                    };
+
+            var worksheetsDetailsList = worksheetsDetails.ToList();
+
+            var operatorProcessAllowedTimeResult = from r in worksheetsDetailsList
+                                                   group r by new { r.InsertDateTime, r.ProcessId, r.ProcessName, r.OperatorId, r.OperatorName } into g
+                                                   select new WorkLineSummary
+                                                   {
+                                                       InsertDateTime = g.Key.InsertDateTime ?? DateTime.MinValue,
+                                                       ProcessId = g.Key.ProcessId,
+                                                       ProcessName = g.Key.ProcessName,
+                                                       OperatorId = g.Key.OperatorId,
+                                                       FriendlyName = g.Key.OperatorName,
+                                                       ProcessTime = g.Sum(a => a.ProcessTime)
+                                                   };
+
+            return operatorProcessAllowedTimeResult.ToList();
+        }
+
     }
 
     public class WorksheetReportHelper : WorksheetDetail

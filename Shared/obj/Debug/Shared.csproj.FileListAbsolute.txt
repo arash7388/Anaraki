@@ -22,3 +22,4 @@ C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Shared\obj\Debug\Shar
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Shared\obj\Debug\Shared.pdb
 C:\Users\Arash\Documents\Visual Studio 2015\Projects\Tarin\Shared\obj\Debug\Shared.csprojResolveAssemblyReference.cache
 E:\Tarin\Shared\obj\Debug\Shared.csproj.CoreCompileInputs.cache
+E:\Tarin\Shared\obj\Debug\Shared.csprojAssemblyReference.cache

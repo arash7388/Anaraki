@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
+using System.Data.SqlClient;
 using System.Linq;
 using Repository.Data;
 using Repository.Data.Enum;
@@ -11,7 +12,7 @@ using Repository.Entity.Domain;
 
 namespace Repository.DAL
 {
-   public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly MTOContext _mtoContext;
         private bool _dispoed;
@@ -37,7 +38,7 @@ namespace Repository.DAL
         private BaseRepository<Worksheet> _workSheets;
         private BaseRepository<WorksheetDetail> _workSheetDetails;
         private BaseRepository<WorkLine> _workLines;
-        
+
         public UnitOfWork(MTOContext mtoContext)
         {
             this._mtoContext = mtoContext;
@@ -102,7 +103,7 @@ namespace Repository.DAL
             }
         }
 
-       
+
         public BaseRepository<User> Users
         {
             get
@@ -127,7 +128,7 @@ namespace Repository.DAL
             }
         }
 
-      
+
         public BaseRepository<Tag> Tags
         {
             get
@@ -136,7 +137,7 @@ namespace Repository.DAL
             }
         }
 
-      
+
         public BaseRepository<Link> Links
         {
             get
@@ -176,16 +177,16 @@ namespace Repository.DAL
             }
         }
 
-       public BaseRepository<Advertisement> Advertisements
-       {
-           get
-           {
-               return this._advertisements ?? (this._advertisements = new BaseRepository<Advertisement>(this._mtoContext));
-           }
-       }
+        public BaseRepository<Advertisement> Advertisements
+        {
+            get
+            {
+                return this._advertisements ?? (this._advertisements = new BaseRepository<Advertisement>(this._mtoContext));
+            }
+        }
 
 
-       public BaseRepository<AdvertisementPropValues> AdvertisementPropValues
+        public BaseRepository<AdvertisementPropValues> AdvertisementPropValues
         {
             get
             {
@@ -269,7 +270,11 @@ namespace Repository.DAL
                 //this.ShowErrors(exception);
                 result.ResultCode = (int)EntityExceptionEnum.DbUpdateException;
                 result.Message = exception.Message;
-                result.ResultMessage = exception.Message;
+
+                if (IsUniqueIndexException(exception))
+                    result.ResultMessage = "داده های وارد شده تکراری هستند و قابلیت اضافه شدن به بانک اطلاعاتی را ندارند";
+                else
+                    result.ResultMessage = exception.Message;
 
             }
             catch (Exception exception)
@@ -281,7 +286,58 @@ namespace Repository.DAL
             }
             return result;
         }
-        
+
+        public bool IsUniqueIndexException(Exception exception)
+        {
+            if (exception.InnerException != null && exception.InnerException.InnerException != null)
+            {
+                if (exception.InnerException.InnerException is SqlException sqlException)
+                {
+                    switch (sqlException.Number)
+                    {
+                        case 2627:  // Unique constraint error
+                        case 547:   // Constraint check violation
+                        case 2601:  // Duplicated key row error
+                            return true;
+                        default:
+                            return false;
+                    }
+                }
+
+            }
+
+            return false;
+        }
+
+        //public void HandleUniqueIndexException(Exception exception)
+        //{
+        //    if (exception.InnerException != null && exception.InnerException.InnerException != null)
+        //    {
+        //        if (exception.InnerException.InnerException is SqlException sqlException)
+        //        {
+        //            switch (sqlException.Number)
+        //            {
+        //                case 2627:  // Unique constraint error
+        //                case 547:   // Constraint check violation
+        //                case 2601:  // Duplicated key row error
+        //                            // Constraint violation exception
+        //                            // A custom exception of yours for concurrency issues
+        //                    throw new ConcurrencyException();
+        //                default:
+        //                    // A custom exception of yours for other DB issues
+        //                    throw new DatabaseAccessException(
+        //                      dbUpdateEx.Message, dbUpdateEx.InnerException);
+        //            }
+        //        }
+
+        //        throw new DatabaseAccessException(dbUpdateEx.Message, dbUpdateEx.InnerException);
+        //    }
+
+
+        //    // If we're here then no exception has been thrown
+        //    // So add another piece of code below for other exceptions not yet handled...
+        //}
+
         private void ShowErrors(DbUpdateException exception)
         {
             string errorText = exception.Message;
@@ -345,7 +401,7 @@ namespace Repository.DAL
                                                         new[] { validationError.PropertyName })).ToList<ValidationResult>();
             return errorMessages;
         }
-        
+
         public void RejectChanges()
         {
             //this.DBContext.RejectChanges();
@@ -387,11 +443,11 @@ namespace Repository.DAL
         }
     }
 
-   public class ActionResult
-   {
-       public bool IsSuccess { get; set; }
-       public int ResultCode { get; set; }
-       public string Message { get; set; }
-       public string ResultMessage { get; set; }
-   }
+    public class ActionResult
+    {
+        public bool IsSuccess { get; set; }
+        public int ResultCode { get; set; }
+        public string Message { get; set; }
+        public string ResultMessage { get; set; }
+    }
 }

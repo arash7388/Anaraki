@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MehranPack {
-    
-    
-    public partial class WorkLine {
-        
+namespace MehranPack
+{
+
+
+    public partial class WorkLine
+    {
+
         /// <summary>
         /// lblCurrentDate control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace MehranPack {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCurrentDate;
-        
+
         /// <summary>
         /// lblCurrentTime control.
         /// </summary>
@@ -29,7 +31,16 @@ namespace MehranPack {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCurrentTime;
-        
+
+        /// <summary>
+        /// chkShowAll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkShowAll;
+
         /// <summary>
         /// gridWorkLine control.
         /// </summary>
@@ -38,7 +49,7 @@ namespace MehranPack {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gridWorkLine;
-        
+
         /// <summary>
         /// btnAdd control.
         /// </summary>
@@ -47,7 +58,7 @@ namespace MehranPack {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAdd;
-        
+
         /// <summary>
         /// txtBarcodeInput control.
         /// </summary>
