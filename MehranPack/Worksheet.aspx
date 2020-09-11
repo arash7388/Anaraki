@@ -325,7 +325,7 @@
                     if (data.d == "false") {
 
                         if (hasClientSideDuplicateACode(ACode)) {
-                            alert('شناسه کالا تکراری است');
+                            alert('شناسه کالا در همین کاربرگ تکرار شده است' );
                             return;
                         }
                             
@@ -361,7 +361,7 @@
                         };
                     }
                     else
-                        alert('شناسه کالا تکراری است')
+                        alert('شناسه کالا تکراری است' + ' :کاربرگ ' + data.d.split('#')[1]);
                 },
                 failure: function (response) {
                     alert('error in GetProductName!');

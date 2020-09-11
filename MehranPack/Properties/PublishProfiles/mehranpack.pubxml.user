@@ -28,10 +28,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/14/2019 17:01:36</publishTime>
     </File>
     <File Include="bin/MehranPack.dll">
-      <publishTime>08/25/2020 16:29:46</publishTime>
+      <publishTime>08/31/2020 14:15:29</publishTime>
     </File>
     <File Include="bin/MehranPack.pdb">
-      <publishTime>08/25/2020 16:29:46</publishTime>
+      <publishTime>08/31/2020 14:15:29</publishTime>
     </File>
     <File Include="bin/Microsoft.AnalysisServices.AdomdClient.dll">
       <publishTime>08/22/2017 18:39:30</publishTime>
@@ -46,31 +46,31 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/18/2015 13:12:54</publishTime>
     </File>
     <File Include="bin/Repository.DAL.dll">
-      <publishTime>08/25/2020 16:29:39</publishTime>
+      <publishTime>08/31/2020 14:15:23</publishTime>
     </File>
     <File Include="bin/Repository.DAL.dll.config">
       <publishTime>05/10/2014 23:09:04</publishTime>
     </File>
     <File Include="bin/Repository.DAL.pdb">
-      <publishTime>08/25/2020 16:29:39</publishTime>
+      <publishTime>08/31/2020 14:15:23</publishTime>
     </File>
     <File Include="bin/Repository.Data.dll">
-      <publishTime>08/25/2020 16:29:37</publishTime>
+      <publishTime>08/31/2020 14:15:21</publishTime>
     </File>
     <File Include="bin/Repository.Data.dll.config">
       <publishTime>02/06/2015 13:12:30</publishTime>
     </File>
     <File Include="bin/Repository.Data.pdb">
-      <publishTime>08/25/2020 16:29:37</publishTime>
+      <publishTime>08/31/2020 14:15:21</publishTime>
     </File>
     <File Include="bin/Repository.Entity.dll">
-      <publishTime>08/25/2020 16:29:35</publishTime>
+      <publishTime>08/31/2020 14:15:19</publishTime>
     </File>
     <File Include="bin/Repository.Entity.dll.config">
       <publishTime>02/23/2015 21:53:20</publishTime>
     </File>
     <File Include="bin/Repository.Entity.pdb">
-      <publishTime>08/25/2020 16:29:35</publishTime>
+      <publishTime>08/31/2020 14:15:19</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>05/07/2013 13:09:16</publishTime>
@@ -118,7 +118,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/12/2019 19:42:59</publishTime>
     </File>
     <File Include="Content/css/custom.scss">
-      <publishTime>11/12/2019 19:43:00</publishTime>
+      <publishTime>08/29/2020 18:04:03</publishTime>
     </File>
     <File Include="Content/css/datatables.min.css">
       <publishTime>10/11/2019 13:56:42</publishTime>
@@ -235,7 +235,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/24/2019 19:32:52</publishTime>
     </File>
     <File Include="Main.Master">
-      <publishTime>08/08/2020 13:49:00</publishTime>
+      <publishTime>08/29/2020 18:01:59</publishTime>
+    </File>
+    <File Include="ManualWorkLine.aspx">
+      <publishTime>08/27/2020 13:01:56</publishTime>
+    </File>
+    <File Include="ManualWorkLineInput.aspx">
+      <publishTime>08/29/2020 15:23:34</publishTime>
     </File>
     <File Include="Order.aspx">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -268,7 +274,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/03/2020 18:52:25</publishTime>
     </File>
     <File Include="ProcessCategoryList.aspx">
-      <publishTime>10/04/2019 17:14:00</publishTime>
+      <publishTime>08/29/2020 17:58:31</publishTime>
+    </File>
+    <File Include="ProcessCategoryTiming.aspx">
+      <publishTime>08/29/2020 16:24:45</publishTime>
     </File>
     <File Include="ProcessList.aspx">
       <publishTime>10/03/2019 18:15:10</publishTime>
@@ -355,7 +364,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/13/2019 20:42:18</publishTime>
     </File>
     <File Include="Users.aspx">
-      <publishTime>10/03/2019 16:55:15</publishTime>
+      <publishTime>08/27/2020 12:31:44</publishTime>
     </File>
     <File Include="UsersList.aspx">
       <publishTime>10/03/2019 17:15:35</publishTime>
@@ -367,7 +376,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/25/2020 16:29:49</publishTime>
     </File>
     <File Include="WorkLine.aspx">
-      <publishTime>08/08/2020 13:47:53</publishTime>
+      <publishTime>08/29/2020 15:03:55</publishTime>
     </File>
     <File Include="WorkLineReport.aspx">
       <publishTime>08/08/2020 13:48:59</publishTime>

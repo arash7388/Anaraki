@@ -138,7 +138,7 @@
                             <ItemStyle Font-Names="bkoodak" Font-Size="10" />
                         </telerik:GridBoundColumn>
 
-                        <telerik:GridBoundColumn DataField="ProductName" FilterControlAltText="Filter column1 column" HeaderText="نام کالا" ReadOnly="True" UniqueName="column244" AllowFiltering="false" AutoPostBackOnFilter="True" FilterImageToolTip="فیلتر" CurrentFilterFunction="Contains" MaxLength="200" DataType="System.string">
+                        <telerik:GridBoundColumn DataField="ACode" FilterControlAltText="Filter column1 column" HeaderText="ACode" ReadOnly="True" UniqueName="column244" AllowFiltering="false" AutoPostBackOnFilter="True" FilterImageToolTip="فیلتر" CurrentFilterFunction="Contains" MaxLength="200" DataType="System.string">
                             <ColumnValidationSettings>
                                 <ModelErrorMessage Text="خطا" />
                             </ColumnValidationSettings>

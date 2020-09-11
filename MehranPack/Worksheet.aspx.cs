@@ -37,8 +37,12 @@ namespace MehranPack
         {
             //var q = HttpContext.Current.Request.QueryString[0];
             //todo in edit mode it counts the edited worksheet and is not right
-            if (new WorksheetDetailRepository().Get(a => a.ACode == ACode).Any())
-                return "true";
+            var existingAcode = new WorksheetDetailRepository().Get(a => a.ACode == ACode).FirstOrDefault();
+
+            if (existingAcode != null)
+            {
+                return "true#" + existingAcode.WorksheetId;
+            }
 
             return "false";
         }

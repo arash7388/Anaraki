@@ -35,7 +35,7 @@ namespace MehranPack
         public static string AddRow(string input)
         {
             //WID,OperatorID,ProcessID
-            var parts = input.Split(',');
+            var parts = input.Replace('و' , ',').Split(',');
 
             var worksheetId = parts[0].ToSafeInt();
             var operatorId = parts[1].ToSafeInt();

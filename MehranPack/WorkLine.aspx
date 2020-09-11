@@ -135,7 +135,7 @@
             $("#txtBarcodeInput").on("keypress", function (e) {
 
                 if (e.keyCode == 35) {
-                    var inputTxt = $("#txtBarcodeInput").val();
+                    var inputTxt = $("#txtBarcodeInput").val().replace('و',',');
                     var inputTxt1 = '<%#Session["InputBarcode"] != null ? Session["InputBarcode"].ToString() : "" %>';
                     var paramss = '{input:"' + inputTxt + '"}'
                     $.ajax({

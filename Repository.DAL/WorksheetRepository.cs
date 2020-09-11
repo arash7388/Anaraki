@@ -87,6 +87,7 @@ namespace Repository.DAL
                              ColorId = c.Id,
                              ColorName = c.Name,
                              OperatorName = o.FriendlyName,
+                             //ACodes = w.WorksheetDetails.Select(a => a.ACode).Aggregate((m, n) => m + "," + n)
                          };
 
             if (whereClause != null)
@@ -154,6 +155,8 @@ namespace Repository.DAL
         public string CategoryName { get; set; }
         public string ProductCode { get; set; }
         public string ProductName { get; set; }
+        public string ACodes { get; set; }
+
     }
 
 }
