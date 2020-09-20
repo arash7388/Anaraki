@@ -44,9 +44,10 @@ namespace MehranPack
             var workLinerepo = new WorkLineRepository();
             var thisWorksheetWorkLines = workLinerepo.Get(a => a.WorksheetId == worksheetId);
 
-            var prevProcessOfThisWorksheet = thisWorksheetWorkLines.Any() ? thisWorksheetWorkLines.Max(a => a.ProcessId) : 0;
+            var prevProcessOfThisWorksheet = thisWorksheetWorkLines.Any() ? thisWorksheetWorkLines.Where(a=>a.ProcessId != 999).Max(a => a.ProcessId) : 0;
 
-            if (thisWorksheetWorkLines != null && thisWorksheetWorkLines.Any())
+            if(prevProcessOfThisWorksheet !=999)
+               if (thisWorksheetWorkLines != null && thisWorksheetWorkLines.Any())
                 if (prevProcessOfThisWorksheet != 0 && prevProcessOfThisWorksheet >= processId)
                     return "عدم رعایت ترتیب فرآیند" + "- کاربر:" + new UserRepository().GetById(operatorId)?.Username + "- کاربرگ:" + worksheetId;
 
@@ -64,19 +65,10 @@ namespace MehranPack
             var indexOfNextProcess = indexOfPrevProcess + 1;
             var nextProcessOfThisWorksheet = thisWorksheetProcesses[indexOfNextProcess];
 
-            if (processId != nextProcessOfThisWorksheet)
+            if (processId != 999 && processId != nextProcessOfThisWorksheet)
                 return "عدم رعایت ترتیب فرآیند" + "- کاربر:" + new UserRepository().GetById(operatorId)?.Username + "- کاربرگ:" + worksheetId;
 
-            //if (prevOrder == 0 && order  != 1)
-            //    return "عدم رعایت ترتیب فرآیند";
-
-            //var repo = new WorkLineRepository();
-            //if (repo.Get(a => a.WorksheetId == worksheetId && a.OperatorId == operatorId
-            //    && a.ProductId == productId).Any())
-            //{
-            //    return "ردیف تکراری";
-            //}
-
+           
             var uow = new UnitOfWork();
             uow.WorkLines.Create(new Repository.Entity.Domain.WorkLine()
             {

@@ -122,7 +122,7 @@
                             <ItemStyle Font-Names="bkoodak" Font-Size="10" />
                         </telerik:GridBoundColumn>
 
-                        <telerik:GridBoundColumn DataField="WaxNo" FilterControlAltText="Filter column1 column" HeaderText="موم" ReadOnly="True" UniqueName="column222" AllowFiltering="false" AutoPostBackOnFilter="True" FilterImageToolTip="فیلتر" CurrentFilterFunction="Contains" MaxLength="200" DataType="System.string">
+                        <telerik:GridBoundColumn DataField="WaxNo" FilterControlAltText="Filter column1 column" HeaderText="موم" ReadOnly="True" UniqueName="column222" AllowFiltering="true" AutoPostBackOnFilter="True" FilterImageToolTip="فیلتر" CurrentFilterFunction="Contains" MaxLength="200" DataType="System.string">
                             <ColumnValidationSettings>
                                 <ModelErrorMessage Text="خطا" />
                             </ColumnValidationSettings>
@@ -138,7 +138,7 @@
                             <ItemStyle Font-Names="bkoodak" Font-Size="10" />
                         </telerik:GridBoundColumn>
 
-                        <telerik:GridBoundColumn DataField="ACode" FilterControlAltText="Filter column1 column" HeaderText="ACode" ReadOnly="True" UniqueName="column244" AllowFiltering="false" AutoPostBackOnFilter="True" FilterImageToolTip="فیلتر" CurrentFilterFunction="Contains" MaxLength="200" DataType="System.string">
+                        <telerik:GridBoundColumn DataField="ACode" FilterControlAltText="Filter column1 column" HeaderText="ACode" ReadOnly="True" UniqueName="column244" AllowFiltering="true" AutoPostBackOnFilter="True" FilterImageToolTip="فیلتر" CurrentFilterFunction="Contains" MaxLength="200" DataType="System.string">
                             <ColumnValidationSettings>
                                 <ModelErrorMessage Text="خطا" />
                             </ColumnValidationSettings>

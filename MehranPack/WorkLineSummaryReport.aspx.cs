@@ -16,18 +16,9 @@ namespace MehranPack
         {
             if (!Page.IsPostBack)
             {
-                //RadGridLocalizationProvider.CurrentProvider = new CustomLocalizationProvider();
                 BindDrpOp();
                 BindDrpReportType();
                 Session["Result"] = null;
-                //List<Filter> filters = new List<Filter>();
-                //filters.Add(new Filter("InsertDateTime", OperationType.GreaterThanOrEqual, DateTime.Now.AddDays(-7)));
-                //filters.Add(new Filter("InsertDateTime", OperationType.LessThanOrEqual, DateTime.Now));
-
-                //var whereClause = ExpressionBuilder.GetExpression<WorkLineHelper>(filters);
-
-                //Session["Result"] = new WorkLineRepository().GetAllForSummaryReport(1,whereClause);
-                //BindGrid();
             }
 
             if (Session["Result"] != null && ((List<WorkLineSummary>)Session["Result"]).Any())

@@ -106,7 +106,11 @@
     <Content Include="Content\js\datatables.min.js" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
+    <Content Include="GoodsGroupSupply.aspx" />
+    <Content Include="GoodsSupply.aspx" />
     <Content Include="InputOutput.aspx" />
+    <Content Include="InputOutputList.aspx" />
+    <Content Include="IOReport.aspx" />
     <Content Include="ManualWorkLineInput.aspx" />
     <Content Include="ProcessCategoryTiming.aspx" />
     <Content Include="Product.aspx" />
@@ -218,12 +222,40 @@
     <Compile Include="DataHandler.ashx.cs">
       <DependentUpon>DataHandler.ashx</DependentUpon>
     </Compile>
+    <Compile Include="GoodsGroupSupply.aspx.cs">
+      <DependentUpon>GoodsGroupSupply.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GoodsGroupSupply.aspx.designer.cs">
+      <DependentUpon>GoodsGroupSupply.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GoodsSupply.aspx.cs">
+      <DependentUpon>GoodsSupply.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GoodsSupply.aspx.designer.cs">
+      <DependentUpon>GoodsSupply.aspx</DependentUpon>
+    </Compile>
     <Compile Include="InputOutput.aspx.cs">
       <DependentUpon>InputOutput.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="InputOutput.aspx.designer.cs">
       <DependentUpon>InputOutput.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InputOutputList.aspx.cs">
+      <DependentUpon>InputOutputList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InputOutputList.aspx.designer.cs">
+      <DependentUpon>InputOutputList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IOReport.aspx.cs">
+      <DependentUpon>IOReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IOReport.aspx.designer.cs">
+      <DependentUpon>IOReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="ManualWorkLineInput.aspx.cs">
       <DependentUpon>ManualWorkLineInput.aspx</DependentUpon>

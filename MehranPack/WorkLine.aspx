@@ -23,7 +23,7 @@
 
     <div class="row">
         <div class="col-md-10" style="padding-right: 80px;">
-            <asp:CheckBox runat="server" ID="chkShowAll" Text="نمایش کلیه تایمینگ ها" AutoPostBack="true"/>
+            <asp:CheckBox runat="server" ID="chkShowAll" Text="نمایش کلیه تایمینگ ها(1000 رکورد آخر)" AutoPostBack="true"/>
         </div>
     </div>
     <div class="row">

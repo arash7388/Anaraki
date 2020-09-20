@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 using System.Web.Routing;
+using System.Web.UI;
 using Common;
 using Repository.DAL;
 using Repository.Entity.Domain;
@@ -46,8 +49,8 @@ namespace MehranPack
         {
             Debuging.Info("Start of Main.master.cs");
 
-            if (Environment.MachineName.ToLower() == "DESKTOP-B0LRPCF".ToLower())
-                Session["User"] = new UserRepository().GetById(1);
+            //if (Environment.MachineName.ToLower() == "DESKTOP-B0LRPCF".ToLower())
+            //    Session["User"] = new UserRepository().GetById(1);
 
             if (Session["User"] == null)
                 Response.RedirectToRoute("Login");
@@ -65,6 +68,47 @@ namespace MehranPack
                 SetGeneralMessage(postPrMsg.Message, postPrMsg.MessageType);
                 Session["PostProcessMessage"] = null;
             }
+
+            if(Session["User"] != null && ((User)Session["User"]).Username == "inoutop")
+            {
+                var items = GetControlHierarchy(mainMenuDiv);
+                foreach (var item in items)
+                {
+                    item.Visible = false;
+                }
+
+                mainMenuDiv.Visible = true;
+
+                lbtnIn.Visible = true;
+                lbtnOut.Visible = true;
+                lbtnReportIn.Visible = true;
+                lbtnReportOut.Visible = true;
+                lbtnGoodsSupply.Visible = true;
+                lbtnCardex.Visible = true;
+                lbtnGoodsGroupSupply.Visible = true;
+                lbtnUsers.Visible = true;
+                lbtnCustomers.Visible = true;
+                lbtnExit.Visible = true;
+            }
+        }
+
+        private IEnumerable<Control> GetControlHierarchy(Control root)
+        {
+            var queue = new Queue<Control>();
+
+            queue.Enqueue(root);
+
+            do
+            {
+                var control = queue.Dequeue();
+
+                yield return control;
+
+                foreach (var child in control.Controls.OfType<Control>())
+                    queue.Enqueue(child);
+
+            } while (queue.Count > 0);
+
         }
 
         public void SetGeneralMessage(string text, MessageType messageType)

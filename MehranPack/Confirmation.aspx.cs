@@ -89,6 +89,7 @@ namespace MehranPack
         public string Table { get; set; }
         public string RedirectAdr { get; set; }
         public RouteValueDictionary RedirectRouteValueDictionary { get; set; }
+        public string RedirectRoute { get; internal set; }
     }
 
     public class PostProcessMessage

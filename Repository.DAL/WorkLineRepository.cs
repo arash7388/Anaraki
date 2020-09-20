@@ -68,12 +68,12 @@ namespace Repository.DAL
                              Manual = wl.Manual ?? false
                          };
 
-            var res = result.ToList();
+            var res = result.Take(1000).ToList();
 
             foreach (WorkLineHelper item in res)
             {
                 var dt = Common.Utility.CastToFaDateTime(item.InsertDateTime);
-                dt = dt.Substring(11, dt.Length - 11);
+                //dt = dt.Substring(11, dt.Length - 11);
                 item.PersianDateTime = dt;
             }
 
@@ -347,7 +347,8 @@ namespace Repository.DAL
                                             ProductName = cat.Name + " " + p.Name,
                                             ProcessName = pro.Name,
                                             ProcessTime = pcat.ProcessTime,
-                                            InsertDateTime = ws.InsertDateTime
+                                            InsertDateTime = ws.InsertDateTime,
+                                            
                                         };
 
                 var worksheetsDetailsList = new List<WorkLineHelper>();
@@ -357,6 +358,7 @@ namespace Repository.DAL
                 else
                     worksheetsDetailsList = worksheetsDetails.ToList();
 
+                worksheetsDetailsList = worksheetsDetailsList.Where(a => a.WorksheetId == 4137).ToList();
                 //calcing allowed time
                 var operatorAllowedTimeResult = from r in worksheetsDetailsList
                                                 group r by new { r.InsertDateTime, r.OperatorId, r.OperatorName } into g
@@ -527,39 +529,19 @@ namespace Repository.DAL
 
                 result = operatorAllowedTimeResultInAMonthList;
             }
-            else if (reportType == 7 || reportType == 8) //takhir ya tajil roozanhe bar asase process
+            else if (reportType == (int)ReportType.BasedOnDailyDelay || reportType == (int)ReportType.BasedOnDailyHurry) //takhir ya tajil roozanhe bar asase process
             {
-                var worksheetsDetails = from ws in DBContext.Worksheets
-                                        join u in DBContext.Users on ws.OperatorId equals u.Id
-                                        join wd in DBContext.WorksheetDetails on ws.Id equals wd.WorksheetId
-                                        join p in DBContext.Products on wd.ProductId equals p.Id
-                                        join cat in DBContext.Categories on p.ProductCategoryId equals cat.Id
-                                        join pcat in DBContext.ProcessCategories on cat.Id equals pcat.CategoryId
-                                        join pro in DBContext.Processes on pcat.ProcessId equals pro.Id
-                                        select new WorkLineHelper
-                                        {
-                                            WorksheetId = ws.Id,
-                                            OperatorId = (int)ws.OperatorId,
-                                            OperatorName = u.FriendlyName,
-                                            ProductId = wd.ProductId,
-                                            ProcessId = pro.Id,
-                                            ProductCode = p.Code,
-                                            ProductName = cat.Name + " " + p.Name,
-                                            ProcessName = pro.Name,
-                                            ProcessTime = pcat.ProcessTime,
-                                            InsertDateTime = ws.InsertDateTime
-                                        };
+                List<WorkLineHelper> worksheetsDetailsList = GetWorksheetDetails(whereClause);
 
-                var worksheetsDetailsList = new List<WorkLineHelper>();
 
-                if (whereClause != null)
-                    worksheetsDetailsList = worksheetsDetails.Where(whereClause).ToList();
-                else
-                    worksheetsDetailsList = worksheetsDetails.ToList();
+                /////////tempppppppppppppp
+                //worksheetsDetailsList = worksheetsDetailsList.Where(a => a.WorksheetId == 2050).ToList();
+                //////////////////////////
+
 
                 //calcing allowed time
                 var operatorProcessAllowedTimeResult = from r in worksheetsDetailsList
-                                                       group r by new { r.InsertDateTime, r.ProcessId, r.ProcessName, r.OperatorId, r.OperatorName } into g
+                                                       group r by new { r.WorksheetId, r.InsertDateTime, r.ProcessId, r.ProcessName, r.OperatorId, r.OperatorName } into g
                                                        select new WorkLineSummary
                                                        {
                                                            InsertDateTime = g.Key.InsertDateTime ?? DateTime.MinValue,
@@ -567,6 +549,7 @@ namespace Repository.DAL
                                                            ProcessName = g.Key.ProcessName,
                                                            OperatorId = g.Key.OperatorId,
                                                            FriendlyName = g.Key.OperatorName,
+                                                           WorksheetId = g.Key.WorksheetId ?? 0,
                                                            ProcessTime = g.Sum(a => a.ProcessTime)
                                                        };
 
@@ -574,7 +557,7 @@ namespace Repository.DAL
                 SetDateProps(operatorProcessAllowedTimeResultList);
 
                 var operatorProcessAllowedTimeResultInADay = from r in operatorProcessAllowedTimeResultList
-                                                             group r by new { r.Year, r.Month, r.Day, r.ProcessId, r.ProcessName, r.OperatorId, r.FriendlyName } into g
+                                                             group r by new { r.Year, r.Month, r.Day, r.WorksheetId, r.ProcessId, r.ProcessName, r.OperatorId, r.FriendlyName } into g
                                                              select new WorkLineSummary
                                                              {
                                                                  Year = g.Key.Year,
@@ -584,12 +567,19 @@ namespace Repository.DAL
                                                                  FriendlyName = g.Key.FriendlyName,
                                                                  ProcessId = g.Key.ProcessId,
                                                                  ProcessName = g.Key.ProcessName,
+                                                                 WorksheetId = g.Key.WorksheetId,
                                                                  ProcessTime = g.Sum(a => a.ProcessTime)
                                                              };
 
                 var operatorProcessAllowedTimeResultInADayList = operatorProcessAllowedTimeResultInADay.ToList();
 
                 workLinesSelectList = workLinesSelect.ToList();
+
+
+                //////////tempppppp
+                //workLinesSelectList = workLinesSelect.Where(a => a.WorksheetId == 2050).ToList();
+                ///////////////////////
+
                 SetDataProps(workLinesSelectList);
                 workLinesSelectList = workLinesSelectList.OrderBy(a => a.OperatorId).ThenBy(a => a.InsertDateTime).ToList();
 
@@ -603,12 +593,14 @@ namespace Repository.DAL
                     else
                         prevItem = null;
 
-                    if (prevItem?.WorksheetId == item.WorksheetId && item.Year == prevItem.Year && item.Month == prevItem.Month && item.Day == prevItem.Day)
+                    if (prevItem?.WorksheetId == item.WorksheetId && prevItem.ProcessId == 999)
+                        continue;
+                    else if (prevItem?.WorksheetId == item.WorksheetId /*&& item.Year == prevItem.Year && item.Month == prevItem.Month && item.Day == prevItem.Day*/)
                         prevItem.ProcessDuration = Math.Truncate(((TimeSpan)(item.InsertDateTime - prevItem.InsertDateTime)).TotalMinutes).ToSafeInt();
                 }
 
                 var sumSpentTimeResultOperatorProcessInADay = from r in workLinesSelectList
-                                                              group r by new { r.OperatorId, r.ProcessId, r.ProcessName, r.Year, r.Month, r.Day } into g
+                                                              group r by new { r.WorksheetId, r.OperatorId, r.ProcessId, r.ProcessName, r.Year, r.Month, r.Day } into g
                                                               select new WorkLineSummary
                                                               {
                                                                   Year = g.Key.Year,
@@ -617,6 +609,7 @@ namespace Repository.DAL
                                                                   ProcessId = g.Key.ProcessId,
                                                                   ProcessName = g.Key.ProcessName,
                                                                   OperatorId = g.Key.OperatorId,
+                                                                  WorksheetId = g.Key.WorksheetId ?? 0,
                                                                   ProcessDuration = g.Sum(a => a.ProcessDuration)
                                                               };
 
@@ -627,58 +620,34 @@ namespace Repository.DAL
 
                 foreach (var element in operatorProcessAllowedTimeResultInADayList)
                 {
+                    if (!sumSpentTimeResultOperatorProcessInADay.Any(a => a.WorksheetId == element.WorksheetId && a.ProcessId == element.ProcessId))
+                        continue;
+
                     var sumItem = sumSpentTimeResultOperatorProcessInADayList.FirstOrDefault(a => a.OperatorId == element.OperatorId && a.Year == element.Year && a.Month == element.Month && a.Day == element.Day && a.ProcessId == element.ProcessId);
 
-                    //takhir
-                    if (reportType == 7 && sumItem != null && element.ProcessTime < sumItem.ProcessDuration)
+                    if (
+                        (reportType == (int)ReportType.BasedOnDailyDelay && sumItem != null && element.ProcessTime < sumItem.ProcessDuration)
+                        ||
+                        (reportType == (int)ReportType.BasedOnDailyHurry && sumItem != null && element.ProcessTime > sumItem.ProcessDuration)
+                        )
                     {
                         element.ProcessDuration = sumItem.ProcessDuration;
                         element.DiffTime = element.ProcessTime - element.ProcessDuration;
-                        finalResult.Add(element);
-                    }
-                    else if (reportType == 8 && sumItem != null && element.ProcessTime > sumItem.ProcessDuration)
-                    {
-                        element.ProcessDuration = sumItem.ProcessDuration;
-                        element.DiffTime = element.ProcessTime - element.ProcessDuration;
-                        finalResult.Add(element);
+
+                        if (element.ProcessId != 99 && element.ProcessId != 999)
+                            finalResult.Add(element);
                     }
                 }
 
                 result = finalResult;
             }
-            else if (reportType == 9 || reportType == 10) //takhir ya tajil mahane bar asase process
+            else if (reportType == (int)ReportType.BasedOnMonthlyDelay || reportType == (int)ReportType.BasedOnMonthlyHurry) //takhir ya tajil mahane bar asase process
             {
-                var worksheetsDetails = from ws in DBContext.Worksheets
-                                        join u in DBContext.Users on ws.OperatorId equals u.Id
-                                        join wd in DBContext.WorksheetDetails on ws.Id equals wd.WorksheetId
-                                        join p in DBContext.Products on wd.ProductId equals p.Id
-                                        join cat in DBContext.Categories on p.ProductCategoryId equals cat.Id
-                                        join pcat in DBContext.ProcessCategories on cat.Id equals pcat.CategoryId
-                                        join pro in DBContext.Processes on pcat.ProcessId equals pro.Id
-                                        select new WorkLineHelper
-                                        {
-                                            WorksheetId = ws.Id,
-                                            OperatorId = (int)ws.OperatorId,
-                                            OperatorName = u.FriendlyName,
-                                            ProductId = wd.ProductId,
-                                            ProcessId = pro.Id,
-                                            ProductCode = p.Code,
-                                            ProductName = cat.Name + " " + p.Name,
-                                            ProcessName = pro.Name,
-                                            ProcessTime = pcat.ProcessTime,
-                                            InsertDateTime = ws.InsertDateTime
-                                        };
-
-                var worksheetsDetailsList = new List<WorkLineHelper>();
-
-                if (whereClause != null)
-                    worksheetsDetailsList = worksheetsDetails.Where(whereClause).ToList();
-                else
-                    worksheetsDetailsList = worksheetsDetails.ToList();
+                List<WorkLineHelper> worksheetsDetailsList = GetWorksheetDetails(whereClause);
 
                 //calcing allowed time
                 var operatorProcessAllowedTimeResult = from r in worksheetsDetailsList
-                                                       group r by new { r.InsertDateTime, r.ProcessId, r.ProcessName, r.OperatorId, r.OperatorName } into g
+                                                       group r by new { r.WorksheetId, r.InsertDateTime, r.ProcessId, r.ProcessName, r.OperatorId, r.OperatorName } into g
                                                        select new WorkLineSummary
                                                        {
                                                            InsertDateTime = g.Key.InsertDateTime ?? DateTime.MinValue,
@@ -686,14 +655,15 @@ namespace Repository.DAL
                                                            ProcessName = g.Key.ProcessName,
                                                            OperatorId = g.Key.OperatorId,
                                                            FriendlyName = g.Key.OperatorName,
-                                                           ProcessTime = g.Sum(a => a.ProcessTime)
+                                                           ProcessTime = g.Sum(a => a.ProcessTime),
+                                                           WorksheetId = g.Key.WorksheetId ?? 0
                                                        };
 
                 var operatorProcessAllowedTimeResultList = operatorProcessAllowedTimeResult.ToList();
                 SetDateProps(operatorProcessAllowedTimeResultList);
 
-                var operatorProcessAllowedTimeResultInADay = from r in operatorProcessAllowedTimeResultList
-                                                             group r by new { r.Year, r.Month, r.ProcessId, r.ProcessName, r.OperatorId, r.FriendlyName } into g
+                var operatorProcessAllowedTimeResultInAMonth = from r in operatorProcessAllowedTimeResultList
+                                                             group r by new { r.Year, r.Month,r.WorksheetId, r.ProcessId, r.ProcessName, r.OperatorId, r.FriendlyName } into g
                                                              select new WorkLineSummary
                                                              {
                                                                  Year = g.Key.Year,
@@ -702,10 +672,11 @@ namespace Repository.DAL
                                                                  FriendlyName = g.Key.FriendlyName,
                                                                  ProcessId = g.Key.ProcessId,
                                                                  ProcessName = g.Key.ProcessName,
-                                                                 ProcessTime = g.Sum(a => a.ProcessTime)
+                                                                 ProcessTime = g.Sum(a => a.ProcessTime),
+                                                                 WorksheetId = g.Key.WorksheetId
                                                              };
 
-                var operatorProcessAllowedTimeResultInADayList = operatorProcessAllowedTimeResultInADay.ToList();
+                var operatorProcessAllowedTimeResultInAMonthList = operatorProcessAllowedTimeResultInAMonth.ToList();
 
                 workLinesSelectList = workLinesSelect.ToList();
                 SetDataProps(workLinesSelectList);
@@ -721,12 +692,15 @@ namespace Repository.DAL
                     else
                         prevItem = null;
 
-                    if (prevItem?.WorksheetId == item.WorksheetId && item.Year == prevItem.Year && item.Month == prevItem.Month)
+                    if (prevItem?.WorksheetId == item.WorksheetId && prevItem.ProcessId == 999)
+                        continue;
+
+                    if (prevItem?.WorksheetId == item.WorksheetId /*&& item.Year == prevItem.Year && item.Month == prevItem.Month*/)
                         prevItem.ProcessDuration = Math.Truncate(((TimeSpan)(item.InsertDateTime - prevItem.InsertDateTime)).TotalMinutes).ToSafeInt();
                 }
 
-                var sumSpentTimeResultOperatorProcessInADay = from r in workLinesSelectList
-                                                              group r by new { r.OperatorId, r.ProcessId, r.ProcessName, r.Year, r.Month } into g
+                var sumSpentTimeResultOperatorProcessInAMonth = from r in workLinesSelectList
+                                                              group r by new { r.WorksheetId,r.OperatorId, r.ProcessId, r.ProcessName, r.Year, r.Month } into g
                                                               select new WorkLineSummary
                                                               {
                                                                   Year = g.Key.Year,
@@ -734,30 +708,30 @@ namespace Repository.DAL
                                                                   ProcessId = g.Key.ProcessId,
                                                                   ProcessName = g.Key.ProcessName,
                                                                   OperatorId = g.Key.OperatorId,
+                                                                  WorksheetId = g.Key.WorksheetId ?? 0,
                                                                   ProcessDuration = g.Sum(a => a.ProcessDuration)
                                                               };
 
-                operatorProcessAllowedTimeResultInADayList = operatorProcessAllowedTimeResultInADayList.ToList();
-                var sumSpentTimeResultOperatorProcessInADayList = sumSpentTimeResultOperatorProcessInADay.ToList();
+                operatorProcessAllowedTimeResultInAMonthList = operatorProcessAllowedTimeResultInAMonthList.ToList();
+                var sumSpentTimeResultOperatorProcessInADayList = sumSpentTimeResultOperatorProcessInAMonth.ToList();
 
                 var finalResult = new List<WorkLineSummary>();
 
-                foreach (var element in operatorProcessAllowedTimeResultInADayList)
+                foreach (var element in operatorProcessAllowedTimeResultInAMonthList)
                 {
                     var sumItem = sumSpentTimeResultOperatorProcessInADayList.FirstOrDefault(a => a.OperatorId == element.OperatorId && a.Year == element.Year && a.Month == element.Month && a.Day == element.Day && a.ProcessId == element.ProcessId);
 
-                    //takhir
-                    if (reportType == 9 && sumItem != null && element.ProcessTime < sumItem.ProcessDuration)
+                    if (
+                        (reportType == (int)ReportType.BasedOnMonthlyDelay && sumItem != null && element.ProcessTime < sumItem.ProcessDuration)
+                        ||
+                        (reportType == (int)ReportType.BasedOnMonthlyHurry && sumItem != null && element.ProcessTime > sumItem.ProcessDuration)
+                        )
                     {
                         element.ProcessDuration = sumItem.ProcessDuration;
                         element.DiffTime = element.ProcessTime - element.ProcessDuration;
-                        finalResult.Add(element);
-                    }
-                    else if (reportType == 10 && sumItem != null && element.ProcessTime > sumItem.ProcessDuration)
-                    {
-                        element.ProcessDuration = sumItem.ProcessDuration;
-                        element.DiffTime = element.ProcessTime - element.ProcessDuration;
-                        finalResult.Add(element);
+
+                        if (element.ProcessId != 99 && element.ProcessId != 999)
+                            finalResult.Add(element);
                     }
                 }
 
@@ -766,6 +740,38 @@ namespace Repository.DAL
 
 
             return result.ToList();
+        }
+
+        private List<WorkLineHelper> GetWorksheetDetails(System.Linq.Expressions.Expression<Func<WorkLineHelper, bool>> whereClause)
+        {
+            var worksheetsDetails = from ws in DBContext.Worksheets
+                                    join u in DBContext.Users on ws.OperatorId equals u.Id
+                                    join wd in DBContext.WorksheetDetails on ws.Id equals wd.WorksheetId
+                                    join p in DBContext.Products on wd.ProductId equals p.Id
+                                    join cat in DBContext.Categories on p.ProductCategoryId equals cat.Id
+                                    join pcat in DBContext.ProcessCategories on cat.Id equals pcat.CategoryId
+                                    join pro in DBContext.Processes on pcat.ProcessId equals pro.Id
+                                    select new WorkLineHelper
+                                    {
+                                        WorksheetId = ws.Id,
+                                        OperatorId = (int)ws.OperatorId,
+                                        OperatorName = u.FriendlyName,
+                                        ProductId = wd.ProductId,
+                                        ProcessId = pro.Id,
+                                        ProductCode = p.Code,
+                                        ProductName = cat.Name + " " + p.Name,
+                                        ProcessName = pro.Name,
+                                        ProcessTime = pcat.ProcessTime,
+                                        InsertDateTime = ws.InsertDateTime
+                                    };
+
+            var worksheetsDetailsList = new List<WorkLineHelper>();
+
+            if (whereClause != null)
+                worksheetsDetailsList = worksheetsDetails.Where(whereClause).ToList();
+            else
+                worksheetsDetailsList = worksheetsDetails.ToList();
+            return worksheetsDetailsList;
         }
 
         private static void SetDataProps(List<WorkLineHelper> workLineHelperList)
@@ -836,5 +842,18 @@ namespace Repository.DAL
         public int ProcessTime { get; set; }
         public int ProcessDuration { get; set; }
         public int DiffTime { get; set; }
+    }
+
+    public enum ReportType
+    {
+        BasedOnProcess = 1, //براساس فرآیند
+        BasedOnProcessProduct = 2, //بر اساس محصول-فرآیند
+        BasedOnProductionTime = 3, //بر اساس  زمان تولید 
+        BasedOnDailyProductionTime = 4, //بر اساس  زمان تولید روزانه
+        BasedOnMonthlyProductionTime = 6, //بر اساس  زمان تولید ماهانه
+        BasedOnDailyDelay = 7, //بر اساس  تاخیر تولید روزانه
+        BasedOnDailyHurry = 8, //بر اساس  تعجیل تولید روزانه
+        BasedOnMonthlyDelay = 9, //بر اساس  تاخیر تولید ماهانه
+        BasedOnMonthlyHurry = 10 //بر اساس  تعجیل تولید ماهانه
     }
 }

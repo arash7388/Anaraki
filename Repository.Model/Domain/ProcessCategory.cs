@@ -10,6 +10,7 @@ namespace Repository.Entity.Domain
     public class ProcessCategory
     {
         public int Id { get; set; }
+
         public Category Category { get; set; }
 
         [Index("IX_CatPr", 1,IsUnique =true)]

@@ -36,17 +36,31 @@ namespace MehranPack
             }
             else if (e.CommandName == "Delete")
             {
-                var data =new ConfirmData();
+                if (e.CommandArgument.ToSafeInt() == 99 || e.CommandArgument.ToSafeInt() == 999)
+                {
+                    Session["PostProcessMessage"] = new PostProcessMessage()
+                    {
+                        Message = "این فرآیند سیستمی است و قابل حذف نیست",
+                        MessageType = MessageType.Error
+                    };
 
-                data.Command = "Delete";
-                data.Id = e.CommandArgument.ToSafeInt();
-                data.Msg = "آیا از حذف اطمینان دارید؟";
-                data.Table = "Processes";
-                data.RedirectAdr = "ProcessList";
+                    Response.RedirectToRoute("ProcessList");
+                }
+                else
+                {
+                    var data = new ConfirmData();
 
-                Session["ConfirmData"] = data;
-                Response.RedirectToRoute("Confirmation");
-                Response.End();
+                    data.Command = "Delete";
+                    data.Id = e.CommandArgument.ToSafeInt();
+                    data.Msg = "آیا از حذف اطمینان دارید؟";
+                    data.Table = "Processes";
+                    data.RedirectAdr = "ProcessList";
+
+                    Session["ConfirmData"] = data;
+                    Response.RedirectToRoute("Confirmation");
+                    Response.End();
+                }
+               
             }
         }
 
